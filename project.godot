@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Harvest 306"
-config/description="A game clone of the given game Harvest 306.s"
+config/description="A game clone of the given game Harvest 306."
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -24,6 +24,10 @@ window/stretch/mode="canvas_items"
 [dotnet]
 
 project/assembly_name="Harvest 306"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 
 [rendering]
 
