@@ -14,14 +14,18 @@ extends Control
 ## hits the options button.
 @export var _options_menu_scene: PackedScene
 
+## Canvas Layer for the option menu to be added to.
+@onready var options_layer = $OptionsLayer
+
 ## Changes tree to a difference scene once user hits start button.
 func _on_start_button_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().change_scene_to_packed(_starting_game_scene)
 
 ## Adds option menu to tree once user hits options button.
 func _on_options_button_pressed() -> void:
-	pass # Replace with function body.
+	var options = _options_menu_scene.instantiate()
+	options_layer.add_child(options)
 
 ## Quits the game once user hits quit button.
 func _on_quit_button_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().quit()
