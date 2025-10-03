@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqjcx2x6ccgbg"]
+
+[ext_resource type="Script" uid="uid://dljmg0ki3djq" path="res://general_ui/options_menu/number_slider.gd" id="1_sr3he"]
+
+[node name="NumberSlider" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_sr3he")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 85.0
+offset_bottom = 31.0
+
+[node name="Percentage" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "90%"
+
+[node name="NumberSlider" type="HSlider" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NumberInput" type="LineEdit" parent="HBoxContainer"]
+layout_mode = 2
