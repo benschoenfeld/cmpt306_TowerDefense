@@ -42,7 +42,7 @@ layout_mode = 2
 text = "Quit"
 
 [node name="OptionsLayer" type="CanvasLayer" parent="."]
-layer = 2
+layer = 5
 
 [connection signal="pressed" from="MainContentContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MainContentContainer/OptionsButton" to="." method="_on_options_button_pressed"]
