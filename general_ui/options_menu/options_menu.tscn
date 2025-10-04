@@ -12,45 +12,55 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vgjbt")
 
-[node name="MainContentContainer" type="VBoxContainer" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 60
+color = Color(0, 0, 0, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainContentContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainContentContainer" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(500, 15.685)
+layout_mode = 2
+theme_override_constants/separation = 140
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MainContentContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MainContentContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CenterContainer/MainContentContainer/VBoxContainer"]
 layout_mode = 2
 text = "Music Volume"
 
-[node name="MusicVolume" parent="MainContentContainer/VBoxContainer" instance=ExtResource("2_ln23y")]
+[node name="MusicVolume" parent="CenterContainer/MainContentContainer/VBoxContainer" instance=ExtResource("2_ln23y")]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MainContentContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/MainContentContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MainContentContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="CenterContainer/MainContentContainer/VBoxContainer2"]
 layout_mode = 2
 text = "SFX Volume"
 
-[node name="SFXVolume" parent="MainContentContainer/VBoxContainer2" instance=ExtResource("2_ln23y")]
+[node name="SFXVolume" parent="CenterContainer/MainContentContainer/VBoxContainer2" instance=ExtResource("2_ln23y")]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="ExitButton" type="Button" parent="MainContentContainer"]
+[node name="ExitButton" type="Button" parent="CenterContainer/MainContentContainer"]
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 text = "Back"
 
-[connection signal="value_changed" from="MainContentContainer/VBoxContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
-[connection signal="value_changed" from="MainContentContainer/VBoxContainer2/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
-[connection signal="pressed" from="MainContentContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="value_changed" from="CenterContainer/MainContentContainer/VBoxContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="value_changed" from="CenterContainer/MainContentContainer/VBoxContainer2/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="pressed" from="CenterContainer/MainContentContainer/ExitButton" to="." method="_on_exit_button_pressed"]

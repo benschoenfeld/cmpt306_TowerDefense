@@ -9,10 +9,10 @@ extends Control
 ## tutorial used for how to access the audio bus systems and db to linear
 
 ## Slider for the music.
-@onready var music_slider: NumberSlider = $MainContentContainer/VBoxContainer/MusicVolume
+@onready var music_slider: NumberSlider = %MusicVolume
 
 ## Slider for the sound effects.
-@onready var sfx_slider: NumberSlider = $MainContentContainer/VBoxContainer2/SFXVolume
+@onready var sfx_slider: NumberSlider = %SFXVolume
 
 func _ready() -> void:
 	_match_sliders_to_audio()

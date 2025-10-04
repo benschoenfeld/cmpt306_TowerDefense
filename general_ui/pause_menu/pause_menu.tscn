@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bb0emy17c3vce"]
+[gd_scene load_steps=3 format=3 uid="uid://bb0emy17c3vce"]
 
 [ext_resource type="Script" uid="uid://dwnly5hcp86fa" path="res://general_ui/pause_menu/pause_menu.gd" id="1_iayod"]
+[ext_resource type="PackedScene" uid="uid://3w2wv3vnr6nd" path="res://general_ui/options_menu/options_menu.tscn" id="2_ya0wi"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -11,6 +12,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_iayod")
+_options_menu_scene = ExtResource("2_ya0wi")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="MainContentsContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -25,20 +36,25 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 40
 
 [node name="ResumeButton" type="Button" parent="MainContentsContainer"]
+custom_minimum_size = Vector2(300, 70)
 layout_mode = 2
 text = "Resume"
 
 [node name="OptionsButton" type="Button" parent="MainContentsContainer"]
+custom_minimum_size = Vector2(300, 70)
 layout_mode = 2
 text = "Options"
 
 [node name="MainMenuButton" type="Button" parent="MainContentsContainer"]
+custom_minimum_size = Vector2(300, 70)
 layout_mode = 2
 text = "Main Menu"
 
 [node name="QuitButton" type="Button" parent="MainContentsContainer"]
+custom_minimum_size = Vector2(300, 70)
 layout_mode = 2
 text = "Quit"
 

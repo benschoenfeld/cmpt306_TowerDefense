@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8xmwk0c8tn7d"]
+[gd_scene load_steps=4 format=3 uid="uid://b8xmwk0c8tn7d"]
 
 [ext_resource type="Script" uid="uid://dsevp8l6w4lx0" path="res://general_ui/main_menu/main_menu.gd" id="1_mmqbw"]
+[ext_resource type="PackedScene" uid="uid://3w2wv3vnr6nd" path="res://general_ui/options_menu/options_menu.tscn" id="2_uc612"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uc612"]
+font_size = 120
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -10,6 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mmqbw")
+_options_menu_scene = ExtResource("2_uc612")
 
 [node name="MainContentContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -24,25 +29,39 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 35
 
 [node name="GameTitle" type="Label" parent="MainContentContainer"]
 layout_mode = 2
 text = "Harvest 306"
+label_settings = SubResource("LabelSettings_uc612")
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="MainContentContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
 
 [node name="StartButton" type="Button" parent="MainContentContainer"]
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 text = "Start"
 
 [node name="OptionsButton" type="Button" parent="MainContentContainer"]
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="MainContentContainer"]
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 text = "Quit"
 
 [node name="OptionsLayer" type="CanvasLayer" parent="."]
 layer = 5
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+autoplay = true
+bus = &"SFX"
 
 [connection signal="pressed" from="MainContentContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MainContentContainer/OptionsButton" to="." method="_on_options_button_pressed"]

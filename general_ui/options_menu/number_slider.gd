@@ -40,4 +40,4 @@ func _on_value_slider_value_changed(value: float) -> void:
 
 ## A private function so that the [param value_label] can change.
 func _change_value_label() -> void:
-	value_label.text = str(current_value * 100) + "%"
+	value_label.text = str(round(current_value * 100)) + "%"
