@@ -25,9 +25,27 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 60
 
-[node name="MusicVolume" parent="MainContentContainer" instance=ExtResource("2_ln23y")]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContentContainer"]
 layout_mode = 2
 
-[node name="SFXVolume" parent="MainContentContainer" instance=ExtResource("2_ln23y")]
+[node name="Label" type="Label" parent="MainContentContainer/VBoxContainer"]
 layout_mode = 2
+text = "Music Volume"
+
+[node name="MusicVolume" parent="MainContentContainer/VBoxContainer" instance=ExtResource("2_ln23y")]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MainContentContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainContentContainer/VBoxContainer2"]
+layout_mode = 2
+text = "SFX Volume"
+
+[node name="SFXVolume" parent="MainContentContainer/VBoxContainer2" instance=ExtResource("2_ln23y")]
+layout_mode = 2
+
+[connection signal="value_changed" from="MainContentContainer/VBoxContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="value_changed" from="MainContentContainer/VBoxContainer2/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
