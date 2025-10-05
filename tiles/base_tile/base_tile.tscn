@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://m3k82q7fyhxk" path="res://tiles/base_tile/base_tile.gd" id="1_6tbiv"]
 
-[node name="BaseTile" type="Node2D" groups=["Tile"]]
+[node name="BaseTile" type="Node2D"]
 script = ExtResource("1_6tbiv")

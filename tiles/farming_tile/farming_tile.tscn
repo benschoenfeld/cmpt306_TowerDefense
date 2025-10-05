@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_36oka"]
 size = Vector2(32, 32)
 
-[node name="FarmingTile" type="Node2D" groups=["Tile"]]
+[node name="FarmingTile" type="Node2D"]
 script = ExtResource("1_sjl78")
 metadata/_custom_type_script = "uid://m3k82q7fyhxk"
 

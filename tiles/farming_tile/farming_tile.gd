@@ -13,7 +13,7 @@ extends BaseTile
 var current_stats: FarmingTileStats
 
 ## [param saturation] determines the type of dirt tile and whether a crop can grow.
-var saturation: float = 10.0
+var saturation: float = 0.0
 
 ## The type of [Crop] that is being planted onto this [FarmingTile].
 var current_crop # Make this have a crop scene once that is created.
@@ -81,12 +81,16 @@ func _process(delta: float) -> void:
 
 ## Lowers the saturation every tick.
 func _lower_saturation(delta: float) -> void:
-	# Makes sure that it can only go down to zero.
-	if saturation <= 0.0:
-		saturation = 0.0
-	else:
-		saturation -= loss_rate_saturation * delta
+	# It can only go down if it is a wet dirt tile.
+	if current_stats.tile_type == FarmingTileStats.TileType.WET_DIRT:
+		# Makes sure that it can only go down to zero.
+		if !has_saturation():
+			saturation = 0.0
+			set_tile_stats(dry_dirt_stats)
+		else:
+			saturation -= loss_rate_saturation * delta
 
 ## Used for interaction with the tile.
-func _on_interaction_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	emit_signal("send_tile_data", self)
+func _on_interaction_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if event.is_action_pressed("interact"):
+		emit_signal("send_tile_data", self)
