@@ -6,4 +6,4 @@ extends Node2D
 ## Allow for changes to impact all tiles if tile systems change.
 
 ## Allows for other nodes to obtain data 
-signal send_tile_data(tile_data: Node2D)
+signal send_tile_data(tile_data: BaseTile)
