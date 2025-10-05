@@ -1,6 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://dolipbibi2ypy"]
+[gd_scene load_steps=4 format=3 uid="uid://dolipbibi2ypy"]
 
 [ext_resource type="Script" uid="uid://fd85jv1hnd2h" path="res://tiles/farming_tile/farming_tile.gd" id="1_sjl78"]
+[ext_resource type="Texture2D" uid="uid://u2fiav4u0aux" path="res://tiles/farming_tile/assets/farming_tileset.png" id="2_36oka"]
 
-[node name="FarmingTile" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_36oka"]
+size = Vector2(32, 32)
+
+[node name="FarmingTile" type="Node2D" groups=["Tile"]]
 script = ExtResource("1_sjl78")
+metadata/_custom_type_script = "uid://m3k82q7fyhxk"
+
+[node name="Tile" type="Sprite2D" parent="."]
+texture = ExtResource("2_36oka")
+hframes = 3
+
+[node name="Crop" type="Sprite2D" parent="."]
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_36oka")
+
+[connection signal="input_event" from="InteractionArea" to="." method="_on_interaction_area_input_event"]
