@@ -9,3 +9,11 @@ enum TileType {GRASS, DRY_DIRT, WET_DIRT}
 
 ## The max level of saturation of a given tile.
 @export var max_saturation: float
+
+## Returns the [param tile_type] of this tile.
+func get_tile_type():
+	return tile_type
+	
+## Returns the [param max_saturation] of this tile.
+func get_max_saturation() -> float:
+	return max_saturation

@@ -9,6 +9,12 @@ extends BaseTile
 ## The rate of [param saturation] that will be lost every tick.
 @export var loss_rate_saturation: float = 0.1
 
+## A [Sprite2D] node that represents the tile type.
+@export var tile_sprite: Sprite2D
+
+## A [Sprite2D] node that represents the crop type.
+@export var crop_sprite: Sprite2D
+
 ## The current stats of the tile. Max satuation and visual style.
 var current_stats: FarmingTileStats
 
@@ -27,49 +33,48 @@ var current_crop # Make this have a crop scene once that is created.
 ## A [FarmTileStats] to be used to show wet dirt.
 @onready var wet_dirt_stats: FarmingTileStats = preload("res://tiles/farming_tile/resources/wet_dirt.tres")
 
-## A [Sprite2D] node that represents the tile type.
-@onready var tile_sprite: Sprite2D = $Tile
-
-## A [Sprite2D] node that represents the crop type.
-@onready var crop_tile: Sprite2D = $Crop
-
 ## Sets up the tile to the default state.
 func _ready() -> void:
 	current_stats = grass_stats
-
-## Sets the tile stats to a new [FarmingTileStats].
-func set_tile_stats(new_stats: FarmingTileStats) -> void:
-	current_stats = new_stats
-	tile_sprite.frame = current_stats.tile_type
 
 ## Returns a [FarmingTileStats].
 func get_tile_stats() -> FarmingTileStats:
 	return current_stats
 
-## Sets the current [Crop] scene to the new [Crop] scene.
-func set_crop(new_crop) -> void:
-	current_crop = new_crop
-	# Set the tile to be the crop texture.
+## Sets the tile stats to a new [FarmingTileStats].
+func set_tile_stats(new_stats: FarmingTileStats) -> void:
+	current_stats = new_stats
+	if current_stats:
+		tile_sprite.frame = current_stats.tile_type
 
 ## Returns the current [Crop] scene.
 func get_crop():
 	return current_crop
 
+## Sets the current [Crop] scene to the new [Crop] scene.
+func set_crop(new_crop) -> void:
+	current_crop = new_crop
+	# Set the tile to be the crop texture or if there is no crop remove texture
+	if new_crop:
+		crop_sprite.texture = new_crop.crop_texture
+	else:
+		crop_sprite.texture = null
+
 ## Returns a [bool] based on if there is a crop or not.
 func has_crop() -> bool:
 	return current_crop != null
 
-## Sets the [param saturation] amount.
-func set_saturation(new_saturation: float) -> void:
-	saturation = new_saturation
-
-## Adds to the [param saturation] amount.
-func add_saturation(saturation_addition: float) -> void:
-	saturation += saturation_addition
-
 ## Returns the [param saturation] amount.
 func get_saturation() -> float:
 	return saturation
+
+## Sets the [param saturation] amount.
+func set_saturation(new_saturation: float) -> void:
+	saturation = clamp(new_saturation, 0.0, get_tile_stats().get_max_saturation())
+
+## Adds to the [param saturation] amount.
+func add_saturation(saturation_addition: float) -> void:
+	set_saturation(saturation + saturation_addition)
 
 ## Returns a [bool] whether saturation is more than zero.
 func has_saturation() -> bool:
@@ -85,10 +90,10 @@ func _lower_saturation(delta: float) -> void:
 	if current_stats.tile_type == FarmingTileStats.TileType.WET_DIRT:
 		# Makes sure that it can only go down to zero.
 		if !has_saturation():
-			saturation = 0.0
+			set_saturation(0.0)
 			set_tile_stats(dry_dirt_stats)
 		else:
-			saturation -= loss_rate_saturation * delta
+			add_saturation(-(loss_rate_saturation * delta))
 
 ## Used for interaction with the tile.
 func _on_interaction_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
