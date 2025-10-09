@@ -6,7 +6,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_uc612"]
 font_size = 120
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("_options_layer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,6 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mmqbw")
 _options_menu_scene = ExtResource("2_uc612")
+_options_layer = NodePath("OptionsLayer")
 
 [node name="MainContentContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -60,8 +61,9 @@ text = "Quit"
 layer = 5
 
 [node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+volume_db = -20.0
 autoplay = true
-bus = &"SFX"
+bus = &"Music"
 
 [connection signal="pressed" from="MainContentContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MainContentContainer/OptionsButton" to="." method="_on_options_button_pressed"]

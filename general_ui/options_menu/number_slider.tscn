@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dljmg0ki3djq" path="res://general_ui/options_menu/number_slider.gd" id="1_sr3he"]
 
-[node name="NumberSlider" type="Control"]
+[node name="NumberSlider" type="Control" node_paths=PackedStringArray("_value_slider", "_value_label")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_sr3he")
+_value_slider = NodePath("HBoxContainer/ValueSlider")
+_value_label = NodePath("HBoxContainer/Percentage")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(300, 50)

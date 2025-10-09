@@ -9,13 +9,13 @@ extends Control
 ## tutorial used for how to access the audio bus systems and db to linear
 
 ## Slider for the music.
-@onready var music_slider: NumberSlider = %MusicVolume
+@export var music_slider: NumberSlider
 
 ## Slider for the sound effects.
-@onready var sfx_slider: NumberSlider = %SFXVolume
+@export var sfx_slider: NumberSlider
 
 func _ready() -> void:
-	_match_sliders_to_audio()
+	match_sliders_to_audio()
 
 ## Sets an [AudioServer] bus to a certain db based on given input.
 func set_audio_bus_volume(bus_name: String, new_value: float) -> void:
@@ -28,7 +28,7 @@ func get_audio_bus_volume(bus_name: String) -> float:
 	return db_to_linear(AudioServer.get_bus_volume_db(bus_index))
 
 ## Matches the visual on the sliders to match the [AudioServer] bus settings. 
-func _match_sliders_to_audio() -> void:
+func match_sliders_to_audio() -> void:
 	var music_volume = get_audio_bus_volume("Music")
 	var sfx_volume = get_audio_bus_volume("SFX")
 	music_slider.value_match(music_volume)

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dwnly5hcp86fa" path="res://general_ui/pause_menu/pause_menu.gd" id="1_iayod"]
 [ext_resource type="PackedScene" uid="uid://3w2wv3vnr6nd" path="res://general_ui/options_menu/options_menu.tscn" id="2_ya0wi"]
 
-[node name="PauseMenu" type="Control"]
+[node name="PauseMenu" type="Control" node_paths=PackedStringArray("options_layer")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -13,6 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_iayod")
 _options_menu_scene = ExtResource("2_ya0wi")
+options_layer = NodePath("OptionsLayer")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1

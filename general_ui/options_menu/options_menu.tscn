@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ciyq4n2v1cpro" path="res://general_ui/options_menu/options_menu.gd" id="1_vgjbt"]
 [ext_resource type="PackedScene" uid="uid://bqjcx2x6ccgbg" path="res://general_ui/options_menu/number_slider.tscn" id="2_ln23y"]
 
-[node name="OptionsMenu" type="Control"]
+[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("music_slider", "sfx_slider")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,6 +11,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vgjbt")
+music_slider = NodePath("CenterContainer/MainContentContainer/VBoxContainer/MusicVolume")
+sfx_slider = NodePath("CenterContainer/MainContentContainer/VBoxContainer2/SFXVolume")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -42,7 +44,6 @@ layout_mode = 2
 text = "Music Volume"
 
 [node name="MusicVolume" parent="CenterContainer/MainContentContainer/VBoxContainer" instance=ExtResource("2_ln23y")]
-unique_name_in_owner = true
 layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/MainContentContainer"]
@@ -53,7 +54,6 @@ layout_mode = 2
 text = "SFX Volume"
 
 [node name="SFXVolume" parent="CenterContainer/MainContentContainer/VBoxContainer2" instance=ExtResource("2_ln23y")]
-unique_name_in_owner = true
 layout_mode = 2
 
 [node name="ExitButton" type="Button" parent="CenterContainer/MainContentContainer"]
