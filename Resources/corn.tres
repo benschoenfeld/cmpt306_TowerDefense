@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="CropDataAnimated" load_steps=10 format=3 uid="uid://bmbx601fq0pvp"]
+
+[ext_resource type="Script" uid="uid://cwi6ws0yf1e6c" path="res://Scripts/crop_data.gd" id="1_ywu7n"]
+[ext_resource type="Texture2D" uid="uid://dy87tuht34o4o" path="res://sprites/corn_spritesheet.png" id="2_0u10i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urv28"]
+atlas = ExtResource("2_0u10i")
+region = Rect2(80, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6ux0"]
+atlas = ExtResource("2_0u10i")
+region = Rect2(64, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtqsd"]
+atlas = ExtResource("2_0u10i")
+region = Rect2(48, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omsva"]
+atlas = ExtResource("2_0u10i")
+region = Rect2(32, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6du44"]
+atlas = ExtResource("2_0u10i")
+region = Rect2(16, 144, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrxao"]
+atlas = ExtResource("2_0u10i")
+region = Rect2(0, 144, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_leaon"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urv28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6ux0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtqsd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omsva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6du44")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrxao")
+}],
+"loop": false,
+"name": &"grow",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_ywu7n")
+sprite_sheet = SubResource("SpriteFrames_leaon")
+metadata/_custom_type_script = "uid://cwi6ws0yf1e6c"
