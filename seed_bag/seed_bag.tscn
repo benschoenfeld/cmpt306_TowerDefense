@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://8ccoultreyuc"]
+
+[ext_resource type="Script" uid="uid://bd60g6aj8nd7u" path="res://seed_bag/seed_bag.gd" id="1_rdl76"]
+[ext_resource type="Theme" uid="uid://di8blm5mdlu7f" path="res://seed_bag/assets/seed_bag_theme.tres" id="2_v5vjm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rdl76"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="SeedBag" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_v5vjm")
+script = ExtResource("1_rdl76")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(200, 240)
+layout_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="SeedBagLabel" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Seed Bag"
+label_settings = SubResource("LabelSettings_rdl76")
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3
+
+[node name="SeedSlotButton0" type="Button" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="SeedSlotButton1" type="Button" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="SeedSlotButton2" type="Button" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="SeedSlotButton3" type="Button" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+disabled = true
+
+[node name="SeedSlotButton4" type="Button" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+disabled = true
+
+[node name="SeedSlotButton5" type="Button" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+disabled = true
+
+[node name="SeedSlotButton6" type="Button" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+disabled = true
+
+[node name="SeedSlotButton7" type="Button" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+disabled = true
+
+[node name="SeedSlotButton8" type="Button" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+disabled = true
