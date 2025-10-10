@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CropResource" load_steps=3 format=3 uid="uid://dduw1b4x40k7g"]
+
+[ext_resource type="Script" uid="uid://cwi6ws0yf1e6c" path="res://Scripts/crop_resource.gd" id="1_h2e6i"]
+[ext_resource type="Texture2D" uid="uid://cqvagh6sq7cov" path="res://sprites/Crop_Spritesheet.png" id="2_undrt"]
+
+[resource]
+script = ExtResource("1_h2e6i")
+crop_name = "radish"
+sprite_sheet = ExtResource("2_undrt")
+start_coords = Vector2i(5, 0)
+metadata/_custom_type_script = "uid://cwi6ws0yf1e6c"
