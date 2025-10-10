@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0f5ithtby781"]
+
+[ext_resource type="Script" uid="uid://deldc6f441a71" path="res://game_manager/game_manager.gd" id="1_ong7i"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_ong7i")
+
+[node name="Game" type="Node2D" parent="."]
+
+[node name="CropTiles" type="TileMapLayer" parent="Game"]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="PauseUI" type="CanvasLayer" parent="."]
+layer = 4
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
