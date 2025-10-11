@@ -38,6 +38,7 @@ func _on_options_button_pressed() -> void:
 
 ## Changes the [Tree] to the [MainMenu] scene once user hits main menu button.
 func _on_main_menu_button_pressed() -> void:
+	set_pause(false)
 	get_tree().change_scene_to_file(MAIN_MENU_PATH)
 
 ## Quits the game once user hits quit button.

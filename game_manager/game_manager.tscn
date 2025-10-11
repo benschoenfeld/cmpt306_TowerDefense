@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cp6ebsr5bsveq"]
+[gd_scene load_steps=4 format=3 uid="uid://cp6ebsr5bsveq"]
 
 [ext_resource type="Script" uid="uid://ddh6nidkpvu7s" path="res://game_manager/game_manager.gd" id="1_ong7i"]
 [ext_resource type="PackedScene" uid="uid://bb0emy17c3vce" path="res://general_ui/pause_menu/pause_menu.tscn" id="2_mx6ys"]
+[ext_resource type="Texture2D" uid="uid://c006q8j3wqfjr" path="res://game_manager/assets/pause_button.png" id="3_q7vcu"]
 
 [node name="GameManager" type="Node" node_paths=PackedStringArray("pause_menu_layer")]
 script = ExtResource("1_ong7i")
@@ -22,14 +23,18 @@ layer = 4
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -250.0
-offset_bottom = 200.0
+offset_left = -152.0
+offset_right = -2.0
+offset_bottom = 150.0
 grow_horizontal = 0
 
 [node name="PauseButton" type="Button" parent="PauseUI/CenterContainer"]
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
+icon = ExtResource("3_q7vcu")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="PauseUI/CenterContainer/PauseButton" to="." method="_on_pause_button_pressed"]
