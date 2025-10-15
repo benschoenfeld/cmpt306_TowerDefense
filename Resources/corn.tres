@@ -8,4 +8,5 @@ script = ExtResource("1_ywu7n")
 crop_name = "corn"
 sprite_sheet = ExtResource("2_0u10i")
 start_coords = Vector2i(5, 9)
+value = 10
 metadata/_custom_type_script = "uid://cwi6ws0yf1e6c"

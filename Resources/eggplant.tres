@@ -6,7 +6,8 @@
 [resource]
 script = ExtResource("1_duit2")
 crop_name = "eggplant"
-grow_time = 15.0
+grow_time = 20.0
 sprite_sheet = ExtResource("2_g44av")
 start_coords = Vector2i(5, 3)
+value = 30
 metadata/_custom_type_script = "uid://cwi6ws0yf1e6c"

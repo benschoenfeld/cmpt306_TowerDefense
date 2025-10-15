@@ -6,6 +6,8 @@
 [resource]
 script = ExtResource("1_h2e6i")
 crop_name = "radish"
+grow_time = 15.0
 sprite_sheet = ExtResource("2_undrt")
 start_coords = Vector2i(5, 0)
+value = 20
 metadata/_custom_type_script = "uid://cwi6ws0yf1e6c"
