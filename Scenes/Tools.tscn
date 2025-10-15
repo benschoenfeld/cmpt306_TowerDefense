@@ -24,6 +24,13 @@ offset_bottom = 1077.0
 [node name="Shovel" type="Control" parent="ToolBar/HBoxContainer"]
 layout_mode = 2
 
+[node name="BG" type="ColorRect" parent="ToolBar/HBoxContainer/Shovel"]
+layout_mode = 0
+offset_left = -156.0
+offset_top = -25.0
+offset_right = -92.0
+offset_bottom = 38.0
+
 [node name="Icon" type="TextureRect" parent="ToolBar/HBoxContainer/Shovel"]
 layout_mode = 0
 offset_left = -155.0
@@ -35,6 +42,13 @@ texture = ExtResource("2_m2i3e")
 [node name="WaterCan" type="Control" parent="ToolBar/HBoxContainer"]
 layout_mode = 2
 
+[node name="BG" type="ColorRect" parent="ToolBar/HBoxContainer/WaterCan"]
+layout_mode = 0
+offset_left = -68.0
+offset_top = -25.0
+offset_right = 2.0
+offset_bottom = 38.0
+
 [node name="Icon" type="TextureRect" parent="ToolBar/HBoxContainer/WaterCan"]
 layout_mode = 0
 offset_left = -65.0
@@ -45,6 +59,13 @@ texture = ExtResource("3_4kjit")
 
 [node name="Hoe" type="Control" parent="ToolBar/HBoxContainer"]
 layout_mode = 2
+
+[node name="BG" type="ColorRect" parent="ToolBar/HBoxContainer/Hoe"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = -26.0
+offset_right = 91.0
+offset_bottom = 38.0
 
 [node name="Icon" type="TextureRect" parent="ToolBar/HBoxContainer/Hoe"]
 layout_mode = 0
