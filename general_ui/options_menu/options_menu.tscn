@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://3w2wv3vnr6nd"]
 
-[ext_resource type="Script" uid="uid://ciyq4n2v1cpro" path="res://general_ui/options_menu/options_menu.gd" id="1_vgjbt"]
+[ext_resource type="Script" path="res://general_ui/options_menu/options_menu.gd" id="1_vgjbt"]
 [ext_resource type="PackedScene" uid="uid://bqjcx2x6ccgbg" path="res://general_ui/options_menu/number_slider.tscn" id="2_ln23y"]
 
 [node name="OptionsMenu" type="Control" node_paths=PackedStringArray("music_slider", "sfx_slider")]
