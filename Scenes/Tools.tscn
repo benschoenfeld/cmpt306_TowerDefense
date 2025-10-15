@@ -16,19 +16,40 @@ offset_bottom = 40.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ToolBar"]
 layout_mode = 0
-offset_left = 854.0
+offset_left = 963.0
 offset_top = 1037.0
-offset_right = 958.0
+offset_right = 1067.0
 offset_bottom = 1077.0
 
-[node name="Shovel" type="TextureRect" parent="ToolBar/HBoxContainer"]
+[node name="Shovel" type="Control" parent="ToolBar/HBoxContainer"]
 layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="ToolBar/HBoxContainer/Shovel"]
+layout_mode = 0
+offset_left = -155.0
+offset_top = -23.0
+offset_right = -94.0
+offset_bottom = 40.0
 texture = ExtResource("2_m2i3e")
 
-[node name="WaterCan" type="TextureRect" parent="ToolBar/HBoxContainer"]
+[node name="WaterCan" type="Control" parent="ToolBar/HBoxContainer"]
 layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="ToolBar/HBoxContainer/WaterCan"]
+layout_mode = 0
+offset_left = -65.0
+offset_top = -23.0
+offset_right = -4.0
+offset_bottom = 40.0
 texture = ExtResource("3_4kjit")
 
-[node name="Hoe" type="TextureRect" parent="ToolBar/HBoxContainer"]
+[node name="Hoe" type="Control" parent="ToolBar/HBoxContainer"]
 layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="ToolBar/HBoxContainer/Hoe"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = -24.0
+offset_right = 87.0
+offset_bottom = 39.0
 texture = ExtResource("4_gbum3")
