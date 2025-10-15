@@ -4,10 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://bb0emy17c3vce" path="res://general_ui/pause_menu/pause_menu.tscn" id="2_mx6ys"]
 [ext_resource type="Texture2D" uid="uid://c006q8j3wqfjr" path="res://game_manager/assets/pause_button.png" id="3_q7vcu"]
 
-[node name="GameManager" type="Node" node_paths=PackedStringArray("pause_menu_layer")]
+[node name="GameManager" type="Node" node_paths=PackedStringArray("pause_menu_layer", "farming_tile_map")]
 script = ExtResource("1_ong7i")
 pause_menu_scene = ExtResource("2_mx6ys")
 pause_menu_layer = NodePath("PauseUI")
+farming_tile_map = NodePath("Game/CropTiles")
 
 [node name="Game" type="Node2D" parent="."]
 
@@ -35,6 +36,5 @@ icon = ExtResource("3_q7vcu")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 autoplay = true
-bus = &"Music"
 
 [connection signal="pressed" from="PauseUI/CenterContainer/PauseButton" to="." method="_on_pause_button_pressed"]

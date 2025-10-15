@@ -12,8 +12,18 @@ signal money_changed(new_amount: int)
 ## The [CanvasLayer] that the pause scene will be added to.
 @export var pause_menu_layer: CanvasLayer
 
+## A reference to the [TileMapLayer] that holds the [FarmingTile].
+@export var farming_tile_map: TileMapLayer
+
+## A reference to the [ToolManager] to interact with [FarmingTile].
+var tool_manager
+
 ## The players resource.
 var money_amount: int = 0
+
+
+func _ready() -> void:
+	_load_and_connect_tile()
 
 ## Sets the [param money_amount] and emits a signal.
 func set_money(new_amount: int) -> void:
@@ -27,6 +37,15 @@ func add_money(new_amount: int) -> void:
 ## Returns the [param money_amount]
 func get_money() -> int:
 	return money_amount
+
+## Finds all [FarmingTile] and connects them to the [ToolManager].
+func _load_and_connect_tile():
+	# This is important to update the children being added a children 
+	# to the tile map node
+	farming_tile_map.update_internals()
+	for tile in farming_tile_map.get_children():
+		if tile: # TODO: add "is FarmingTile:" to check
+			tile.connect("send_tile_data", tool_manager.interact()) #  TODO: This nees to ne changed to the real tool interaction fucntion
 
 ## When the pause button is pressed is adds the pause scene to 
 ## the [param pause_menu_layer].
