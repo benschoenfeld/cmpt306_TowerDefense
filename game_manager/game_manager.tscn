@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cp6ebsr5bsveq"]
+[gd_scene load_steps=6 format=3 uid="uid://cp6ebsr5bsveq"]
 
 [ext_resource type="Script" uid="uid://ddh6nidkpvu7s" path="res://game_manager/game_manager.gd" id="1_ong7i"]
 [ext_resource type="PackedScene" uid="uid://bb0emy17c3vce" path="res://general_ui/pause_menu/pause_menu.tscn" id="2_mx6ys"]
+[ext_resource type="PackedScene" uid="uid://nebwwifttxrv" path="res://general_ui/hud/money_counter.tscn" id="3_pnley"]
 [ext_resource type="Texture2D" uid="uid://c006q8j3wqfjr" path="res://game_manager/assets/pause_button.png" id="3_q7vcu"]
+[ext_resource type="PackedScene" uid="uid://26g0tisiojj8" path="res://general_ui/hud/ToolUI.tscn" id="4_03pqa"]
 
 [node name="GameManager" type="Node" node_paths=PackedStringArray("pause_menu_layer")]
 script = ExtResource("1_ong7i")
@@ -15,6 +17,10 @@ pause_menu_layer = NodePath("PauseUI")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 3
+
+[node name="MoneyCounter" parent="HUD" instance=ExtResource("3_pnley")]
+
+[node name="ToolUI" parent="HUD" instance=ExtResource("4_03pqa")]
 
 [node name="PauseUI" type="CanvasLayer" parent="."]
 layer = 4
@@ -35,6 +41,6 @@ icon = ExtResource("3_q7vcu")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 autoplay = true
-bus = &"Music"
 
+[connection signal="money_changed" from="." to="HUD/MoneyCounter" method="_on_game_manager_money_changed"]
 [connection signal="pressed" from="PauseUI/CenterContainer/PauseButton" to="." method="_on_pause_button_pressed"]

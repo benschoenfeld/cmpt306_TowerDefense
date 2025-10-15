@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c006q8j3wqfjr"
-path="res://.godot/imported/pause_button.png-2b67c8f65a46868a206cd4b67e0340dd.ctex"
+uid="uid://djv06t00ny3io"
+path="res://.godot/imported/tool_shovel.png-5f5d5e3bc8ee237419c0f17510cb495e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game_manager/assets/pause_button.png"
-dest_files=["res://.godot/imported/pause_button.png-2b67c8f65a46868a206cd4b67e0340dd.ctex"]
+source_file="res://general_ui/hud/assets/tool_shovel.png"
+dest_files=["res://.godot/imported/tool_shovel.png-5f5d5e3bc8ee237419c0f17510cb495e.ctex"]
 
 [params]
 

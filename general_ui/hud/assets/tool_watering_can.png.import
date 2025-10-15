@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c006q8j3wqfjr"
-path="res://.godot/imported/pause_button.png-2b67c8f65a46868a206cd4b67e0340dd.ctex"
+uid="uid://iovalu0ee0fe"
+path="res://.godot/imported/tool_watering_can.png-f8f95aec26f133ecdb0f55c4deaa6166.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game_manager/assets/pause_button.png"
-dest_files=["res://.godot/imported/pause_button.png-2b67c8f65a46868a206cd4b67e0340dd.ctex"]
+source_file="res://general_ui/hud/assets/tool_watering_can.png"
+dest_files=["res://.godot/imported/tool_watering_can.png-f8f95aec26f133ecdb0f55c4deaa6166.ctex"]
 
 [params]
 

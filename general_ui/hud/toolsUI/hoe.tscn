@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1tfh31cro12v"]
+
+[ext_resource type="Texture2D" uid="uid://dvaja0q4arrku" path="res://general_ui/hud/assets/tool_hoe.png" id="1_3aqp2"]
+
+[node name="Hoe" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 1152.0
+offset_top = 896.0
+offset_right = 1280.0
+offset_bottom = 1024.0
+
+[node name="Button" type="Button" parent="NinePatchRect"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+icon = ExtResource("1_3aqp2")
+icon_alignment = 1
+expand_icon = true
