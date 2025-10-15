@@ -41,6 +41,10 @@ func _ready() -> void:
 func get_tile_stats() -> FarmingTileStats:
 	return current_stats
 
+## Returns the [param current_stats] current [param FarmingTileStas.TileType].
+func get_tile_type() -> FarmingTileStats.TileType:
+	return current_stats.get_tile_type()
+
 ## Sets the tile stats to a new [FarmingTileStats].
 func set_tile_stats(new_stats: FarmingTileStats) -> void:
 	current_stats = new_stats
@@ -98,4 +102,4 @@ func _lower_saturation(delta: float) -> void:
 ## Used for interaction with the tile.
 func _on_interaction_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed("interact"):
-		emit_signal("send_tile_data", self)
+		send_tile_data.emit(self)
