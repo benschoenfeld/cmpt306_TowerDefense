@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="FarmingTileStats" load_steps=2 format=3 uid="uid://dmy8wqd8c7m70"]
+
+[ext_resource type="Script" uid="uid://cme7nrfr5m1hg" path="res://tiles/farming_tile/resources/farming_tile_stats.gd" id="1_ccy64"]
+
+[resource]
+script = ExtResource("1_ccy64")
+metadata/_custom_type_script = "uid://cme7nrfr5m1hg"
