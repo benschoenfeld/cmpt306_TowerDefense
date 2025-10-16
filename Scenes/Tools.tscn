@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0jtevxo3p5la"]
+[gd_scene load_steps=6 format=3 uid="uid://c0jtevxo3p5la"]
 
 [ext_resource type="Script" uid="uid://bqjp051uliqjj" path="res://Scripts/tools.gd" id="1_xu475"]
-[ext_resource type="Texture2D" uid="uid://8wf83gl0yfwr" path="res://Assets/tool_shovel.png" id="2_m2i3e"]
-[ext_resource type="Texture2D" uid="uid://ccw4iovwd73n1" path="res://Assets/tool_watering_can.png" id="3_4kjit"]
-[ext_resource type="Texture2D" uid="uid://bqxnj87xcfx0p" path="res://Assets/tool_hoe.png" id="4_gbum3"]
+[ext_resource type="Script" uid="uid://byefdbyqjhxh0" path="res://Scripts/tool_bar.gd" id="2_4kjit"]
+[ext_resource type="Texture2D" uid="uid://8wf83gl0yfwr" path="res://assets/tool_shovel.png" id="2_m2i3e"]
+[ext_resource type="Texture2D" uid="uid://ccw4iovwd73n1" path="res://assets/tool_watering_can.png" id="3_4kjit"]
+[ext_resource type="Texture2D" uid="uid://bqxnj87xcfx0p" path="res://assets/tool_hoe.png" id="4_gbum3"]
 
 [node name="Tools" type="Node2D"]
 script = ExtResource("1_xu475")
@@ -13,6 +14,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("2_4kjit")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ToolBar"]
 layout_mode = 0

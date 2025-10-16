@@ -1,11 +1,14 @@
 extends Node2D
-#
+
+signal tool_changed(new_tool: int)
+signal tool_used(world_pos: Vector2, tool: int)
+
 ## Loading the tool icons from the /assets director as .png images
 var tool_shovel = preload("res://assets/tool_shovel.png")
 var tool_hoe = preload("res://assets/tool_hoe.png")
 var tool_waterCan = preload("res://assets/tool_watering_can.png")
 #
-## Defining the constant for Cursor Hotspot
+# Defining the constant for Cursor Hotspot
 const CURSOR_HOTSPOT = Vector2(16, 16)
 # Defining the constant for Cursor Shape
 const CURSOR_SHAPE = Input.CURSOR_ARROW
@@ -17,8 +20,7 @@ var toolArray : Array
 # tool_shovel   = 0 (set as default)
 # tool_waterCan = 1
 # tool_hoe      = 2
-
-var current_tool_index = 0
+var current_tool_index: int = GameManager
 
 func _ready() -> void:
 	# Storing the tools in the array (Will add more tools later)
@@ -34,7 +36,10 @@ func set_current_tool(index: int) -> void:
 		current_tool_index = index
 		var selected_tool = toolArray[current_tool_index]
 		Input.set_custom_mouse_cursor(selected_tool, CURSOR_SHAPE, CURSOR_HOTSPOT)
-	
+		
+		var tb = get_node("ToolBar")
+		if tb:
+			tb.set_selected(current_tool_index)
 	
 func _unhandled_input(event: InputEvent) -> void:
 	var new_index = current_tool_index
@@ -55,14 +60,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 func _process(delta: float) -> void:
 	
-	# Hotkeying the showel as the custom cursor when pressed '1' on the keyboard
+	# Hotkeying the 'shovel' as the custom cursor when pressed '1' on the keyboard
 	if Input.is_action_just_pressed("equip_shovel"):
 		set_current_tool(0)
 		
-	# Hotkeying the water can as the custom cursor when pressed '2' on the keyboard
+	# Hotkeying the 'water can' as the custom cursor when pressed '2' on the keyboard
 	if Input.is_action_just_pressed("equip_waterCan"):
 		set_current_tool(1)
 		
-	# Hotkeying the hoe as the custom cursor when pressed '3' on the keyboard
+	# Hotkeying the 'hoe' as the custom cursor when pressed '3' on the keyboard
 	if Input.is_action_just_pressed("equip_hoe"):
 		set_current_tool(2)
