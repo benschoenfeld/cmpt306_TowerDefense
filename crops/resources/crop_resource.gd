@@ -8,7 +8,7 @@ class_name CropResource
 @export var grow_time: float = 10.0
 
 # Provided spritesheet of all crop stages
-@export var sprite_sheet: Texture2D
+@export var sprite_sheet: Texture2D = preload("res://crops/assets/Crop_Spritesheet.png")
 
 # Determines what frame the sprite starts as
 @export var start_coords: Vector2i = Vector2i(0,0)

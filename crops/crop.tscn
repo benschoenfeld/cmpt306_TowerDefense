@@ -6,6 +6,7 @@
 
 [node name="Crop" type="Node2D"]
 script = ExtResource("1_toblr")
+grow_sound = ExtResource("3_l365e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_07ll8")
@@ -14,4 +15,3 @@ vframes = 10
 frame = 113
 
 [node name="GrowSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_l365e")
