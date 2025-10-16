@@ -19,6 +19,9 @@ class_name CropResource
 # Value of the crop
 @export var value: int
 
+# The grown frame for UI seedbag
+@export var icon: Texture2D
+
 ## Method to get the value from a crop instantiation
 func get_value() -> int:
 	return value

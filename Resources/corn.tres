@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CropResource" load_steps=3 format=3 uid="uid://bmbx601fq0pvp"]
+[gd_resource type="Resource" script_class="CropResource" load_steps=4 format=3 uid="uid://bmbx601fq0pvp"]
 
+[ext_resource type="Texture2D" uid="uid://cewo3qdav1tx0" path="res://sprites/crop_frames/tile_108.png" id="1_urv28"]
 [ext_resource type="Script" uid="uid://cwi6ws0yf1e6c" path="res://Scripts/crop_resource.gd" id="1_ywu7n"]
 [ext_resource type="Texture2D" uid="uid://cqvagh6sq7cov" path="res://sprites/Crop_Spritesheet.png" id="2_0u10i"]
 
@@ -9,4 +10,5 @@ crop_name = "corn"
 sprite_sheet = ExtResource("2_0u10i")
 start_coords = Vector2i(5, 9)
 value = 10
+icon = ExtResource("1_urv28")
 metadata/_custom_type_script = "uid://cwi6ws0yf1e6c"
