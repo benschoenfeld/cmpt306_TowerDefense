@@ -1,4 +1,7 @@
+class_name Crop
+
 extends Node2D
+## Displays the [CropResource] both visually in growth and with audio.
 
 @export var crop_data: CropResource
 @export var grow_sound: AudioStream
@@ -10,11 +13,6 @@ var stage: int = 0
 var time_passed: float = 0.0
 var soil_tile # reference to soil tile
 var is_grown: bool = false
-
-#var crop_instance = preload("res://Crop.tscn").instantiate()
-#crop_instance.crop_data = preload("res://crops/tomato.tres")
-#crop_instance.soil_tile = self
-#add_child(crop_instance)
 
 func _ready() -> void:
 	# Ensure a crop exists
@@ -53,6 +51,14 @@ func _process(delta: float):
 	if stage >= crop_data.frames - 1:
 		is_grown = true
 		print("Crop is ready to harvest.")
+
+## Set the [param crop_data] to a new [CropResource].
+func set_crop_resource(new_crop: CropResource) -> void:
+	crop_data = new_crop
+
+## Returns the current [CropResource].
+func get_crop_resource() -> CropResource:
+	return crop_data
 
 ## Update the sprite to proceed to next growth stage
 ## Each crop starts on a specific row and has 6 contiguous frames
