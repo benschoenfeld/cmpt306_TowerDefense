@@ -16,7 +16,7 @@ signal money_changed(new_amount: int)
 @export var farming_tile_map: TileMapLayer
 
 ## A reference to the [ToolManager] to interact with [FarmingTile].
-var tool_manager
+@export var tool_manager: Node2D # TODO: Change this to the tool manager instead of Node2D
 
 ## The players resource.
 var money_amount: int = 0
@@ -44,8 +44,8 @@ func _load_and_connect_tile():
 	# to the tile map node
 	farming_tile_map.update_internals()
 	for tile in farming_tile_map.get_children():
-		if tile: # TODO: add "is FarmingTile:" to check
-			tile.connect("send_tile_data", tool_manager.interact()) #  TODO: This nees to ne changed to the real tool interaction fucntion
+		if tile is FarmingTile and tool_manager != null:
+			tile.connect("send_tile_data", tool_manager.interact) #  TODO: This nees to ne changed to the real tool interaction fucntion
 
 ## When the pause button is pressed is adds the pause scene to 
 ## the [param pause_menu_layer].
