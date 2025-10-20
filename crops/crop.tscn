@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://jbhh5a4m53e3"]
+[gd_scene load_steps=4 format=3 uid="uid://brx6e1nns3yk2"]
 
 [ext_resource type="Script" uid="uid://c8xacyx3wwha5" path="res://crops/crop.gd" id="1_toblr"]
 [ext_resource type="Texture2D" uid="uid://cqvagh6sq7cov" path="res://crops/assets/Crop_Spritesheet.png" id="2_07ll8"]
