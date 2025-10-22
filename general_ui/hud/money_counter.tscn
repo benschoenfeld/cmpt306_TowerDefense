@@ -44,4 +44,4 @@ horizontal_alignment = 1
 [node name="Number" type="Label" parent="PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
-text = "999999"
+text = "0"

@@ -1,4 +1,5 @@
 class_name HUD
+extends Control
 
 # fetch game manager class
 var manager: GameManager
@@ -13,7 +14,6 @@ var count: int
 func _ready() -> void:
 	pass
 
-
 # update tool view
-func _process() -> void:
+func _process(float) -> void:
 	pass
