@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://me31tyggjdy4"]
+
+[ext_resource type="Script" uid="uid://dt15eegl850rw" path="res://general_ui/hud/hud.gd" id="1_hk4rq"]
+[ext_resource type="PackedScene" uid="uid://26g0tisiojj8" path="res://general_ui/hud/ToolUI.tscn" id="2_br5ty"]
+[ext_resource type="PackedScene" uid="uid://nebwwifttxrv" path="res://general_ui/hud/money_counter.tscn" id="3_kafub"]
+[ext_resource type="PackedScene" uid="uid://8ccoultreyuc" path="res://seed_bag/seed_bag.tscn" id="4_kafub"]
+
+[node name="hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hk4rq")
+
+[node name="ToolUI" parent="." instance=ExtResource("2_br5ty")]
+layout_mode = 1
+
+[node name="MoneyCounter" parent="." instance=ExtResource("3_kafub")]
+layout_mode = 1
+
+[node name="SeedBag" parent="." instance=ExtResource("4_kafub")]
+layout_mode = 1
