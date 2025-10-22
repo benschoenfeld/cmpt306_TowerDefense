@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://cp6ebsr5bsveq"]
+[gd_scene load_steps=9 format=4 uid="uid://cp6ebsr5bsveq"]
 
 [ext_resource type="Script" uid="uid://ddh6nidkpvu7s" path="res://game_manager/game_manager.gd" id="1_ong7i"]
 [ext_resource type="PackedScene" uid="uid://bb0emy17c3vce" path="res://general_ui/pause_menu/pause_menu.tscn" id="2_mx6ys"]
 [ext_resource type="PackedScene" uid="uid://dolipbibi2ypy" path="res://tiles/farming_tile/farming_tile.tscn" id="3_pnley"]
 [ext_resource type="Texture2D" uid="uid://c006q8j3wqfjr" path="res://game_manager/assets/pause_button.png" id="3_q7vcu"]
 [ext_resource type="AudioStream" uid="uid://buppeg7wx1bn6" path="res://game_manager/assets/apple_cider.wav" id="5_03pqa"]
+[ext_resource type="PackedScene" uid="uid://dmmjsxbvqc2j3" path="res://tool_manager/tool_manager.tscn" id="6_2631c"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_03pqa"]
 resource_name = "FarmingTile"
@@ -14,11 +15,12 @@ scenes/1/scene = ExtResource("3_pnley")
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetScenesCollectionSource_03pqa")
 
-[node name="GameManager" type="Node" node_paths=PackedStringArray("pause_menu_layer", "farming_tile_map")]
+[node name="GameManager" type="Node" node_paths=PackedStringArray("pause_menu_layer", "farming_tile_map", "tool_manager")]
 script = ExtResource("1_ong7i")
 pause_menu_scene = ExtResource("2_mx6ys")
 pause_menu_layer = NodePath("PauseUI")
 farming_tile_map = NodePath("Game/CropTiles")
+tool_manager = NodePath("ToolManager")
 
 [node name="Game" type="Node2D" parent="."]
 
@@ -50,5 +52,7 @@ icon = ExtResource("3_q7vcu")
 stream = ExtResource("5_03pqa")
 autoplay = true
 bus = &"Music"
+
+[node name="ToolManager" parent="." instance=ExtResource("6_2631c")]
 
 [connection signal="pressed" from="PauseUI/CenterContainer/PauseButton" to="." method="_on_pause_button_pressed"]

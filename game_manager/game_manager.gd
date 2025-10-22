@@ -16,7 +16,7 @@ signal money_changed(new_amount: int)
 @export var farming_tile_map: TileMapLayer
 
 ## A reference to the [ToolManager] to interact with [FarmingTile].
-@export var tool_manager: Node2D # TODO: Change this to the tool manager instead of Node2D
+@export var tool_manager: ToolManager # TODO: Change this to the tool manager instead of Node2D
 
 ## The players resource.
 var money_amount: int = 0
