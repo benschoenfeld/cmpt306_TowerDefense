@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://dmmjsxbvqc2j3"]
+[gd_scene load_steps=2 format=3 uid="uid://dmmjsxbvqc2j3"]
+
+[ext_resource type="Script" uid="uid://cvvvfjm75a7rh" path="res://tool_manager/tool_manager.gd" id="1_b78em"]
 
 [node name="ToolManager" type="Node2D"]
+script = ExtResource("1_b78em")

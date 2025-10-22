@@ -96,6 +96,15 @@ func set_saturation(new_saturation: float) -> void:
 ## Adds to the [param saturation] amount.
 func add_saturation(saturation_addition: float) -> void:
 	set_saturation(saturation + saturation_addition)
+	
+func apply_water(amount: float) -> void:
+	if get_tile_type() == FarmingTileStats.TileType.GRASS:
+		return
+	if get_tile_type() == FarmingTileStats.TileType.DRY_DIRT:
+		set_tile_stats(wet_dirt_stats)
+	add_saturation(amount)
+	if has_saturation():
+		set_tile_stats(wet_dirt_stats)
 
 ## Returns a [bool] whether saturation is more than zero.
 func has_saturation() -> bool:
