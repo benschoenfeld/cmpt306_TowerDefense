@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8xmwk0c8tn7d"]
+[gd_scene load_steps=6 format=3 uid="uid://b8xmwk0c8tn7d"]
 
 [ext_resource type="Script" uid="uid://dsevp8l6w4lx0" path="res://general_ui/main_menu/main_menu.gd" id="1_mmqbw"]
 [ext_resource type="PackedScene" uid="uid://cp6ebsr5bsveq" path="res://game_manager/game_manager.tscn" id="2_mlg43"]
 [ext_resource type="PackedScene" uid="uid://3w2wv3vnr6nd" path="res://general_ui/options_menu/options_menu.tscn" id="2_uc612"]
+[ext_resource type="AudioStream" uid="uid://cmdj5slr0732n" path="res://general_ui/main_menu/assets/ElevatorMusic.wav" id="4_e3ivf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uc612"]
 font_size = 120
@@ -63,6 +64,7 @@ text = "Quit"
 layer = 5
 
 [node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_e3ivf")
 volume_db = -20.0
 autoplay = true
 bus = &"Music"

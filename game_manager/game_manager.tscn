@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://cp6ebsr5bsveq"]
+[gd_scene load_steps=8 format=4 uid="uid://cp6ebsr5bsveq"]
 
 [ext_resource type="Script" uid="uid://ddh6nidkpvu7s" path="res://game_manager/game_manager.gd" id="1_ong7i"]
 [ext_resource type="PackedScene" uid="uid://bb0emy17c3vce" path="res://general_ui/pause_menu/pause_menu.tscn" id="2_mx6ys"]
 [ext_resource type="PackedScene" uid="uid://dolipbibi2ypy" path="res://tiles/farming_tile/farming_tile.tscn" id="3_pnley"]
 [ext_resource type="Texture2D" uid="uid://c006q8j3wqfjr" path="res://game_manager/assets/pause_button.png" id="3_q7vcu"]
+[ext_resource type="AudioStream" uid="uid://buppeg7wx1bn6" path="res://game_manager/assets/apple_cider.wav" id="5_03pqa"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_03pqa"]
 resource_name = "FarmingTile"
@@ -46,6 +47,7 @@ layout_mode = 2
 icon = ExtResource("3_q7vcu")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_03pqa")
 autoplay = true
 bus = &"Music"
 
