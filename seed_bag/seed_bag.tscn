@@ -9,6 +9,7 @@ font_color = Color(0, 0, 0, 1)
 [node name="SeedBag" type="Control" node_paths=PackedStringArray("seed_button_holder")]
 layout_mode = 3
 anchors_preset = 0
+mouse_behavior_recursive = 2
 theme = ExtResource("2_v5vjm")
 script = ExtResource("1_rdl76")
 seed_button_holder = NodePath("Panel/VBoxContainer/GridContainer")

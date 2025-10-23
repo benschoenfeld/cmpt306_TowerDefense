@@ -36,6 +36,8 @@ tile_set = SubResource("TileSet_2631c")
 layer = 3
 
 [node name="hud" parent="HUD" instance=ExtResource("4_r63pj")]
+mouse_filter = 1
+mouse_behavior_recursive = 1
 
 [node name="PauseUI" type="CanvasLayer" parent="."]
 layer = 4
