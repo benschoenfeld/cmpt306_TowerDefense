@@ -1,22 +1,67 @@
-[gd_scene load_steps=4 format=3 uid="uid://26g0tisiojj8"]
+[gd_scene load_steps=5 format=3 uid="uid://26g0tisiojj8"]
 
-[ext_resource type="PackedScene" uid="uid://bpwquufwnqmlq" path="res://general_ui/hud/toolsUI/shovel.tscn" id="1_j3bc5"]
-[ext_resource type="PackedScene" uid="uid://b6236eqs7ojo0" path="res://general_ui/hud/toolsUI/watering.tscn" id="2_xd44k"]
-[ext_resource type="PackedScene" uid="uid://d1tfh31cro12v" path="res://general_ui/hud/toolsUI/hoe.tscn" id="3_xd44k"]
+[ext_resource type="Script" uid="uid://b652juwfsimse" path="res://general_ui/hud/tool_ui.gd" id="1_w2n8l"]
+[ext_resource type="Texture2D" uid="uid://djv06t00ny3io" path="res://general_ui/hud/assets/tool_shovel.png" id="1_xd44k"]
+[ext_resource type="Texture2D" uid="uid://iovalu0ee0fe" path="res://general_ui/hud/assets/tool_watering_can.png" id="2_w2n8l"]
+[ext_resource type="Texture2D" uid="uid://dvaja0q4arrku" path="res://general_ui/hud/assets/tool_hoe.png" id="3_va21l"]
 
-[node name="ToolUI" type="Control"]
+[node name="ToolUI" type="Control" node_paths=PackedStringArray("shovel_image", "watercan_image", "hoe_image", "tool_bar")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_w2n8l")
+shovel_image = NodePath("VBoxContainer/ToolBar/Shovel")
+watercan_image = NodePath("VBoxContainer/ToolBar/Watercan")
+hoe_image = NodePath("VBoxContainer/ToolBar/Hoe")
+tool_bar = NodePath("VBoxContainer/ToolBar")
 
-[node name="Shovel" parent="." instance=ExtResource("1_j3bc5")]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Watering" parent="." instance=ExtResource("2_xd44k")]
-layout_mode = 1
+[node name="Spacer1" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 
-[node name="Hoe" parent="." instance=ExtResource("3_xd44k")]
-layout_mode = 1
+[node name="ToolBar" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Spacer1" type="Control" parent="VBoxContainer/ToolBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Shovel" type="TextureRect" parent="VBoxContainer/ToolBar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("1_xd44k")
+expand_mode = 2
+
+[node name="Watercan" type="TextureRect" parent="VBoxContainer/ToolBar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("2_w2n8l")
+expand_mode = 2
+
+[node name="Hoe" type="TextureRect" parent="VBoxContainer/ToolBar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_va21l")
+expand_mode = 2
+
+[node name="Spacer2" type="Control" parent="VBoxContainer/ToolBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spacer2" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2

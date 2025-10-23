@@ -4,18 +4,12 @@
 
 [node name="Shovel" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
-offset_left = 640.0
-offset_top = 896.0
-offset_right = 768.0
-offset_bottom = 1024.0
+offset_right = 128.0
+offset_bottom = 128.0
 
 [node name="Button" type="Button" parent="NinePatchRect"]
 custom_minimum_size = Vector2(75, 75)
@@ -24,9 +18,9 @@ anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 1.5000001
 anchor_bottom = 1.0
-offset_right = -1.5258789e-05
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -64.0
+offset_right = 10.999985
+offset_bottom = 75.0
 icon = ExtResource("1_ke8xb")
 icon_alignment = 1
 expand_icon = true
