@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3red2wj3rsul"]
+
+[ext_resource type="Script" uid="uid://cwejy8567ny70" path="res://enums/tools/tool_enums.gd" id="1_t6x24"]
+
+[node name="ToolEnums" type="Node"]
+script = ExtResource("1_t6x24")

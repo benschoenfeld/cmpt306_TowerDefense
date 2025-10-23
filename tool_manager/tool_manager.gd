@@ -39,7 +39,7 @@ func _ready() -> void:
 	_set_current_tool(current_tool_index)
 	
 
-func _set_current_tool(index: int, emit_signal: bool = true) -> void:
+func _set_current_tool(index: int) -> void:
 	if toolArray.size() == 0:
 		push_error("ToolManager: toolArray empty")
 		return
@@ -52,13 +52,11 @@ func _set_current_tool(index: int, emit_signal: bool = true) -> void:
 	else:
 		Input.set_custom_mouse_cursor(null)
 	
-	# show/hhide seed menu automatically when shovel selected
-	emit_signal("request_seed_menu", current_tool_index == int(tool_enum.Tool.SHOVEL))
-	if emit_signal:
-		emit_signal("tool_changed", current_tool_index)
+	tool_changed.emit(current_tool_index)
+	request_seed_menu.emit(current_tool_index == tool_enum.Tool.SHOVEL)
 
 func set_current_tool(index: int) -> void:
-	_set_current_tool(index, true)
+	_set_current_tool(index)
 
 func get_current_tool() -> int:
 	return current_tool_index
@@ -74,7 +72,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
 			_set_current_tool(( current_tool_index - 1 + toolArray.size()) % toolArray.size())
 			
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("equip_shovel"):
 		_set_current_tool(int(tool_enum.Tool.SHOVEL))
 	if Input.is_action_just_pressed("equip_waterCan"):

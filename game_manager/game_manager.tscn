@@ -35,9 +35,10 @@ tile_set = SubResource("TileSet_2631c")
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 3
 
-[node name="hud" parent="HUD" instance=ExtResource("4_r63pj")]
+[node name="hud" parent="HUD" node_paths=PackedStringArray("manager") instance=ExtResource("4_r63pj")]
 mouse_filter = 1
 mouse_behavior_recursive = 1
+manager = NodePath("../..")
 
 [node name="PauseUI" type="CanvasLayer" parent="."]
 layer = 4
@@ -61,4 +62,6 @@ stream = ExtResource("5_03pqa")
 autoplay = true
 bus = &"Music"
 
+[connection signal="request_seed_menu" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_request_seed_menu"]
+[connection signal="tool_changed" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_tool_changed"]
 [connection signal="pressed" from="PauseUI/CenterContainer/PauseButton" to="." method="_on_pause_button_pressed"]

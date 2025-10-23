@@ -5,19 +5,21 @@ extends Control
 ## Give the enum for tools that can be shared between scenes.
 @export var tool_enum: ToolEnums
 
+@export_category("Local Nodes")
+## A reference to the [ToolUI].
+@export var tool_ui: ToolUI
+
+## A reference to the [SeedBag].
+@export var seed_bag: SeedBag
+
+@export_category("Outside Nodes")
 # fetch game manager class
-var manager: GameManager
+@export var manager: GameManager
 
-# fetch currently selected tool
-# var selected: ToolEnums.Tool
+## Highlights the currently selected tool and shows seed bag if needed.
+func _on_tool_manager_tool_changed(tool_index: int) -> void:
+	tool_ui.highlight_tool(tool_index)
 
-# player money resource
-var count: int
-
-# catch selection signals
-func _ready() -> void:
-	pass
-
-# update tool view
-func _process(float) -> void:
-	pass
+## Shows or hides the [SeedBag] based on information given out in a signal.
+func _on_tool_manager_request_seed_menu(show: bool) -> void:
+	seed_bag.visible = show
