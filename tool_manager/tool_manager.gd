@@ -4,27 +4,31 @@ extends Node2D
 signal tool_changed(tool_index: int)
 signal request_seed_menu(show: bool)
 
-enum Tool {SHOVEL , WATERCAN, HOE}
-
-@export var tool_shovel = preload("res://tool_manager/assets/tool_shovel.png")
-@export var tool_waterCan = preload("res://tool_manager/assets/tool_watering_can.png")
-@export var tool_hoe = preload("res://tool_manager/assets/tool_hoe.png")
-
 # Cursor constants
 const CURSOR_HOTSPOT = Vector2(16, 16)
 const CURSOR_SHAPE = Input.CURSOR_ARROW
 
-# Tools array
-var toolArray : Array = []
+@export_category("Enums")
+## Give the enum for tools that can be shared between scenes.
+@export var tool_enum: ToolEnums
 
+@export_category("Mouse Icon Textures")
+@export var tool_shovel = preload("res://tool_manager/assets/tool_shovel.png")
+@export var tool_waterCan = preload("res://tool_manager/assets/tool_watering_can.png")
+@export var tool_hoe = preload("res://tool_manager/assets/tool_hoe.png")
+
+@export_category("Game Settings")
 # Index of the currrent tools selected
-@export var current_tool_index: int = int(Tool.SHOVEL)
+@export var current_tool_index: int = int(tool_enum.Tool.SHOVEL)
 
 # Reference to GameManager
 @export var game_manager: Node = null
 
 # Amount of saturation aplied by the tool 'WaterCan'
 @export var watering_amount: float = 500.0
+
+# Tools array
+var toolArray: Array = []
 
 # Currently seletec seed resource (set by seed menu; CropResource or null)
 var selected_seed: CropResource = null
@@ -49,7 +53,7 @@ func _set_current_tool(index: int, emit_signal: bool = true) -> void:
 		Input.set_custom_mouse_cursor(null)
 	
 	# show/hhide seed menu automatically when shovel selected
-	emit_signal("request_seed_menu", current_tool_index == int(Tool.SHOVEL))
+	emit_signal("request_seed_menu", current_tool_index == int(tool_enum.Tool.SHOVEL))
 	if emit_signal:
 		emit_signal("tool_changed", current_tool_index)
 
@@ -72,11 +76,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("equip_shovel"):
-		_set_current_tool(int(Tool.SHOVEL))
+		_set_current_tool(int(tool_enum.Tool.SHOVEL))
 	if Input.is_action_just_pressed("equip_waterCan"):
-		_set_current_tool(int(Tool.WATERCAN))
+		_set_current_tool(int(tool_enum.Tool.WATERCAN))
 	if Input.is_action_just_pressed("equip_hoe"):
-		set_current_tool((int(Tool.HOE)))
+		set_current_tool((int(tool_enum.Tool.HOE)))
 
 # API: selects a seed resource (called by seedBag UI when player picks a seed)
 func select_seed(seed_resource: CropResource) -> void:
@@ -93,7 +97,7 @@ func interact(tile: BaseTile) -> void:
 	var farmTile: FarmingTile = tile
 	var tool = current_tool_index
 	match tool:
-		int(Tool.HOE):
+		int(tool_enum.Tool.HOE):
 			# Use 'Hoe': till grass -> dry dirt; harvest if ripe
 			if farmTile.get_tile_type() == FarmingTileStats.TileType.GRASS:
 				farmTile.set_tile_stats(farmTile.dry_dirt_stats)
@@ -107,7 +111,7 @@ func interact(tile: BaseTile) -> void:
 					game_manager.add_money(harvested.get_value())
 				return
 		
-		int(Tool.WATERCAN):
+		int(tool_enum.Tool.WATERCAN):
 			# Use watering can: no effect on grass
 			if farmTile.get_tile_type() == FarmingTileStats.TileType.GRASS:
 				return
@@ -119,7 +123,7 @@ func interact(tile: BaseTile) -> void:
 				if farmTile.has_saturation() and farmTile.get_tile_type() == FarmingTileStats.TileType.DRY_DIRT:
 					farmTile.set_tile_stats(farmTile.wet_dirt_stats)
 		
-		int(Tool.SHOVEL):
+		int(tool_enum.Tool.SHOVEL):
 			# Shovel opens seed menu ( if no seed selected) otherwise plant if valid
 			# if there is a selected seed, plant it into dry/wet dirt
 			

@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmmjsxbvqc2j3"]
+[gd_scene load_steps=3 format=3 uid="uid://dmmjsxbvqc2j3"]
 
 [ext_resource type="Script" uid="uid://cvvvfjm75a7rh" path="res://tool_manager/tool_manager.gd" id="1_b78em"]
+[ext_resource type="Script" uid="uid://cwejy8567ny70" path="res://enums/tools/tool_enums.gd" id="2_m5ycf"]
 
-[node name="ToolManager" type="Node2D"]
+[node name="ToolManager" type="Node2D" node_paths=PackedStringArray("tool_enum")]
 script = ExtResource("1_b78em")
+tool_enum = NodePath("ToolEnums")
+
+[node name="ToolEnums" type="Node" parent="."]
+script = ExtResource("2_m5ycf")
+metadata/_custom_type_script = "uid://cwejy8567ny70"
