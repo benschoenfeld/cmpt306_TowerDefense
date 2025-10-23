@@ -5,10 +5,7 @@
 
 [node name="MoneyCounter" type="Control" node_paths=PackedStringArray("money_label")]
 layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-grow_horizontal = 0
+anchors_preset = 0
 script = ExtResource("1_g61ru")
 money_label = NodePath("PanelContainer/Number")
 
@@ -17,10 +14,8 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -498.0
-offset_top = 3.0
-offset_right = -293.0
-offset_bottom = 61.0
+offset_right = 205.0
+offset_bottom = 58.0
 grow_horizontal = 0
 
 [node name="PanelContainer" type="NinePatchRect" parent="PanelContainer"]
