@@ -2,7 +2,7 @@ class_name ToolManager
 extends Node2D
 
 signal tool_changed(tool_index: int)
-signal request_seed_menu(show: bool)
+signal request_seed_menu(show_item: bool)
 
 # Cursor constants
 const CURSOR_HOTSPOT = Vector2(16, 16)

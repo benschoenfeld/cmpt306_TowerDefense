@@ -3,13 +3,14 @@
 [ext_resource type="Script" uid="uid://balyxjhk0jgvb" path="res://general_ui/hud/money_counter.gd" id="1_g61ru"]
 [ext_resource type="Texture2D" uid="uid://d4de1wjl2s5v2" path="res://general_ui/hud/assets/genericItem_color_158.png" id="2_dv042"]
 
-[node name="MoneyCounter" type="Control"]
+[node name="MoneyCounter" type="Control" node_paths=PackedStringArray("money_label")]
 layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 grow_horizontal = 0
 script = ExtResource("1_g61ru")
+money_label = NodePath("PanelContainer/Number")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
