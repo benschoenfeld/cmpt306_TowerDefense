@@ -65,4 +65,7 @@ bus = &"Music"
 [connection signal="money_changed" from="." to="HUD/hud" method="_on_game_manager_money_changed"]
 [connection signal="request_seed_menu" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_request_seed_menu"]
 [connection signal="tool_changed" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_tool_changed"]
+[connection signal="selected_seed" from="HUD/hud/SeedBag" to="Game/ToolManager" method="_on_seed_bag_selected_seed"]
 [connection signal="pressed" from="PauseUI/CenterContainer/PauseButton" to="." method="_on_pause_button_pressed"]
+
+[editable path="HUD/hud"]

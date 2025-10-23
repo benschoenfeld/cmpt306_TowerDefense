@@ -4,7 +4,7 @@ extends Control
 ## Holds the crops that the player can plant.
 
 ## Allows tools to see what seed is selected.
-signal selected_seed(seed_selection)
+signal selected_seed(seed_selection: CropResource)
 
 ## The options for what crops can be planted.
 @export var seed_choices: Array[CropResource] = [

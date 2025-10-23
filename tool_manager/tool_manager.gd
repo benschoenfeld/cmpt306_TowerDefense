@@ -80,10 +80,6 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("equip_hoe"):
 		set_current_tool((int(tool_enum.Tool.HOE)))
 
-# API: selects a seed resource (called by seedBag UI when player picks a seed)
-func select_seed(seed_resource: CropResource) -> void:
-	selected_seed = seed_resource
-
 # Called by GameManager's connect: tile.connect("send_tile_data", Callable(tool_manager, "interact"))
 # Accepts a BaseTile (or FarmingTile)  and applies the currently selected tool to it
 func interact(tile: BaseTile) -> void:
@@ -133,3 +129,7 @@ func interact(tile: BaseTile) -> void:
 			else:
 				farmTile.set_tile_stats(farmTile.grass_stats)
 					
+
+## Changes the [param selected_seed] to new CropResource
+func _on_seed_bag_selected_seed(seed_selection: CropResource) -> void:
+	selected_seed = seed_selection
