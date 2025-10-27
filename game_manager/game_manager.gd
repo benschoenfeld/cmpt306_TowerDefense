@@ -10,8 +10,8 @@ signal money_changed(new_amount: int)
 @export var pause_menu_scene: PackedScene
 
 @export_category("GameManager Nodes")
-## The [CanvasLayer] that the pause scene will be added to.
-@export var pause_menu_layer: CanvasLayer
+## A reference to a [PauseMenu].
+@export var pause_menu: PauseMenu
 
 ## A reference to the [TileMapLayer] that holds the [FarmingTile].
 @export var farming_tile_map: TileMapLayer
@@ -57,5 +57,5 @@ func _load_and_connect_tile():
 ## When the pause button is pressed is adds the pause scene to 
 ## the [param pause_menu_layer].
 func _on_pause_button_pressed() -> void:
-	var pause_menu: PauseMenu = pause_menu_scene.instantiate()
-	pause_menu_layer.add_child(pause_menu)
+	pause_menu.set_pause(true)
+	

@@ -14,6 +14,9 @@ extends Control
 ## Slider for the sound effects.
 @export var sfx_slider: NumberSlider
 
+## A reference to the sound for opening and closing the menu.
+@export var open_close_sound: AudioStreamPlayer
+
 func _ready() -> void:
 	match_sliders_to_audio()
 
@@ -34,6 +37,11 @@ func match_sliders_to_audio() -> void:
 	music_slider.value_match(music_volume)
 	sfx_slider.value_match(sfx_volume)
 
+## Call to hide and play a sound effect.
+func show_or_hide(showing: bool):
+	open_close_sound.play()
+	self.visible = showing
+
 ## Private function to change the audio bus settings for SFX.
 func _on_sfx_volume_value_changed(new_value: float) -> void:
 	set_audio_bus_volume("SFX", new_value)
@@ -44,4 +52,4 @@ func _on_music_volume_value_changed(new_value: float) -> void:
 
 ## Removes self from the scene
 func _on_exit_button_pressed() -> void:
-	queue_free()
+	show_or_hide(false)

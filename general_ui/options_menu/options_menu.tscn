@@ -9,7 +9,7 @@ font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_skdlc"]
 font_size = 32
 
-[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("music_slider", "sfx_slider")]
+[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("music_slider", "sfx_slider", "open_close_sound")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,6 +19,7 @@ grow_vertical = 2
 script = ExtResource("1_vgjbt")
 music_slider = NodePath("CenterContainer/Panel/MainContentContainer/VBoxContainer/MusicVolume")
 sfx_slider = NodePath("CenterContainer/Panel/MainContentContainer/VBoxContainer2/SFXVolume")
+open_close_sound = NodePath("OpenCloseSound")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -83,6 +84,8 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 text = "Back"
+
+[node name="OpenCloseSound" type="AudioStreamPlayer" parent="."]
 
 [connection signal="value_changed" from="CenterContainer/Panel/MainContentContainer/VBoxContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
 [connection signal="value_changed" from="CenterContainer/Panel/MainContentContainer/VBoxContainer2/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
