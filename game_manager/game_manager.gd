@@ -9,6 +9,7 @@ signal money_changed(new_amount: int)
 ## A [PackedScene] of the [PauseMenu].
 @export var pause_menu_scene: PackedScene
 
+@export_category("GameManager Nodes")
 ## The [CanvasLayer] that the pause scene will be added to.
 @export var pause_menu_layer: CanvasLayer
 
@@ -17,6 +18,10 @@ signal money_changed(new_amount: int)
 
 ## A reference to the [ToolManager] to interact with [FarmingTile].
 @export var tool_manager: ToolManager
+
+## A reference to the an [AudioStreamPlayer] that will play a money sound 
+## when the money is changed.
+@export var money_sound_player: AudioStreamPlayer
 
 ## The players resource.
 var money_amount: int = 0
@@ -27,6 +32,8 @@ func _ready() -> void:
 
 ## Sets the [param money_amount] and emits a signal.
 func set_money(new_amount: int) -> void:
+	# TODO: find money sound effect.
+	money_sound_player.play()
 	money_amount = new_amount
 	money_changed.emit(money_amount)
 

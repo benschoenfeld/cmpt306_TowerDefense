@@ -19,7 +19,10 @@ metadata/_custom_type_script = "uid://cwejy8567ny70"
 bus = &"SFX"
 
 [node name="HoeSound" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
 
 [node name="ShovelSound" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
 
 [node name="WatercanSound" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

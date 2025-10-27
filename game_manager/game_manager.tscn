@@ -87,6 +87,9 @@ stream = ExtResource("5_03pqa")
 autoplay = true
 bus = &"Music"
 
+[node name="MoneySound" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
 [connection signal="money_changed" from="." to="HUD/hud" method="_on_game_manager_money_changed"]
 [connection signal="request_seed_menu" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_request_seed_menu"]
 [connection signal="tool_changed" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_tool_changed"]
