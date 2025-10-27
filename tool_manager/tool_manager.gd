@@ -17,6 +17,12 @@ const CURSOR_SHAPE = Input.CURSOR_ARROW
 @export var tool_waterCan = preload("res://tool_manager/assets/tool_watering_can.png")
 @export var tool_hoe = preload("res://tool_manager/assets/tool_hoe.png")
 
+@export_category("ToolManager Nodes")
+@export var switch_sound_player: AudioStreamPlayer
+@export var hoe_sound_player: AudioStreamPlayer
+@export var shovel_sound_player: AudioStreamPlayer
+@export var watercan_sound_player: AudioStreamPlayer
+
 @export_category("Game Settings")
 # Index of the currrent tools selected
 @export var current_tool_index: int = int(tool_enum.Tool.SHOVEL)
@@ -25,7 +31,7 @@ const CURSOR_SHAPE = Input.CURSOR_ARROW
 @export var game_manager: Node = null
 
 # Amount of saturation aplied by the tool 'WaterCan'
-@export var watering_amount: float = 500.0
+@export var watering_amount: float = 100.0
 
 # Tools array
 var toolArray: Array = []
@@ -48,6 +54,7 @@ func _set_current_tool(index: int) -> void:
 	current_tool_index = index
 	var tex = toolArray[current_tool_index]
 	if tex:
+		switch_sound_player.play()
 		Input.set_custom_mouse_cursor(tex, CURSOR_SHAPE, CURSOR_HOTSPOT)
 	else:
 		Input.set_custom_mouse_cursor(null)
@@ -94,6 +101,9 @@ func interact(tile: BaseTile) -> void:
 		int(tool_enum.Tool.HOE):
 			# Use 'Hoe': till grass -> dry dirt; harvest if ripe
 			if farmTile.get_tile_type() == FarmingTileStats.TileType.GRASS:
+				# TODO: Set the sound for grass to be removed
+				# hoe_sound_player.stream = grass sound
+				hoe_sound_player.play()
 				farmTile.set_tile_stats(farmTile.dry_dirt_stats)
 				farmTile.set_saturation(0.0)
 				return
@@ -101,6 +111,9 @@ func interact(tile: BaseTile) -> void:
 			if farmTile.has_crop():
 				var harvested: CropResource = farmTile.harvest_crop()
 				if harvested != null and game_manager != null:
+					# TODO: Set the sound for crop to be removed
+					# hoe_sound_player.stream = crop havest sound
+					hoe_sound_player.play()
 					# award money
 					game_manager.add_money(harvested.get_value())
 				return
@@ -113,6 +126,9 @@ func interact(tile: BaseTile) -> void:
 			if farmTile.has_method("apply_water"):
 				farmTile.apply_water(watering_amount)
 			else:
+				# TODO: Set the sound for ground to be wated
+				# watercan_sound_player.stream = water sound
+				watercan_sound_player.play()
 				farmTile.add_saturation(watering_amount)
 				if farmTile.has_saturation() and farmTile.get_tile_type() == FarmingTileStats.TileType.DRY_DIRT:
 					farmTile.set_tile_stats(farmTile.wet_dirt_stats)
@@ -123,11 +139,15 @@ func interact(tile: BaseTile) -> void:
 			
 			if selected_seed != null:
 				if farmTile.get_tile_type() == FarmingTileStats.TileType.DRY_DIRT or farmTile.get_tile_type() == FarmingTileStats.TileType.WET_DIRT:
+					# TODO: Set the sound for crop to be planted
+					# shovel_sound_player.stream = crop planted sound
+					shovel_sound_player.play()
 					farmTile.set_crop(selected_seed)
 					return
 				# if no seed seletec, nothing hapens (UI should open via 'request_seed_menu' signal)
-			else:
-				farmTile.set_tile_stats(farmTile.grass_stats)
+			# This is not required in the assignment docs so I will just comment it out for now.
+			#else:
+				#farmTile.set_tile_stats(farmTile.grass_stats)
 					
 
 ## Changes the [param selected_seed] to new CropResource

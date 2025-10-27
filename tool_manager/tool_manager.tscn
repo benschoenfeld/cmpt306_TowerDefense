@@ -3,10 +3,23 @@
 [ext_resource type="Script" uid="uid://cvvvfjm75a7rh" path="res://tool_manager/tool_manager.gd" id="1_b78em"]
 [ext_resource type="Script" uid="uid://cwejy8567ny70" path="res://enums/tools/tool_enums.gd" id="2_m5ycf"]
 
-[node name="ToolManager" type="Node2D" node_paths=PackedStringArray("tool_enum")]
+[node name="ToolManager" type="Node2D" node_paths=PackedStringArray("tool_enum", "switch_sound_player", "hoe_sound_player", "shovel_sound_player", "watercan_sound_player")]
 script = ExtResource("1_b78em")
 tool_enum = NodePath("ToolEnums")
+switch_sound_player = NodePath("SwitchSound")
+hoe_sound_player = NodePath("HoeSound")
+shovel_sound_player = NodePath("ShovelSound")
+watercan_sound_player = NodePath("WatercanSound")
 
 [node name="ToolEnums" type="Node" parent="."]
 script = ExtResource("2_m5ycf")
 metadata/_custom_type_script = "uid://cwejy8567ny70"
+
+[node name="SwitchSound" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="HoeSound" type="AudioStreamPlayer" parent="."]
+
+[node name="ShovelSound" type="AudioStreamPlayer" parent="."]
+
+[node name="WatercanSound" type="AudioStreamPlayer" parent="."]
