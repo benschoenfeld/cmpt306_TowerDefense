@@ -8,6 +8,9 @@ extends Control
 ## a button, return to the [MainMenu] with a button, and quit the game with
 ## a button.
 
+## A reference to the [ToolManager] to interact with [PauseMenu].
+@export var tool_manager: ToolManager
+
 ## Constant path that is the [MainMenu]
 const MAIN_MENU_PATH: String = "res://general_ui/main_menu/main_menu.tscn"
 
@@ -22,9 +25,12 @@ func set_pause(pause: bool):
 	open_close_sound.play()
 	self.visible = pause
 	get_tree().paused = pause
+	
 
 ## Unpaused the [Tree] and removes the scene once user hits resume button.
+## Sets the custom cursor from null(default) back to the selected tool icon 
 func _on_resume_button_pressed() -> void:
+	tool_manager.set_current_tool(tool_manager.get_current_tool())
 	set_pause(false)
 
 ## Adds [OptionsMenu] to the [param options_layer] once user hits options button.

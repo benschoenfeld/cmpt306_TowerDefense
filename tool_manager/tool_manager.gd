@@ -33,6 +33,9 @@ const CURSOR_SHAPE = Input.CURSOR_ARROW
 # Amount of saturation aplied by the tool 'WaterCan'
 @export var watering_amount: float = 100.0
 
+## A reference to the [PauseMenu] to interact with [ToolManager].
+@export var pause_menu: PauseMenu
+
 # Tools array
 var toolArray: Array = []
 
@@ -80,6 +83,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			_set_current_tool(( current_tool_index - 1 + toolArray.size()) % toolArray.size())
 			
 func _process(_delta: float) -> void:
+	
 	if Input.is_action_just_pressed("equip_shovel"):
 		_set_current_tool(int(tool_enum.Tool.SHOVEL))
 	if Input.is_action_just_pressed("equip_waterCan"):

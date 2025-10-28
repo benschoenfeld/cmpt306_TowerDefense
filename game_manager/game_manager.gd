@@ -57,5 +57,5 @@ func _load_and_connect_tile():
 ## When the pause button is pressed is adds the pause scene to 
 ## the [param pause_menu_layer].
 func _on_pause_button_pressed() -> void:
+	Input.set_custom_mouse_cursor(null)
 	pause_menu.set_pause(true)
-	
