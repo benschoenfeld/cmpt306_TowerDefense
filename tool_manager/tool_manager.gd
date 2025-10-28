@@ -33,9 +33,6 @@ const CURSOR_SHAPE = Input.CURSOR_ARROW
 # Amount of saturation aplied by the tool 'WaterCan'
 @export var watering_amount: float = 100.0
 
-## A reference to the [PauseMenu] to interact with [ToolManager].
-@export var pause_menu: PauseMenu
-
 # Tools array
 var toolArray: Array = []
 
@@ -56,11 +53,12 @@ func _set_current_tool(index: int) -> void:
 		push_error("ToolManager: index out of range")
 	current_tool_index = index
 	var tex = toolArray[current_tool_index]
-	if tex:
-		switch_sound_player.play()
-		Input.set_custom_mouse_cursor(tex, CURSOR_SHAPE, CURSOR_HOTSPOT)
-	else:
-		Input.set_custom_mouse_cursor(null)
+	if not get_tree().paused:
+		if tex:
+			switch_sound_player.play()
+			Input.set_custom_mouse_cursor(tex, CURSOR_SHAPE, CURSOR_HOTSPOT)
+		else:
+			Input.set_custom_mouse_cursor(null)
 	
 	tool_changed.emit(current_tool_index)
 	request_seed_menu.emit(current_tool_index == tool_enum.Tool.SHOVEL)
@@ -74,6 +72,9 @@ func get_current_tool() -> int:
 
 # Input handling for scrolling
 func _unhandled_input(event: InputEvent) -> void:
+	if  get_tree().paused:
+		return
+	
 	if toolArray.size() == 0:
 		return
 	if event is InputEventMouseButton:
@@ -84,6 +85,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 func _process(_delta: float) -> void:
 	
+	if get_tree().paused:
+		return
+
 	if Input.is_action_just_pressed("equip_shovel"):
 		_set_current_tool(int(tool_enum.Tool.SHOVEL))
 	if Input.is_action_just_pressed("equip_waterCan"):
@@ -148,11 +152,6 @@ func interact(tile: BaseTile) -> void:
 					shovel_sound_player.play()
 					farmTile.set_crop(selected_seed)
 					return
-				# if no seed seletec, nothing hapens (UI should open via 'request_seed_menu' signal)
-			# This is not required in the assignment docs so I will just comment it out for now.
-			#else:
-				#farmTile.set_tile_stats(farmTile.grass_stats)
-					
 
 ## Changes the [param selected_seed] to new CropResource
 func _on_seed_bag_selected_seed(seed_selection: CropResource) -> void:

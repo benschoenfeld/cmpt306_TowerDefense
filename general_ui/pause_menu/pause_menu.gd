@@ -22,15 +22,21 @@ const MAIN_MENU_PATH: String = "res://general_ui/main_menu/main_menu.tscn"
 
 ## Pauses or unpauses the game based on a [bool].
 func set_pause(pause: bool):
+	
 	open_close_sound.play()
 	self.visible = pause
 	get_tree().paused = pause
+	
+	if pause:
+		Input.set_custom_mouse_cursor(null)
+	else:
+		if tool_manager != null:
+			tool_manager.set_current_tool(tool_manager.get_current_tool())
 	
 
 ## Unpaused the [Tree] and removes the scene once user hits resume button.
 ## Sets the custom cursor from null(default) back to the selected tool icon 
 func _on_resume_button_pressed() -> void:
-	tool_manager.set_current_tool(tool_manager.get_current_tool())
 	set_pause(false)
 
 ## Adds [OptionsMenu] to the [param options_layer] once user hits options button.
