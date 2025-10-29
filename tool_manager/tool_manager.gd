@@ -55,8 +55,8 @@ func _set_current_tool(index: int) -> void:
 	var tex = toolArray[current_tool_index]
 	if not get_tree().paused:
 		if tex:
-			switch_sound_player.play()
 			Input.set_custom_mouse_cursor(tex, CURSOR_SHAPE, CURSOR_HOTSPOT)
+			switch_sound_player.play()
 		else:
 			Input.set_custom_mouse_cursor(null)
 	

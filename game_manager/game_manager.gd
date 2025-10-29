@@ -19,12 +19,10 @@ signal money_changed(new_amount: int)
 ## A reference to the [ToolManager] to interact with [FarmingTile].
 @export var tool_manager: ToolManager
 
-<<<<<<< HEAD
-=======
 ## A reference to the an [AudioStreamPlayer] that will play a money sound 
 ## when the money is changed.
 @export var money_sound_player: AudioStreamPlayer
->>>>>>> 44a8de43683885e1796b6c080a80020d4507330e
+
 
 ## The players resource.
 var money_amount: int = 0
