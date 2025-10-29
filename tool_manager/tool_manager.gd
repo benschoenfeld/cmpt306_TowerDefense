@@ -121,7 +121,7 @@ func interact(tile: BaseTile) -> void:
 				if harvested != null and game_manager != null:
 					# TODO: Set the sound for crop to be removed
 					# hoe_sound_player.stream = crop havest sound
-					hoe_sound_player.play()
+					$HoeSound.play()
 					# award money
 					game_manager.add_money(harvested.get_value())
 				return
@@ -149,7 +149,7 @@ func interact(tile: BaseTile) -> void:
 				if farmTile.get_tile_type() == FarmingTileStats.TileType.DRY_DIRT or farmTile.get_tile_type() == FarmingTileStats.TileType.WET_DIRT:
 					# TODO: Set the sound for crop to be planted
 					# shovel_sound_player.stream = crop planted sound
-					shovel_sound_player.play()
+					$ShovelSound.play()
 					farmTile.set_crop(selected_seed)
 					return
 
