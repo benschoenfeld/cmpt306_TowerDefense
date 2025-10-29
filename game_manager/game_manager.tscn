@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=4 uid="uid://cp6ebsr5bsveq"]
+[gd_scene load_steps=14 format=4 uid="uid://cp6ebsr5bsveq"]
 
 [ext_resource type="Script" uid="uid://ddh6nidkpvu7s" path="res://game_manager/game_manager.gd" id="1_ong7i"]
 [ext_resource type="PackedScene" uid="uid://bb0emy17c3vce" path="res://general_ui/pause_menu/pause_menu.tscn" id="2_mx6ys"]
+[ext_resource type="PackedScene" uid="uid://b6vs3ylr7i6pe" path="res://general_ui/SFX/ui_sounds.tscn" id="3_kkxic"]
 [ext_resource type="PackedScene" uid="uid://dolipbibi2ypy" path="res://tiles/farming_tile/farming_tile.tscn" id="3_pnley"]
 [ext_resource type="Texture2D" uid="uid://c006q8j3wqfjr" path="res://game_manager/assets/pause_button.png" id="3_q7vcu"]
 [ext_resource type="Texture2D" uid="uid://u2fiav4u0aux" path="res://tiles/farming_tile/assets/farming_tileset.png" id="4_fjsdi"]
@@ -58,12 +59,18 @@ metadata/_edit_lock_ = true
 zoom = Vector2(2, 2)
 metadata/_edit_lock_ = true
 
+[node name="UISounds2" parent="." instance=ExtResource("3_kkxic")]
+root_path = NodePath("../HUD")
+
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 3
 
 [node name="hud" parent="HUD" node_paths=PackedStringArray("manager") instance=ExtResource("4_r63pj")]
 manager = NodePath("../..")
 metadata/_edit_lock_ = true
+
+[node name="UISounds" parent="." instance=ExtResource("3_kkxic")]
+root_path = NodePath("../PauseUI")
 
 [node name="PauseUI" type="CanvasLayer" parent="."]
 layer = 4
