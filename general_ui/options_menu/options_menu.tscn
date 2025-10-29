@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://3w2wv3vnr6nd"]
+[gd_scene load_steps=6 format=3 uid="uid://3w2wv3vnr6nd"]
 
 [ext_resource type="Script" uid="uid://ciyq4n2v1cpro" path="res://general_ui/options_menu/options_menu.gd" id="1_vgjbt"]
 [ext_resource type="PackedScene" uid="uid://bqjcx2x6ccgbg" path="res://general_ui/options_menu/number_slider.tscn" id="2_ln23y"]
+[ext_resource type="AudioStream" uid="uid://bxuo7hctlr608" path="res://general_ui/SFX/UI_Hover.ogg" id="3_skdlc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ln23y"]
 font_size = 32
@@ -86,6 +87,8 @@ layout_mode = 2
 text = "Back"
 
 [node name="OpenCloseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_skdlc")
+pitch_scale = 0.3
 
 [connection signal="value_changed" from="CenterContainer/Panel/MainContentContainer/VBoxContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
 [connection signal="value_changed" from="CenterContainer/Panel/MainContentContainer/VBoxContainer2/SFXVolume" to="." method="_on_sfx_volume_value_changed"]

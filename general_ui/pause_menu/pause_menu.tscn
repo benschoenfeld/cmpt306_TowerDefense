@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bb0emy17c3vce"]
+[gd_scene load_steps=4 format=3 uid="uid://bb0emy17c3vce"]
 
 [ext_resource type="Script" uid="uid://dwnly5hcp86fa" path="res://general_ui/pause_menu/pause_menu.gd" id="1_iayod"]
 [ext_resource type="PackedScene" uid="uid://3w2wv3vnr6nd" path="res://general_ui/options_menu/options_menu.tscn" id="2_ya0wi"]
+[ext_resource type="AudioStream" uid="uid://bxuo7hctlr608" path="res://general_ui/SFX/UI_Hover.ogg" id="3_fjpnr"]
 
 [node name="PauseMenu" type="Control" node_paths=PackedStringArray("options", "open_close_sound")]
 process_mode = 3
@@ -66,6 +67,8 @@ layer = 5
 visible = false
 
 [node name="OpenCloseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_fjpnr")
+pitch_scale = 0.3
 bus = &"SFX"
 
 [connection signal="pressed" from="MainContentsContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
