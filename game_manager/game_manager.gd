@@ -9,8 +9,9 @@ signal money_changed(new_amount: int)
 ## A [PackedScene] of the [PauseMenu].
 @export var pause_menu_scene: PackedScene
 
-## The [CanvasLayer] that the pause scene will be added to.
-@export var pause_menu_layer: CanvasLayer
+@export_category("GameManager Nodes")
+## A reference to a [PauseMenu].
+@export var pause_menu: PauseMenu
 
 ## A reference to the [TileMapLayer] that holds the [FarmingTile].
 @export var farming_tile_map: TileMapLayer
@@ -18,6 +19,12 @@ signal money_changed(new_amount: int)
 ## A reference to the [ToolManager] to interact with [FarmingTile].
 @export var tool_manager: ToolManager
 
+<<<<<<< HEAD
+=======
+## A reference to the an [AudioStreamPlayer] that will play a money sound 
+## when the money is changed.
+@export var money_sound_player: AudioStreamPlayer
+>>>>>>> 44a8de43683885e1796b6c080a80020d4507330e
 
 ## The players resource.
 var money_amount: int = 0
@@ -28,6 +35,8 @@ func _ready() -> void:
 
 ## Sets the [param money_amount] and emits a signal.
 func set_money(new_amount: int) -> void:
+	# TODO: find money sound effect.
+	money_sound_player.play()
 	money_amount = new_amount
 	money_changed.emit(money_amount)
 	# Play audio for money being collected
@@ -56,5 +65,4 @@ func _load_and_connect_tile():
 ## When the pause button is pressed is adds the pause scene to 
 ## the [param pause_menu_layer].
 func _on_pause_button_pressed() -> void:
-	var pause_menu: PauseMenu = pause_menu_scene.instantiate()
-	pause_menu_layer.add_child(pause_menu)
+	pause_menu.set_pause(true)

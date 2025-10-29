@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dwnly5hcp86fa" path="res://general_ui/pause_menu/pause_menu.gd" id="1_iayod"]
 [ext_resource type="PackedScene" uid="uid://3w2wv3vnr6nd" path="res://general_ui/options_menu/options_menu.tscn" id="2_ya0wi"]
 
-[node name="PauseMenu" type="Control" node_paths=PackedStringArray("options_layer")]
+[node name="PauseMenu" type="Control" node_paths=PackedStringArray("options", "open_close_sound")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -12,8 +12,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_iayod")
-_options_menu_scene = ExtResource("2_ya0wi")
-options_layer = NodePath("OptionsLayer")
+options = NodePath("OptionsLayer/OptionsMenu")
+open_close_sound = NodePath("OpenCloseSound")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -61,6 +61,12 @@ text = "Quit"
 
 [node name="OptionsLayer" type="CanvasLayer" parent="."]
 layer = 5
+
+[node name="OptionsMenu" parent="OptionsLayer" instance=ExtResource("2_ya0wi")]
+visible = false
+
+[node name="OpenCloseSound" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
 
 [connection signal="pressed" from="MainContentsContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="MainContentsContainer/OptionsButton" to="." method="_on_options_button_pressed"]

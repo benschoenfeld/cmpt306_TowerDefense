@@ -17,6 +17,12 @@ const CURSOR_SHAPE = Input.CURSOR_ARROW
 @export var tool_waterCan = preload("res://tool_manager/assets/tool_watering_can.png")
 @export var tool_hoe = preload("res://tool_manager/assets/tool_hoe.png")
 
+@export_category("ToolManager Nodes")
+@export var switch_sound_player: AudioStreamPlayer
+@export var hoe_sound_player: AudioStreamPlayer
+@export var shovel_sound_player: AudioStreamPlayer
+@export var watercan_sound_player: AudioStreamPlayer
+
 @export_category("Game Settings")
 # Index of the currrent tools selected
 @export var current_tool_index: int = int(tool_enum.Tool.SHOVEL)
@@ -25,7 +31,7 @@ const CURSOR_SHAPE = Input.CURSOR_ARROW
 @export var game_manager: Node = null
 
 # Amount of saturation aplied by the tool 'WaterCan'
-@export var watering_amount: float = 500.0
+@export var watering_amount: float = 100.0
 
 # Tools array
 var toolArray: Array = []
@@ -47,10 +53,12 @@ func _set_current_tool(index: int) -> void:
 		push_error("ToolManager: index out of range")
 	current_tool_index = index
 	var tex = toolArray[current_tool_index]
-	if tex:
-		Input.set_custom_mouse_cursor(tex, CURSOR_SHAPE, CURSOR_HOTSPOT)
-	else:
-		Input.set_custom_mouse_cursor(null)
+	if not get_tree().paused:
+		if tex:
+			switch_sound_player.play()
+			Input.set_custom_mouse_cursor(tex, CURSOR_SHAPE, CURSOR_HOTSPOT)
+		else:
+			Input.set_custom_mouse_cursor(null)
 	
 	tool_changed.emit(current_tool_index)
 	request_seed_menu.emit(current_tool_index == tool_enum.Tool.SHOVEL)
@@ -64,6 +72,9 @@ func get_current_tool() -> int:
 
 # Input handling for scrolling
 func _unhandled_input(event: InputEvent) -> void:
+	if  get_tree().paused:
+		return
+	
 	if toolArray.size() == 0:
 		return
 	if event is InputEventMouseButton:
@@ -73,6 +84,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			_set_current_tool(( current_tool_index - 1 + toolArray.size()) % toolArray.size())
 			
 func _process(_delta: float) -> void:
+	
+	if get_tree().paused:
+		return
+
 	if Input.is_action_just_pressed("equip_shovel"):
 		_set_current_tool(int(tool_enum.Tool.SHOVEL))
 	if Input.is_action_just_pressed("equip_waterCan"):
@@ -94,6 +109,9 @@ func interact(tile: BaseTile) -> void:
 		int(tool_enum.Tool.HOE):
 			# Use 'Hoe': till grass -> dry dirt; harvest if ripe
 			if farmTile.get_tile_type() == FarmingTileStats.TileType.GRASS:
+				# TODO: Set the sound for grass to be removed
+				# hoe_sound_player.stream = grass sound
+				hoe_sound_player.play()
 				farmTile.set_tile_stats(farmTile.dry_dirt_stats)
 				farmTile.set_saturation(0.0)
 				return
@@ -101,6 +119,9 @@ func interact(tile: BaseTile) -> void:
 			if farmTile.has_crop():
 				var harvested: CropResource = farmTile.harvest_crop()
 				if harvested != null and game_manager != null:
+					# TODO: Set the sound for crop to be removed
+					# hoe_sound_player.stream = crop havest sound
+					hoe_sound_player.play()
 					# award money
 					game_manager.add_money(harvested.get_value())
 				return
@@ -113,6 +134,9 @@ func interact(tile: BaseTile) -> void:
 			if farmTile.has_method("apply_water"):
 				farmTile.apply_water(watering_amount)
 			else:
+				# TODO: Set the sound for ground to be wated
+				# watercan_sound_player.stream = water sound
+				watercan_sound_player.play()
 				farmTile.add_saturation(watering_amount)
 				if farmTile.has_saturation() and farmTile.get_tile_type() == FarmingTileStats.TileType.DRY_DIRT:
 					farmTile.set_tile_stats(farmTile.wet_dirt_stats)
@@ -123,12 +147,11 @@ func interact(tile: BaseTile) -> void:
 			
 			if selected_seed != null:
 				if farmTile.get_tile_type() == FarmingTileStats.TileType.DRY_DIRT or farmTile.get_tile_type() == FarmingTileStats.TileType.WET_DIRT:
+					# TODO: Set the sound for crop to be planted
+					# shovel_sound_player.stream = crop planted sound
+					shovel_sound_player.play()
 					farmTile.set_crop(selected_seed)
 					return
-				# if no seed seletec, nothing hapens (UI should open via 'request_seed_menu' signal)
-			else:
-				farmTile.set_tile_stats(farmTile.grass_stats)
-					
 
 ## Changes the [param selected_seed] to new CropResource
 func _on_seed_bag_selected_seed(seed_selection: CropResource) -> void:
