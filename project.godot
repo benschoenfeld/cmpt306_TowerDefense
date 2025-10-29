@@ -30,6 +30,10 @@ project/assembly_name="Harvest 306"
 
 enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 
+[gui]
+
+theme/custom="uid://dmsg2cxtnf7tg"
+
 [input]
 
 interact={
