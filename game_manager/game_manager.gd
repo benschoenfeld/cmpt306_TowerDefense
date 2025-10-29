@@ -19,9 +19,12 @@ signal money_changed(new_amount: int)
 ## A reference to the [ToolManager] to interact with [FarmingTile].
 @export var tool_manager: ToolManager
 
+<<<<<<< HEAD
+=======
 ## A reference to the an [AudioStreamPlayer] that will play a money sound 
 ## when the money is changed.
 @export var money_sound_player: AudioStreamPlayer
+>>>>>>> 44a8de43683885e1796b6c080a80020d4507330e
 
 ## The players resource.
 var money_amount: int = 0
@@ -36,10 +39,15 @@ func set_money(new_amount: int) -> void:
 	money_sound_player.play()
 	money_amount = new_amount
 	money_changed.emit(money_amount)
+	# Play audio for money being collected
+	$Game/MoneySound.play()
 
 ## Adds to the [param money_amount].
 func add_money(new_amount: int) -> void:
 	set_money(get_money() + new_amount)
+	
+	
+	
 
 ## Returns the [param money_amount]
 func get_money() -> int:
