@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://cp6ebsr5bsveq"]
+[gd_scene load_steps=14 format=4 uid="uid://cp6ebsr5bsveq"]
 
 [ext_resource type="Script" uid="uid://ddh6nidkpvu7s" path="res://game_manager/game_manager.gd" id="1_ong7i"]
 [ext_resource type="PackedScene" uid="uid://bb0emy17c3vce" path="res://general_ui/pause_menu/pause_menu.tscn" id="2_mx6ys"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://me31tyggjdy4" path="res://general_ui/hud/hud.tscn" id="4_r63pj"]
 [ext_resource type="AudioStream" uid="uid://buppeg7wx1bn6" path="res://game_manager/assets/apple_cider.wav" id="5_03pqa"]
 [ext_resource type="PackedScene" uid="uid://dmmjsxbvqc2j3" path="res://tool_manager/tool_manager.tscn" id="6_2631c"]
+[ext_resource type="AudioStream" uid="uid://ccie4sn00x1ch" path="res://game_manager/assets/mixkit-clinking-coins-1993.wav" id="6_kkxic"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fjsdi"]
 texture = ExtResource("4_fjsdi")
@@ -56,6 +57,10 @@ metadata/_edit_lock_ = true
 [node name="Camera2D" type="Camera2D" parent="Game"]
 zoom = Vector2(2, 2)
 metadata/_edit_lock_ = true
+
+[node name="MoneySound" type="AudioStreamPlayer" parent="Game"]
+stream = ExtResource("6_kkxic")
+volume_db = 3.474
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 3
