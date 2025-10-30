@@ -32,6 +32,7 @@ metadata/_edit_lock_ = true
 
 [node name="ToolManager" parent="Game" node_paths=PackedStringArray("game_manager") instance=ExtResource("6_2631c")]
 game_manager = NodePath("../..")
+watering_amount = 0.5
 metadata/_edit_lock_ = true
 
 [node name="VisualTiles" type="TileMapLayer" parent="Game"]
@@ -50,7 +51,7 @@ metadata/_edit_lock_ = true
 
 [node name="MoneySound" type="AudioStreamPlayer" parent="Game"]
 stream = ExtResource("6_d3erd")
-volume_db = 3.0
+volume_db = -2.0
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 3
@@ -80,8 +81,9 @@ custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 icon = ExtResource("3_q7vcu")
 
-[node name="PauseMenu" parent="PauseUI" instance=ExtResource("2_mx6ys")]
+[node name="PauseMenu" parent="PauseUI" node_paths=PackedStringArray("tool_manager") instance=ExtResource("2_mx6ys")]
 visible = false
+tool_manager = NodePath("../../Game/ToolManager")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_03pqa")
