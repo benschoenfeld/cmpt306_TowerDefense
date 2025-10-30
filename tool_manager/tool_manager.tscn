@@ -1,12 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmmjsxbvqc2j3"]
+[gd_scene load_steps=7 format=3 uid="uid://dmmjsxbvqc2j3"]
 
 [ext_resource type="Script" uid="uid://cvvvfjm75a7rh" path="res://tool_manager/tool_manager.gd" id="1_b78em"]
 [ext_resource type="Script" uid="uid://cwejy8567ny70" path="res://enums/tools/tool_enums.gd" id="2_m5ycf"]
 [ext_resource type="AudioStream" uid="uid://c4bbxasnc6qbw" path="res://tool_manager/assets/hoe-sound.mp3" id="3_dbhpb"]
+[ext_resource type="AudioStream" uid="uid://cd6oqp8pkru3m" path="res://tool_manager/assets/metal_interaction1.wav" id="3_exrli"]
 [ext_resource type="AudioStream" uid="uid://bem4s4laqagg1" path="res://tool_manager/assets/shovel.ogg" id="3_y7cfh"]
+[ext_resource type="AudioStream" uid="uid://dgtbseqics886" path="res://tool_manager/assets/splash1.wav" id="6_exrli"]
 
-[node name="ToolManager" type="Node2D" node_paths=PackedStringArray("switch_sound_player", "hoe_sound_player", "shovel_sound_player", "watercan_sound_player")]
+[node name="ToolManager" type="Node2D" node_paths=PackedStringArray("tool_enum", "switch_sound_player", "hoe_sound_player", "shovel_sound_player", "watercan_sound_player")]
 script = ExtResource("1_b78em")
+tool_enum = NodePath("ToolEnums")
 switch_sound_player = NodePath("SwitchSound")
 hoe_sound_player = NodePath("HoeSound")
 shovel_sound_player = NodePath("ShovelSound")
@@ -17,6 +20,8 @@ script = ExtResource("2_m5ycf")
 metadata/_custom_type_script = "uid://cwejy8567ny70"
 
 [node name="SwitchSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_exrli")
+volume_db = -3.0
 bus = &"SFX"
 
 [node name="HoeSound" type="AudioStreamPlayer" parent="."]
@@ -28,4 +33,5 @@ stream = ExtResource("3_y7cfh")
 bus = &"SFX"
 
 [node name="WatercanSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_exrli")
 bus = &"SFX"

@@ -132,6 +132,7 @@ func interact(tile: BaseTile) -> void:
 				return
 			# apply saturation
 			if farmTile.has_method("apply_water"):
+				watercan_sound_player.play()
 				farmTile.apply_water(watering_amount)
 			else:
 				# TODO: Set the sound for ground to be wated

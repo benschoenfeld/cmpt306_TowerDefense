@@ -89,6 +89,7 @@ text = "Back"
 [node name="OpenCloseSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_skdlc")
 pitch_scale = 0.3
+bus = &"SFX"
 
 [connection signal="value_changed" from="CenterContainer/Panel/MainContentContainer/VBoxContainer/MusicVolume" to="." method="_on_music_volume_value_changed"]
 [connection signal="value_changed" from="CenterContainer/Panel/MainContentContainer/VBoxContainer2/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
