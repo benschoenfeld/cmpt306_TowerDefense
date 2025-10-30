@@ -1,3 +1,4 @@
+# tutorial link https://www.youtube.com/watch?v=QgBecUl_lFs&list=LL&index=8&t=1304s
 # scans the scene to connect signals from UI to SFX
 extends Node
 @export var root_path: NodePath
