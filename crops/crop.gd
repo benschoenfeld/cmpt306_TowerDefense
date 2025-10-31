@@ -13,7 +13,7 @@ extends Node2D
 @onready var sprite: Sprite2D = $Sprite2D
 
 ## The [AudioStreamPlayer2D] that plays the [param grow_sound].
-@onready var audio: AudioStreamPlayer2D = $GrowSound
+@onready var audio: AudioStreamPlayer = $GrowSound
 
 ## The current stage of growth the crop is in.
 var stage: int = 0
