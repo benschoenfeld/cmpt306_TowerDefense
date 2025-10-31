@@ -13,6 +13,9 @@ extends Control
 ## A reference to the [OptionsMenu].
 @export var _options: OptionsMenu
 
+func _process(delta: float) -> void:
+	Input.set_custom_mouse_cursor(null)
+
 ## Changes the [Tree] to a difference scene once user hits start button.
 func _on_start_button_pressed() -> void:
 	get_tree().change_scene_to_packed(_starting_game_scene)
