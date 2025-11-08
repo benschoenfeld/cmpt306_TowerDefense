@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://fd85jv1hnd2h" path="res://tiles/farming_tile/farming_tile.gd" id="1_sjl78"]
 [ext_resource type="Texture2D" uid="uid://u2fiav4u0aux" path="res://tiles/farming_tile/assets/farming_tileset.png" id="2_36oka"]
-[ext_resource type="PackedScene" uid="uid://jbhh5a4m53e3" path="res://crops/crop.tscn" id="3_dfjqb"]
+[ext_resource type="PackedScene" uid="uid://brx6e1nns3yk2" path="res://crops/crop.tscn" id="3_dfjqb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_36oka"]
 size = Vector2(32, 32)

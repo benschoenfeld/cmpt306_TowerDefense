@@ -44,14 +44,15 @@ func _ready() -> void:
 func get_tile_stats() -> FarmingTileStats:
 	return current_stats
 
-## Returns the [param current_stats] current [param FarmingTileStas.TileType].
+## Precondition: must have [param current_stats] not be null.
+## Returns the [param current_stats] current [enum FarmingTileStas.TileType].
 func get_tile_type() -> FarmingTileStats.TileType:
 	return current_stats.get_tile_type()
 
 ## Sets the tile stats to a new [FarmingTileStats].
 func set_tile_stats(new_stats: FarmingTileStats) -> void:
 	current_stats = new_stats
-	if current_stats:
+	if has_stats():
 		tile_sprite.frame = current_stats.tile_type
 
 ## Returns the current [Crop] scene.
@@ -61,7 +62,7 @@ func get_crop() -> Crop:
 ## Sets the current [Crop] scene to the new [Crop] scene.
 func set_crop(new_crop: CropResource) -> void:
 	# If the current crop is null then we need to add a new crop scene.
-	if current_crop == null:
+	if !has_crop():
 		var crop: Crop = crop_scene.instantiate()
 		crop.set_crop_resource(new_crop)
 		crop.set_parent_tile(self)
@@ -77,7 +78,7 @@ func has_crop() -> bool:
 ## Removes the [Crop] visually and returns the [CropResource].
 ## Either returns a [CropResource] or [null] if there is no crop.
 func harvest_crop() -> CropResource:
-	if current_crop and current_crop.is_grown:
+	if has_crop() and current_crop.is_grown:
 		var current_crop_resource: CropResource = current_crop.get_crop_resource()
 		current_crop = null
 		crop_holder.get_child(0).queue_free()
@@ -91,24 +92,33 @@ func get_saturation() -> float:
 
 ## Sets the [param saturation] amount.
 func set_saturation(new_saturation: float) -> void:
-	saturation = clamp(new_saturation, 0.0, get_tile_stats().get_max_saturation())
+	if has_stats():
+		saturation = clamp(new_saturation, 0.0, get_tile_stats().get_max_saturation())
 
 ## Adds to the [param saturation] amount.
 func add_saturation(saturation_addition: float) -> void:
 	set_saturation(saturation + saturation_addition)
 	
+## Adds satuation based on [enum FarmingTileStats.TileType].
 func apply_water(amount: float) -> void:
 	if get_tile_type() == FarmingTileStats.TileType.GRASS:
 		return
+	
 	if get_tile_type() == FarmingTileStats.TileType.DRY_DIRT:
 		set_tile_stats(wet_dirt_stats)
+	
 	add_saturation(amount)
+	
 	if has_saturation():
 		set_tile_stats(wet_dirt_stats)
 
 ## Returns a [bool] whether saturation is more than zero.
 func has_saturation() -> bool:
 	return 0.0 < saturation
+
+## Checks if the tile has [param current_stats].
+func has_stats() -> bool:
+	return current_stats != null
 
 ## Called every frame.
 func _process(delta: float) -> void:
@@ -117,7 +127,7 @@ func _process(delta: float) -> void:
 ## Lowers the saturation every tick.
 func _lower_saturation(delta: float) -> void:
 	# It can only go down if it is a wet dirt tile.
-	if current_stats.get_tile_type() == FarmingTileStats.TileType.WET_DIRT:
+	if has_stats() and current_stats.get_tile_type() == FarmingTileStats.TileType.WET_DIRT:
 		# Makes sure that it can only go down to zero.
 		if !has_saturation():
 			set_saturation(0.0)
