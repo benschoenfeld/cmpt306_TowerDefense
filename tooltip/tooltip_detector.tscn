@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://oq1gf7jc03c2"]
+
+[ext_resource type="Script" uid="uid://dbmnppxw87otv" path="res://tooltip/tooltip_detector.gd" id="1_ap26y"]
+
+[node name="TooltipDetector" type="Area2D"]
+script = ExtResource("1_ap26y")
