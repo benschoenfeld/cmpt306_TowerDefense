@@ -23,6 +23,8 @@ signal money_changed(new_amount: int)
 ## when the money is changed.
 @export var money_sound_player: AudioStreamPlayer
 
+@export var _start_tower_defense: PackedScene
+
 
 ## The players resource.
 var money_amount: int = 0
@@ -64,3 +66,7 @@ func _load_and_connect_tile():
 ## the [param pause_menu_layer].
 func _on_pause_button_pressed() -> void:
 	pause_menu.set_pause(true)
+
+
+func _on_tower_defense_pressed() -> void:
+	get_tree().change_scene_to_packed(_start_tower_defense) # Replace with function body.

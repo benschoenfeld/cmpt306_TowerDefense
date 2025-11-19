@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=4 uid="uid://0wsbgy801txt"]
+[gd_scene load_steps=14 format=4 uid="uid://0wsbgy801txt"]
 
 [ext_resource type="Script" uid="uid://ddh6nidkpvu7s" path="res://game_manager/game_manager.gd" id="1_ong7i"]
 [ext_resource type="PackedScene" uid="uid://bb0emy17c3vce" path="res://general_ui/pause_menu/pause_menu.tscn" id="2_mx6ys"]
+[ext_resource type="PackedScene" uid="uid://df2fatnsh0g4e" path="res://path/path.tscn" id="3_eesdg"]
 [ext_resource type="PackedScene" uid="uid://b6vs3ylr7i6pe" path="res://general_ui/SFX/ui_sounds.tscn" id="3_kkxic"]
 [ext_resource type="PackedScene" uid="uid://dolipbibi2ypy" path="res://tiles/farming_tile/farming_tile.tscn" id="3_pnley"]
 [ext_resource type="Texture2D" uid="uid://c006q8j3wqfjr" path="res://game_manager/assets/pause_button.png" id="3_q7vcu"]
@@ -26,6 +27,7 @@ pause_menu = NodePath("PauseUI/PauseMenu")
 farming_tile_map = NodePath("Game/CropTiles")
 tool_manager = NodePath("Game/ToolManager")
 money_sound_player = NodePath("MoneySound")
+_start_tower_defense = ExtResource("3_eesdg")
 
 [node name="Game" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -93,10 +95,20 @@ bus = &"Music"
 [node name="MoneySound" type="AudioStreamPlayer" parent="."]
 bus = &"SFX"
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TowerDefense" type="Button" parent="CanvasLayer"]
+offset_left = 34.0
+offset_top = 119.0
+offset_right = 178.0
+offset_bottom = 225.0
+text = "Fight!"
+
 [connection signal="money_changed" from="." to="HUD/hud" method="_on_game_manager_money_changed"]
 [connection signal="request_seed_menu" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_request_seed_menu"]
 [connection signal="tool_changed" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_tool_changed"]
 [connection signal="selected_seed" from="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer/SeedBag" to="Game/ToolManager" method="_on_seed_bag_selected_seed"]
 [connection signal="pressed" from="PauseUI/CenterContainer/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TowerDefense" to="." method="_on_tower_defense_pressed"]
 
 [editable path="HUD/hud"]
