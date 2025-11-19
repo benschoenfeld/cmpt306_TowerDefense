@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="EnemyType" load_steps=8 format=3 uid="uid://dx5yxvorwheb"]
+
+[ext_resource type="Script" uid="uid://corrfnng4rwk2" path="res://enemies/EnemyType.gd" id="1_1qpcp"]
+[ext_resource type="Texture2D" uid="uid://docmp7ewkvigm" path="res://enemies/assets/Ants.png" id="1_kxjwq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxjwq"]
+atlas = ExtResource("1_kxjwq")
+region = Rect2(0, 384, 90, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysrvy"]
+atlas = ExtResource("1_kxjwq")
+region = Rect2(0, 0, 90, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md7c3"]
+atlas = ExtResource("1_kxjwq")
+region = Rect2(90, 0, 90, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqnve"]
+atlas = ExtResource("1_kxjwq")
+region = Rect2(180, 0, 90, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1qpcp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxjwq")
+}],
+"loop": true,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysrvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md7c3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqnve")
+}],
+"loop": false,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_1qpcp")
+name = "Basic"
+speed = 10.0
+frames = SubResource("SpriteFrames_1qpcp")
+metadata/_custom_type_script = "uid://corrfnng4rwk2"

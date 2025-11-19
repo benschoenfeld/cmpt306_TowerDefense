@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://dphi6aiemr4y1"]
+
+[ext_resource type="Texture2D" uid="uid://docmp7ewkvigm" path="res://enemies/assets/Ants.png" id="1_a2ulj"]
+[ext_resource type="Script" uid="uid://5pf38vo4yffj" path="res://enemies/enemy.gd" id="1_v8hav"]
+
+[sub_resource type="Curve2D" id="Curve2D_rcrue"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8hav"]
+atlas = ExtResource("1_a2ulj")
+region = Rect2(0, 0, 90, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dle7p"]
+atlas = ExtResource("1_a2ulj")
+region = Rect2(90, 0, 90, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bb6ow"]
+atlas = ExtResource("1_a2ulj")
+region = Rect2(180, 0, 90, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rcrue"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8hav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dle7p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bb6ow")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="Node2D"]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_rcrue")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+script = ExtResource("1_v8hav")
+
+[node name="Frames" type="AnimatedSprite2D" parent="Path2D/PathFollow2D"]
+sprite_frames = SubResource("SpriteFrames_rcrue")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.011053087
