@@ -16,6 +16,7 @@ const CURSOR_SHAPE = Input.CURSOR_ARROW
 @export var tool_shovel = preload("res://tool_manager/assets/tool_shovel.png")
 @export var tool_waterCan = preload("res://tool_manager/assets/tool_watering_can.png")
 @export var tool_hoe = preload("res://tool_manager/assets/tool_hoe.png")
+@export var tool_target = preload("res://tool_manager/assets/target_round_a.png")
 
 @export_category("ToolManager Nodes")
 @export var switch_sound_player: AudioStreamPlayer
@@ -40,7 +41,7 @@ var toolArray: Array = []
 var selected_seed: CropResource = null
 
 func _ready() -> void:
-	toolArray = [tool_shovel, tool_waterCan, tool_hoe]
+	toolArray = [tool_shovel, tool_waterCan, tool_hoe, tool_target]
 	current_tool_index = clamp(current_tool_index, 0, toolArray.size() - 1)
 	_set_current_tool(current_tool_index)
 	
@@ -94,6 +95,8 @@ func _process(_delta: float) -> void:
 		_set_current_tool(int(tool_enum.Tool.WATERCAN))
 	if Input.is_action_just_pressed("equip_hoe"):
 		set_current_tool((int(tool_enum.Tool.HOE)))
+	if Input.is_action_just_pressed("equip_defenses"):
+		set_current_tool((int(tool_enum.Tool.TARGET)))
 
 # Called by GameManager's connect: tile.connect("send_tile_data", Callable(tool_manager, "interact"))
 # Accepts a BaseTile (or FarmingTile)  and applies the currently selected tool to it
@@ -153,6 +156,9 @@ func interact(tile: BaseTile) -> void:
 					$ShovelSound.play()
 					farmTile.set_crop(selected_seed)
 					return
+		
+		int(tool_enum.Tool.TARGET):
+			pass	#TODO
 
 ## Changes the [param selected_seed] to new CropResource
 func _on_seed_bag_selected_seed(seed_selection: CropResource) -> void:

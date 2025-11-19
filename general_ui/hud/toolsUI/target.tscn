@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cu4ogiekwxhj0"]
+
+[ext_resource type="Texture2D" uid="uid://lvjvxehhfv3g" path="res://tool_manager/assets/target_round_a.png" id="1_rwf43"]
+
+[node name="Target" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="NinePatchRect"]
+layout_mode = 0
+offset_right = 93.0
+offset_bottom = 93.0
+icon = ExtResource("1_rwf43")
