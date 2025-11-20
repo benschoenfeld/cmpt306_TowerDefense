@@ -1,9 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://dphi6aiemr4y1"]
+[gd_scene load_steps=9 format=3 uid="uid://dphi6aiemr4y1"]
 
 [ext_resource type="Texture2D" uid="uid://docmp7ewkvigm" path="res://enemies/assets/Ants.png" id="1_a2ulj"]
 [ext_resource type="Script" uid="uid://5pf38vo4yffj" path="res://enemies/enemy.gd" id="1_v8hav"]
+[ext_resource type="Resource" uid="uid://dx5yxvorwheb" path="res://enemies/resources/Basic.tres" id="2_v8hav"]
 
 [sub_resource type="Curve2D" id="Curve2D_rcrue"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 53, 45, 0, 0, 0, 0, 217, 183, 0, 0, 0, 0, 372, 319, 191.61482, -122.056015, -191.61482, 122.056015, 473, 411, 0, 0, 0, 0, 557, 485, 13.124303, -156.1792, -13.124303, 156.1792, 630, 574, 0, 0, 0, 0, 432, 735)
+}
+point_count = 7
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v8hav"]
 atlas = ExtResource("1_a2ulj")
@@ -40,10 +45,14 @@ animations = [{
 curve = SubResource("Curve2D_rcrue")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(621.44617, 615.9362)
+rotation = 1.8992524
+progress = 1153.534
 script = ExtResource("1_v8hav")
+type = ExtResource("2_v8hav")
 
 [node name="Frames" type="AnimatedSprite2D" parent="Path2D/PathFollow2D"]
+rotation = -1.6078628
 sprite_frames = SubResource("SpriteFrames_rcrue")
 animation = &"walk"
 autoplay = "walk"
-frame_progress = 0.011053087

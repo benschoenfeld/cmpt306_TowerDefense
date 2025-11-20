@@ -47,6 +47,8 @@ animations = [{
 [resource]
 script = ExtResource("1_1qpcp")
 name = "Basic"
-speed = 10.0
+health = 100
+damage = 35
+speed = 100.0
 frames = SubResource("SpriteFrames_1qpcp")
 metadata/_custom_type_script = "uid://corrfnng4rwk2"
