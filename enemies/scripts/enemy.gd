@@ -5,11 +5,12 @@ class_name Enemy
 
 var health: int
 
-@onready var animation: AnimatedSprite2D = $Frames
+@onready var animation: AnimatedSprite2D = $Area2D/AnimatedSprite2D
 
 signal reached_end(damage: int)
 
-func _ready() -> void:
+func setup(enemy_type: EnemyType) -> void:
+	type = enemy_type
 	health = type.health
 	
 	animation.sprite_frames = type.frames
@@ -23,7 +24,7 @@ func _process(delta: float) -> void:
 	progress += type.speed * delta
 	
 	if progress_ratio >= 1.0:
-		emit_signal("reached_goal", type.damage)
+		emit_signal("reached_end", type.damage)
 		queue_free()
 	
 func do_damage(amount: int) -> void:

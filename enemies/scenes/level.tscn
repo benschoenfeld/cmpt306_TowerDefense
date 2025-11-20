@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dphi6aiemr4y1"]
+
+[ext_resource type="Script" uid="uid://ddevai72ilpnu" path="res://enemies/scripts/spawner.gd" id="1_jjwtf"]
+
+[sub_resource type="Curve2D" id="Curve2D_rcrue"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 53, 45, 0, 0, 0, 0, 217, 183, 0, 0, 0, 0, 372, 319, 191.61482, -122.056015, -191.61482, 122.056015, 473, 411, 0, 0, 0, 0, 557, 485, 13.124303, -156.1792, -13.124303, 156.1792, 630, 574, 0, 0, 0, 0, 432, 735)
+}
+point_count = 7
+
+[node name="Level" type="Node2D"]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_rcrue")
+
+[node name="Spawner" type="Node" parent="."]
+script = ExtResource("1_jjwtf")

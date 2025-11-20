@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EnemyType" load_steps=8 format=3 uid="uid://dx5yxvorwheb"]
 
-[ext_resource type="Script" uid="uid://corrfnng4rwk2" path="res://enemies/EnemyType.gd" id="1_1qpcp"]
 [ext_resource type="Texture2D" uid="uid://docmp7ewkvigm" path="res://enemies/assets/Ants.png" id="1_kxjwq"]
+[ext_resource type="Script" uid="uid://corrfnng4rwk2" path="res://enemies/scripts/EnemyType.gd" id="2_kxjwq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kxjwq"]
 atlas = ExtResource("1_kxjwq")
@@ -45,10 +45,9 @@ animations = [{
 }]
 
 [resource]
-script = ExtResource("1_1qpcp")
+script = ExtResource("2_kxjwq")
 name = "Basic"
 health = 100
-damage = 35
 speed = 100.0
 frames = SubResource("SpriteFrames_1qpcp")
 metadata/_custom_type_script = "uid://corrfnng4rwk2"
