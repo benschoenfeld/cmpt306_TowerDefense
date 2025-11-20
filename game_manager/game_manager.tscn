@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://0wsbgy801txt"]
+[gd_scene load_steps=15 format=4 uid="uid://0wsbgy801txt"]
 
 [ext_resource type="Script" uid="uid://ddh6nidkpvu7s" path="res://game_manager/game_manager.gd" id="1_ong7i"]
 [ext_resource type="PackedScene" uid="uid://bb0emy17c3vce" path="res://general_ui/pause_menu/pause_menu.tscn" id="2_mx6ys"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dmmjsxbvqc2j3" path="res://tool_manager/tool_manager.tscn" id="6_2631c"]
 [ext_resource type="AudioStream" uid="uid://ccie4sn00x1ch" path="res://game_manager/assets/mixkit-clinking-coins-1993.wav" id="6_d3erd"]
 [ext_resource type="PackedScene" uid="uid://b16gnay4klirc" path="res://defenses/highlightTile/highlight_tile.tscn" id="11_eesdg"]
+[ext_resource type="PackedScene" uid="uid://bi0fyjs74gjff" path="res://defenses/tower.tscn" id="12_qs53i"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_03pqa"]
 resource_name = "FarmingTile"
@@ -95,6 +96,8 @@ bus = &"Music"
 bus = &"SFX"
 
 [node name="HighlightTile" parent="." instance=ExtResource("11_eesdg")]
+
+[node name="Tower" parent="." instance=ExtResource("12_qs53i")]
 
 [connection signal="money_changed" from="." to="HUD/hud" method="_on_game_manager_money_changed"]
 [connection signal="request_seed_menu" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_request_seed_menu"]

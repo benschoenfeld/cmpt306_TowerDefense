@@ -12,6 +12,5 @@ func _process(delta: float) -> void:
 	
 func follow_mouse_position() -> void:
 	var mouse_pos: Vector2i = get_global_mouse_position() 
-	
 	position = mouse_pos 
 	
