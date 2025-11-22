@@ -3,6 +3,7 @@ extends Node2D
 
 signal tool_changed(tool_index: int)
 signal request_seed_menu(show_item: bool)
+signal selected_tower_changed(towerResorce: TowerResource)
 
 # Cursor constants
 const CURSOR_HOTSPOT = Vector2(16, 16)
@@ -39,6 +40,8 @@ var toolArray: Array = []
 
 # Currently seletec seed resource (set by seed menu; CropResource or null)
 var selected_seed: CropResource = null
+
+var selected_tower: TowerResource = null
 
 func _ready() -> void:
 	toolArray = [tool_shovel, tool_waterCan, tool_hoe, tool_target]
@@ -163,3 +166,11 @@ func interact(tile: BaseTile) -> void:
 ## Changes the [param selected_seed] to new CropResource
 func _on_seed_bag_selected_seed(seed_selection: CropResource) -> void:
 	selected_seed = seed_selection
+	
+func _on_tower_bag_selected_tower(towerResorce: TowerResource) -> void:
+	selected_tower = towerResorce
+	emit_signal("selected_tower_changed", selected_tower)
+
+
+func get_selected_tower() -> TowerResource:
+	return selected_tower
