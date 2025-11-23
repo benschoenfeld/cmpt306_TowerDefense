@@ -13,7 +13,8 @@ extends Control
 ## A reference to the [OptionsMenu].
 @export var _options: OptionsMenu
 
-func _process(delta: float) -> void:
+## Sets the cursor to the OS default.
+func _ready() -> void:
 	Input.set_custom_mouse_cursor(null)
 
 ## Changes the [Tree] to a difference scene once user hits start button.
