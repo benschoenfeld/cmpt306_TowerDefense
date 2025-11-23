@@ -1,10 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bi0fyjs74gjff"]
+[gd_scene load_steps=2 format=3 uid="uid://bi0fyjs74gjff"]
 
 [ext_resource type="Script" uid="uid://b7jfbrnk2byn1" path="res://defenses/tower.gd" id="1_lbtpy"]
-[ext_resource type="PackedScene" uid="uid://dmmjsxbvqc2j3" path="res://tool_manager/tool_manager.tscn" id="3_0ce1p"]
 
 [node name="Tower" type="Node2D" node_paths=PackedStringArray("tool_manager")]
 script = ExtResource("1_lbtpy")
-tool_manager = NodePath("ToolManager")
-
-[node name="ToolManager" parent="." instance=ExtResource("3_0ce1p")]
+tool_manager = NodePath("")

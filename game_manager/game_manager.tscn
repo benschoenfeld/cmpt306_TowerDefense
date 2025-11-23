@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://0wsbgy801txt"]
+[gd_scene load_steps=15 format=4 uid="uid://0wsbgy801txt"]
 
 [ext_resource type="Script" uid="uid://ddh6nidkpvu7s" path="res://game_manager/game_manager.gd" id="1_ong7i"]
 [ext_resource type="PackedScene" uid="uid://bb0emy17c3vce" path="res://general_ui/pause_menu/pause_menu.tscn" id="2_mx6ys"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://dmmjsxbvqc2j3" path="res://tool_manager/tool_manager.tscn" id="6_2631c"]
 [ext_resource type="AudioStream" uid="uid://ccie4sn00x1ch" path="res://game_manager/assets/mixkit-clinking-coins-1993.wav" id="6_d3erd"]
 [ext_resource type="PackedScene" uid="uid://blcm64pbdyg22" path="res://defenses/tower_bag/tower_bag.tscn" id="8_oxvrm"]
-[ext_resource type="PackedScene" uid="uid://b16gnay4klirc" path="res://defenses/highlightTile/highlight_tile.tscn" id="11_eesdg"]
 [ext_resource type="PackedScene" uid="uid://bi0fyjs74gjff" path="res://defenses/tower.tscn" id="12_qs53i"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_03pqa"]
@@ -22,20 +21,14 @@ scenes/1/scene = ExtResource("3_pnley")
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetScenesCollectionSource_03pqa")
 
-[node name="GameManager" type="Node" node_paths=PackedStringArray("pause_menu", "farming_tile_map", "tool_manager", "money_sound_player")]
+[node name="GameManager" type="Node" node_paths=PackedStringArray("pause_menu", "farming_tile_map", "money_sound_player")]
 script = ExtResource("1_ong7i")
 pause_menu_scene = ExtResource("2_mx6ys")
 pause_menu = NodePath("PauseUI/PauseMenu")
 farming_tile_map = NodePath("Game/CropTiles")
-tool_manager = NodePath("Game/ToolManager")
 money_sound_player = NodePath("MoneySound")
 
 [node name="Game" type="Node2D" parent="."]
-metadata/_edit_lock_ = true
-
-[node name="ToolManager" parent="Game" node_paths=PackedStringArray("game_manager") instance=ExtResource("6_2631c")]
-game_manager = NodePath("../..")
-watering_amount = 0.5
 metadata/_edit_lock_ = true
 
 [node name="VisualTiles" type="TileMapLayer" parent="Game"]
@@ -56,6 +49,11 @@ metadata/_edit_lock_ = true
 stream = ExtResource("6_d3erd")
 volume_db = -2.0
 
+[node name="ToolManager" parent="Game" instance=ExtResource("6_2631c")]
+
+[node name="Tower" parent="Game" node_paths=PackedStringArray("tool_manager") instance=ExtResource("12_qs53i")]
+tool_manager = NodePath("../ToolManager")
+
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 3
 
@@ -63,8 +61,9 @@ layer = 3
 manager = NodePath("../..")
 metadata/_edit_lock_ = true
 
-[node name="TowerBag" parent="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer" index="1" instance=ExtResource("8_oxvrm")]
+[node name="TowerBag" parent="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer" index="1" node_paths=PackedStringArray("tool_manager") instance=ExtResource("8_oxvrm")]
 layout_mode = 2
+tool_manager = NodePath("../../../../../../Game/ToolManager")
 
 [node name="UISounds" parent="." instance=ExtResource("3_kkxic")]
 root_path = NodePath("..")
@@ -87,9 +86,8 @@ custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 icon = ExtResource("3_q7vcu")
 
-[node name="PauseMenu" parent="PauseUI" node_paths=PackedStringArray("tool_manager") instance=ExtResource("2_mx6ys")]
+[node name="PauseMenu" parent="PauseUI" instance=ExtResource("2_mx6ys")]
 visible = false
-tool_manager = NodePath("../../Game/ToolManager")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_03pqa")
@@ -99,14 +97,10 @@ bus = &"Music"
 [node name="MoneySound" type="AudioStreamPlayer" parent="."]
 bus = &"SFX"
 
-[node name="HighlightTile" parent="." instance=ExtResource("11_eesdg")]
-
-[node name="Tower" parent="." instance=ExtResource("12_qs53i")]
-
 [connection signal="money_changed" from="." to="HUD/hud" method="_on_game_manager_money_changed"]
 [connection signal="request_seed_menu" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_request_seed_menu"]
+[connection signal="selected_tower_changed" from="Game/ToolManager" to="Game/Tower" method="_on_tool_manager_selected_tower_changed"]
 [connection signal="tool_changed" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_tool_changed"]
-[connection signal="selected_seed" from="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer/SeedBag" to="Game/ToolManager" method="_on_seed_bag_selected_seed"]
 [connection signal="pressed" from="PauseUI/CenterContainer/PauseButton" to="." method="_on_pause_button_pressed"]
 
 [editable path="HUD/hud"]

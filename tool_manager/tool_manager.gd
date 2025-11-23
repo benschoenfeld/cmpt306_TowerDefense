@@ -160,8 +160,7 @@ func interact(tile: BaseTile) -> void:
 					farmTile.set_crop(selected_seed)
 					return
 		
-		int(tool_enum.Tool.TARGET):
-			pass	#TODO
+
 
 ## Changes the [param selected_seed] to new CropResource
 func _on_seed_bag_selected_seed(seed_selection: CropResource) -> void:

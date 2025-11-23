@@ -11,7 +11,7 @@ class_name Tower
 
 
 func _ready() -> void:
-	if required_tool_index == 3 and tool_manager and tool_manager.has_variable("tool_enum"):
+	if (required_tool_index == 0 or required_tool_index == -1) and tool_manager:
 		required_tool_index = int(tool_manager.tool_enum.Tool.TARGET)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -20,7 +20,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 		if tool_manager == null:
-			return
+			print("DEBUGG Tower: current_tool = ", tool_manager.get_current_tool(), "required = ", required_tool_index, "selected_tower = ", tool_manager.get_selected_tower() if tool_manager.has_method("get_selected_tower") else tool_manager.selected_tower)
 
 		
 		if not tool_manager.has_method("get_current_tool"):
@@ -71,3 +71,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _snap_position(pos: Vector2) -> Vector2:
 	return Vector2(round(pos.x / grid_size.x) * grid_size.x,
 					round(pos.y / grid_size.y) * grid_size.y)
+
+
+func _on_tool_manager_selected_tower_changed(towerResorce: TowerResource) -> void:
+	pass # Replace with function body.

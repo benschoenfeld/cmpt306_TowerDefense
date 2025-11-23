@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://26g0tisiojj8"]
+[gd_scene load_steps=6 format=3 uid="uid://26g0tisiojj8"]
 
 [ext_resource type="Script" path="res://general_ui/hud/tool_ui.gd" id="1_w2n8l"]
 [ext_resource type="Texture2D" uid="uid://djv06t00ny3io" path="res://general_ui/hud/assets/tool_shovel.png" id="1_xd44k"]
 [ext_resource type="Texture2D" uid="uid://iovalu0ee0fe" path="res://general_ui/hud/assets/tool_watering_can.png" id="2_w2n8l"]
 [ext_resource type="Texture2D" uid="uid://dvaja0q4arrku" path="res://general_ui/hud/assets/tool_hoe.png" id="3_va21l"]
-[ext_resource type="Script" uid="uid://cwejy8567ny70" path="res://enums/tools/tool_enums.gd" id="5_va21l"]
 [ext_resource type="Texture2D" uid="uid://b72diyy4uorjt" path="res://tool_manager/assets/target_round_a.png" id="5_y1765"]
 
 [node name="ToolUI" type="Control" node_paths=PackedStringArray("tool_enum", "shovel_image", "watercan_image", "hoe_image", "target_image", "tool_bar")]
@@ -12,7 +11,7 @@ layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
 script = ExtResource("1_w2n8l")
-tool_enum = NodePath("ToolEnums")
+tool_enum = NodePath("")
 shovel_image = NodePath("ToolBar/Shovel")
 watercan_image = NodePath("ToolBar/Watercan")
 hoe_image = NodePath("ToolBar/Hoe")
@@ -51,7 +50,3 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("5_y1765")
 expand_mode = 2
-
-[node name="ToolEnums" type="Node" parent="."]
-script = ExtResource("5_va21l")
-metadata/_custom_type_script = "uid://cwejy8567ny70"

@@ -19,8 +19,20 @@ var current_tower_selected: TowerResource = null
 var last_button_selected: Button = null
 
 func _ready() -> void:
+	if tool_manager == null:
+		tool_manager = get_tree().get_root().find_node("ToolManager", true, false)
+		if tool_manager == null:
+			push_warning("TowerBag: tool_manager not set")
+			
+	if tool_manager:
+		required_tool_index = int(tool_manager.tool_enum.Tool.TARGET)
+	else:
+		if required_tool_index == 0:
+			required_tool_index = -1
+	
+	if tool_manager and not is_connected("selected_tower", Callable(tool_manager, "_on_tower_bag_selected_tower")):
+		connect("selected_tower", Callable(tool_manager, "_on_tower_bag_selected_tower"))
 	var idx := 0
-	required_tool_index = int(tool_manager.tool_enum.Tool.TARGET)
 	_update_visibility()
 	
 	if tool_manager.has_signal("tool_changed"):
