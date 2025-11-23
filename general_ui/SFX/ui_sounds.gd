@@ -1,9 +1,11 @@
-# tutorial link https://www.youtube.com/watch?v=QgBecUl_lFs&list=LL&index=8&t=1304s
-# scans the scene to connect signals from UI to SFX
+## @tutorial link https://www.youtube.com/watch?v=QgBecUl_lFs&list=LL&index=8&t=1304s
+## scans the scene to connect signals from UI to SFX
 extends Node
+
+## The root node where the script will search for UI nodes.
 @export var root_path: NodePath
 
-# audio players
+## Audio players
 @onready var sounds = {
 	&"UI_Click" : AudioStreamPlayer.new(),
 	&"UI_Hover" : AudioStreamPlayer.new(),
@@ -21,7 +23,8 @@ func _ready() -> void:
 	# connect signal to method that plays sounds
 	install_sounds(get_node(root_path))
 
-
+## Looks through the tree and finds [Button] nodes. Then connects functions
+## of the buttons to play sounds.
 func install_sounds(node: Node) -> void:
 	for i in node.get_children():
 		if i is Button:
@@ -30,5 +33,6 @@ func install_sounds(node: Node) -> void:
 			i.pressed.connect( func(): ui_sfx_play(&"UI_Click") )
 		install_sounds(i)
 
+## Play sounds when a [Button] is hit.
 func ui_sfx_play(sound: StringName) -> void:
 	sounds[sound].play()
