@@ -2,6 +2,10 @@ class_name GameManager
 
 extends Node
 ## This is the scene that puts together game machanics.
+##
+## Connects the [FarmingTiles] with the [ToolManager]
+## and holds the [param money_amount] for other parts of the game
+## to use. Pseudo global node.
 
 ## Emits the new amount of money.
 signal money_changed(new_amount: int)
@@ -23,17 +27,15 @@ signal money_changed(new_amount: int)
 ## when the money is changed.
 @export var money_sound_player: AudioStreamPlayer
 
-
 ## The players resource.
 var money_amount: int = 0
 
-
+## Sets up the all the interactable game tiles
 func _ready() -> void:
 	_load_and_connect_tile()
 
 ## Sets the [param money_amount] and emits a signal.
 func set_money(new_amount: int) -> void:
-	# TODO: find money sound effect.
 	money_sound_player.play()
 	money_amount = new_amount
 	money_changed.emit(money_amount)
@@ -43,9 +45,6 @@ func set_money(new_amount: int) -> void:
 ## Adds to the [param money_amount].
 func add_money(new_amount: int) -> void:
 	set_money(get_money() + new_amount)
-	
-	
-	
 
 ## Returns the [param money_amount]
 func get_money() -> int:
