@@ -5,6 +5,8 @@ extends Resource
 
 ## Shows what type of tile will be visually shown.
 enum TileType {GRASS, DRY_DIRT, WET_DIRT}
+
+## The current [enum TileType] that this [FarmingTile] holds.
 @export var tile_type: TileType
 
 ## The max level of saturation of a given tile.
@@ -13,7 +15,7 @@ enum TileType {GRASS, DRY_DIRT, WET_DIRT}
 ## Returns the [param tile_type] of this tile.
 func get_tile_type():
 	return tile_type
-	
+
 ## Returns the [param max_saturation] of this tile.
 func get_max_saturation() -> float:
 	return max_saturation
