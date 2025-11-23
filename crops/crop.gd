@@ -2,6 +2,9 @@ class_name Crop
 
 extends Node2D
 ## Displays the [CropResource] both visually in growth and with audio.
+##
+## Crops will grow in each frame passed with delta time. When it has 
+## satuation it will grow a stage and update visually.
 
 ## Holds all the infomation for a crop such as sprite, value, etc.
 @export var crop_data: CropResource
@@ -27,6 +30,7 @@ var parent_tile: FarmingTile
 ## A [bool] to tell if the crop can be harvested or not.
 var is_grown: bool = false
 
+## Sets up the visuals and plays audio when spawned in.
 func _ready() -> void:
 	# Ensure a crop exists
 	if crop_data == null:
@@ -40,6 +44,7 @@ func _ready() -> void:
 		audio.stream = grow_sound
 	audio.play()
 	
+## The main logic loop of the [Crop]. Updates the growth and visuals.
 func _process(delta: float):
 	# Ensure a crop exists
 	if crop_data == null:
