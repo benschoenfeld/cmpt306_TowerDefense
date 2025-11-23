@@ -1,0 +1,118 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsdanqheuq5nn"]
+
+[ext_resource type="Texture2D" uid="uid://8u38qoayulk6" path="res://general_ui/hud/assets/spritesheet-double.png" id="1_bil8b"]
+[ext_resource type="Texture2D" uid="uid://nigqyf4q4q1t" path="res://general_ui/hud/assets/Crop_Spritesheet.png" id="2_krt5c"]
+
+[node name="TowerbagUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 1648.0
+offset_top = 377.0
+offset_right = 1864.0
+offset_bottom = 641.0
+texture = ExtResource("1_bil8b")
+region_rect = Rect2(640.906, 771.118, 126.5, 124)
+
+[node name="Label" type="Label" parent="Container"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 72.0
+offset_top = 48.0
+offset_right = 144.0
+offset_bottom = 72.0
+text = "Defense Bag"
+
+[node name="Button" type="Button" parent="Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.017
+offset_left = 40.0
+offset_top = 80.0
+offset_right = 80.0
+offset_bottom = 115.512
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Container/Button"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_krt5c")
+region_rect = Rect2(-0.050130844, 47.564648, 16.15518, 16.142845)
+
+[node name="Button2" type="Button" parent="Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.017
+offset_left = 88.0
+offset_top = 80.0
+offset_right = 128.0
+offset_bottom = 116.056
+
+[node name="Button3" type="Button" parent="Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.017
+offset_left = 136.0
+offset_top = 80.0
+offset_right = 176.0
+offset_bottom = 116.056
+
+[node name="Button4" type="Button" parent="Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.017
+offset_left = 40.0
+offset_top = 128.0
+offset_right = 80.0
+offset_bottom = 164.056
+
+[node name="Button5" type="Button" parent="Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.017
+offset_left = 88.0
+offset_top = 128.0
+offset_right = 128.0
+offset_bottom = 164.056
+
+[node name="Button6" type="Button" parent="Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.017
+offset_left = 136.0
+offset_top = 128.0
+offset_right = 176.0
+offset_bottom = 164.056
+
+[node name="Button7" type="Button" parent="Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.017
+offset_left = 40.0
+offset_top = 176.0
+offset_right = 80.0
+offset_bottom = 212.056
+
+[node name="Button8" type="Button" parent="Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.017
+offset_left = 88.0
+offset_top = 176.0
+offset_right = 128.0
+offset_bottom = 212.056
+
+[node name="Button9" type="Button" parent="Container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.017
+offset_left = 136.0
+offset_top = 176.0
+offset_right = 176.0
+offset_bottom = 212.056

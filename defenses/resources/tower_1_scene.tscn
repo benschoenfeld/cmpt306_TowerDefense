@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2qdossk0h6g2"]
+
+[ext_resource type="Texture2D" uid="uid://d8vx7u471nvt" path="res://defenses/assets/tower_1.png" id="1_s50k5"]
+
+[node name="TowerScene" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_s50k5")

@@ -3,14 +3,16 @@ class_name Tower
 
 @export var tool_manager: ToolManager
 
-
 @export var required_tool_index: int
 
 @export var grid_size: Vector2 = Vector2(32, 32)
 
 #@export var tower_sound: AudioStreamPlayer2D  #TODO
 
-@export var min_place_distance: float = 16.0
+
+func _ready() -> void:
+	if required_tool_index == 3 and tool_manager and tool_manager.has_variable("tool_enum"):
+		required_tool_index = int(tool_manager.tool_enum.Tool.TARGET)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if get_tree().paused:
@@ -19,14 +21,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 		if tool_manager == null:
 			return
-		var current_tool := 3
+
 		
 		if not tool_manager.has_method("get_current_tool"):
 			return
 		if tool_manager.get_current_tool() != required_tool_index:
-			current_tool = tool_manager.get_current_tool()
-		else:
 			return
+		
 		
 		var towerRes: TowerResource = null
 		if tool_manager.has_method("get_selected_tower"):
@@ -46,9 +47,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		if grid_size.x > 0 and grid_size.y > 0:
 			pos = _snap_position(pos)
 			
-		if _is_too_close(pos):
-			print("Cannot place too close to existing tower")
-			return
 		
 		if towerRes.tower_scene == null:
 			push_error("TowerResource has no individual scene assigned")
@@ -57,21 +55,17 @@ func _unhandled_input(event: InputEvent) -> void:
 		var tower_instance = towerRes.tower_scene.instantiate()
 		if tower_instance == null:
 			push_error("Failed to instantiated tower scene")
+			return
 		
 		tower_instance.position = pos
-		add_child(pos)
-		print("Tower placed!")
+		add_child(tower_instance)
+		print("Tower placed at ", pos)
 		
 		# deduct money for the cost of building tower
 		#_spend_money(towerRes.cost)
 		
 		
-func _is_too_close(pos: Vector2) -> bool:
-	for child in get_children():
-		if child is Node2D:
-			if child.position.distance_to(pos) < min_place_distance:
-				return true
-	return false
+
 	
 
 func _snap_position(pos: Vector2) -> Vector2:

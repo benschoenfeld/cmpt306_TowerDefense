@@ -63,7 +63,7 @@ layer = 3
 manager = NodePath("../..")
 metadata/_edit_lock_ = true
 
-[node name="TowerBag" parent="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer" index="0" instance=ExtResource("8_oxvrm")]
+[node name="TowerBag" parent="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer" index="1" instance=ExtResource("8_oxvrm")]
 layout_mode = 2
 
 [node name="UISounds" parent="." instance=ExtResource("3_kkxic")]
