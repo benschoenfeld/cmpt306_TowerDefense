@@ -1,7 +1,16 @@
 class_name ToolManager
-extends Node2D
 
+extends Node2D
+## Allows the player to switch tools and interact with tiles.
+##
+## Updates visuals of [ToolUI], [SeedBag], and mouse.
+## Also allows interaction with [FarmingTiles] based upon what tool
+## is currently being used.
+
+## Sends out what tool is being selected.
 signal tool_changed(tool_index: int)
+
+## Communicates with the [SeedBag] to visually show it or not.
 signal request_seed_menu(show_item: bool)
 
 # Cursor constants
@@ -13,38 +22,50 @@ const CURSOR_SHAPE = Input.CURSOR_ARROW
 @export var tool_enum: ToolEnums
 
 @export_category("Mouse Icon Textures")
-@export var tool_shovel = preload("res://tool_manager/assets/tool_shovel.png")
-@export var tool_waterCan = preload("res://tool_manager/assets/tool_watering_can.png")
-@export var tool_hoe = preload("res://tool_manager/assets/tool_hoe.png")
+## The asset of the shovel icon for the mouse.
+@export var tool_shovel: Texture = preload("res://tool_manager/assets/tool_shovel.png")
+
+## The asset of the watercan icon for the mouse.
+@export var tool_waterCan: Texture = preload("res://tool_manager/assets/tool_watering_can.png")
+
+## The asset of the hoe icon for the mouse.
+@export var tool_hoe: Texture = preload("res://tool_manager/assets/tool_hoe.png")
 
 @export_category("ToolManager Nodes")
+## A reference to an [AudioStreamPlayer] for switching tools action.
 @export var switch_sound_player: AudioStreamPlayer
+
+## A reference to an [AudioStreamPlayer] for using the hoe tool.
 @export var hoe_sound_player: AudioStreamPlayer
+
+## A reference to an [AudioStreamPlayer] for using the shovel tool.
 @export var shovel_sound_player: AudioStreamPlayer
+
+## A reference to an [AudioStreamPlayer] for using the watercan tool.
 @export var watercan_sound_player: AudioStreamPlayer
 
 @export_category("Game Settings")
-# Index of the currrent tools selected
+## Index of the currrent tools selected
 @export var current_tool_index: int = int(tool_enum.Tool.SHOVEL)
 
-# Reference to GameManager
-@export var game_manager: Node = null
+## Reference to the [GameManager]
+@export var game_manager: GameManager = null
 
-# Amount of saturation aplied by the tool 'WaterCan'
+## Amount of saturation aplied by the tool 'WaterCan'
 @export var watering_amount: float = 100.0
 
-# Tools array
-var toolArray: Array = []
+## Tools array that holds all of the tool [Texture]
+var toolArray: Array[Texture] = []
 
-# Currently seletec seed resource (set by seed menu; CropResource or null)
+## Currently selected seed resource (set by seed menu; CropResource or null)
 var selected_seed: CropResource = null
 
 func _ready() -> void:
 	toolArray = [tool_shovel, tool_waterCan, tool_hoe]
 	current_tool_index = clamp(current_tool_index, 0, toolArray.size() - 1)
 	_set_current_tool(current_tool_index)
-	
 
+## A private function that helps [method set_current_tool].
 func _set_current_tool(index: int) -> void:
 	if toolArray.size() == 0:
 		push_error("ToolManager: toolArray empty")
@@ -63,14 +84,15 @@ func _set_current_tool(index: int) -> void:
 	tool_changed.emit(current_tool_index)
 	request_seed_menu.emit(current_tool_index == tool_enum.Tool.SHOVEL)
 
+## Switches the [param current_tool_index] and switches the mouse icon texture.
 func set_current_tool(index: int) -> void:
 	_set_current_tool(index)
 
+## Returns the [param current_tool_index].
 func get_current_tool() -> int:
 	return current_tool_index
 
-
-# Input handling for scrolling
+## Input handling for scrolling
 func _unhandled_input(event: InputEvent) -> void:
 	if  get_tree().paused:
 		return
@@ -82,7 +104,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			_set_current_tool(( current_tool_index + 1) % toolArray.size())
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
 			_set_current_tool(( current_tool_index - 1 + toolArray.size()) % toolArray.size())
-			
+
+## Handles input of changing the tools.
 func _process(_delta: float) -> void:
 	
 	if get_tree().paused:
@@ -95,8 +118,8 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("equip_hoe"):
 		set_current_tool((int(tool_enum.Tool.HOE)))
 
-# Called by GameManager's connect: tile.connect("send_tile_data", Callable(tool_manager, "interact"))
-# Accepts a BaseTile (or FarmingTile)  and applies the currently selected tool to it
+## Called by [GameManager]'s connect: tile.connect("send_tile_data", Callable(tool_manager, "interact"))
+## Accepts a [BaseTile] (or [FarmingTile])  and applies the currently selected tool to it
 func interact(tile: BaseTile) -> void:
 	if tile == null:
 		return
@@ -109,8 +132,6 @@ func interact(tile: BaseTile) -> void:
 		int(tool_enum.Tool.HOE):
 			# Use 'Hoe': till grass -> dry dirt; harvest if ripe
 			if farmTile.get_tile_type() == FarmingTileStats.TileType.GRASS:
-				# TODO: Set the sound for grass to be removed
-				# hoe_sound_player.stream = grass sound
 				hoe_sound_player.play()
 				farmTile.set_tile_stats(farmTile.dry_dirt_stats)
 				farmTile.set_saturation(0.0)
@@ -119,8 +140,6 @@ func interact(tile: BaseTile) -> void:
 			if farmTile.has_crop():
 				var harvested: CropResource = farmTile.harvest_crop()
 				if harvested != null and game_manager != null:
-					# TODO: Set the sound for crop to be removed
-					# hoe_sound_player.stream = crop havest sound
 					$HoeSound.play()
 					# award money
 					game_manager.add_money(harvested.get_value())
@@ -135,8 +154,6 @@ func interact(tile: BaseTile) -> void:
 				watercan_sound_player.play()
 				farmTile.apply_water(watering_amount)
 			else:
-				# TODO: Set the sound for ground to be wated
-				# watercan_sound_player.stream = water sound
 				watercan_sound_player.play()
 				farmTile.add_saturation(watering_amount)
 				if farmTile.has_saturation() and farmTile.get_tile_type() == FarmingTileStats.TileType.DRY_DIRT:
@@ -148,8 +165,6 @@ func interact(tile: BaseTile) -> void:
 			
 			if selected_seed != null:
 				if farmTile.get_tile_type() == FarmingTileStats.TileType.DRY_DIRT or farmTile.get_tile_type() == FarmingTileStats.TileType.WET_DIRT:
-					# TODO: Set the sound for crop to be planted
-					# shovel_sound_player.stream = crop planted sound
 					$ShovelSound.play()
 					farmTile.set_crop(selected_seed)
 					return
