@@ -1,5 +1,7 @@
 class_name HUD
+
 extends Control
+## Displays the [ToolUI], [SeedBag], and [MoneyCounter] for the player.
 
 @export_category("Enums")
 ## Give the enum for tools that can be shared between scenes.
@@ -16,10 +18,10 @@ extends Control
 @export var seed_bag: SeedBag
 
 @export_category("Outside Nodes")
-# fetch game manager class
+## A reference to the [GameManager].
 @export var manager: GameManager
 
-## Highlights the currently selected tool and shows seed bag if needed.
+## Highlights the currently selected tool and shows [SeedBad] if needed.
 func _on_tool_manager_tool_changed(tool_index: int) -> void:
 	tool_ui.highlight_tool(tool_index)
 
@@ -27,6 +29,6 @@ func _on_tool_manager_tool_changed(tool_index: int) -> void:
 func _on_tool_manager_request_seed_menu(show_item: bool) -> void:
 	seed_bag.visible = show_item
 
-## Updates the money display
+## Updates the [MoneyCounter].
 func _on_game_manager_money_changed(new_amount: int) -> void:
 	money_display.display_amount(new_amount)
