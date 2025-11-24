@@ -3,6 +3,7 @@ extends Node2D
 
 signal tool_changed(tool_index: int)
 signal request_seed_menu(show_item: bool)
+signal selected_defense_changed(defenseRes: DefenseResource)
 
 # Cursor constants
 const CURSOR_HOTSPOT = Vector2(16, 16)
@@ -37,8 +38,10 @@ const CURSOR_SHAPE = Input.CURSOR_ARROW
 # Tools array
 var toolArray: Array = []
 
-# Currently seletec seed resource (set by seed menu; CropResource or null)
+# Currently selects seed resource (set by seed menu; CropResource or null)
 var selected_seed: CropResource = null
+
+var selected_defense: DefenseResource = null
 
 func _ready() -> void:
 	toolArray = [tool_shovel, tool_waterCan, tool_hoe, tool_target]
@@ -163,3 +166,10 @@ func interact(tile: BaseTile) -> void:
 ## Changes the [param selected_seed] to new CropResource
 func _on_seed_bag_selected_seed(seed_selection: CropResource) -> void:
 	selected_seed = seed_selection
+	
+func _on_defense_bag_selected_defense(defenseRes: DefenseResource) -> void:
+	selected_defense = defenseRes
+	emit_signal("selected_defense_changed", selected_defense)
+	
+func get_selected_defense() -> DefenseResource:
+	return selected_defense
