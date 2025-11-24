@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DefenseResource" load_steps=4 format=3 uid="uid://bu11vjx6pxm2c"]
+
+[ext_resource type="Texture2D" uid="uid://dcm0g44wpcpgo" path="res://defenses/assets/defense_double.png" id="1_tdkk8"]
+[ext_resource type="Script" uid="uid://bhr5wpylv6tu0" path="res://defenses/resources/defense_resource.gd" id="1_wsjyy"]
+[ext_resource type="PackedScene" uid="uid://bcna3k67vryog" path="res://defenses/resources/defense_double.tscn" id="3_typ81"]
+
+[resource]
+script = ExtResource("1_wsjyy")
+defense_scene = ExtResource("3_typ81")
+icon = ExtResource("1_tdkk8")
+metadata/_custom_type_script = "uid://bhr5wpylv6tu0"

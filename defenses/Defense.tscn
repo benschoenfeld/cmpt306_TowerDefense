@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bypnf1x44cjaa"]
+
+[ext_resource type="Script" uid="uid://dm4g1fm4up0pd" path="res://defenses/defense.gd" id="1_pyo7r"]
+
+[node name="Defense" type="Node2D"]
+script = ExtResource("1_pyo7r")
