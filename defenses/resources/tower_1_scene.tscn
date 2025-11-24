@@ -1,9 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2qdossk0h6g2"]
+[gd_scene load_steps=3 format=3 uid="uid://d2qdossk0h6g2"]
 
 [ext_resource type="Texture2D" uid="uid://fwdl7xwqn8c5" path="res://defenses/assets/tower_1.png" id="1_s50k5"]
+[ext_resource type="Texture2D" uid="uid://cju0q16umhrb1" path="res://defenses/assets/towerDefense_tile180.png" id="1_ux1ly"]
 
 [node name="TowerScene" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Base" type="Sprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_ux1ly")
+
+[node name="Tower" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_s50k5")
