@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://0wsbgy801txt"]
+[gd_scene load_steps=14 format=4 uid="uid://0wsbgy801txt"]
 
 [ext_resource type="Script" uid="uid://ddh6nidkpvu7s" path="res://game_manager/game_manager.gd" id="1_ong7i"]
 [ext_resource type="PackedScene" uid="uid://bb0emy17c3vce" path="res://general_ui/pause_menu/pause_menu.tscn" id="2_mx6ys"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://buppeg7wx1bn6" path="res://game_manager/assets/apple_cider.wav" id="5_03pqa"]
 [ext_resource type="PackedScene" uid="uid://dmmjsxbvqc2j3" path="res://tool_manager/tool_manager.tscn" id="6_2631c"]
 [ext_resource type="AudioStream" uid="uid://ccie4sn00x1ch" path="res://game_manager/assets/mixkit-clinking-coins-1993.wav" id="6_d3erd"]
+[ext_resource type="PackedScene" uid="uid://dq06xv3xvebxg" path="res://defenses/defense_bag/defense_bag.tscn" id="8_eesdg"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_03pqa"]
 resource_name = "FarmingTile"
@@ -59,6 +60,10 @@ layer = 3
 [node name="hud" parent="HUD" node_paths=PackedStringArray("manager") instance=ExtResource("4_r63pj")]
 manager = NodePath("../..")
 metadata/_edit_lock_ = true
+
+[node name="DefenseBag" parent="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer" index="1" node_paths=PackedStringArray("tool_manager") instance=ExtResource("8_eesdg")]
+layout_mode = 2
+tool_manager = NodePath("../../../../../../Game/ToolManager")
 
 [node name="UISounds" parent="." instance=ExtResource("3_kkxic")]
 root_path = NodePath("..")
