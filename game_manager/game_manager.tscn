@@ -10,8 +10,8 @@
 [ext_resource type="AudioStream" uid="uid://buppeg7wx1bn6" path="res://game_manager/assets/apple_cider.wav" id="5_03pqa"]
 [ext_resource type="PackedScene" uid="uid://dmmjsxbvqc2j3" path="res://tool_manager/tool_manager.tscn" id="6_2631c"]
 [ext_resource type="AudioStream" uid="uid://ccie4sn00x1ch" path="res://game_manager/assets/mixkit-clinking-coins-1993.wav" id="6_d3erd"]
-[ext_resource type="PackedScene" uid="uid://blcm64pbdyg22" path="res://defenses/tower_bag/tower_bag.tscn" id="8_oxvrm"]
-[ext_resource type="PackedScene" uid="uid://bi0fyjs74gjff" path="res://defenses/tower.tscn" id="12_qs53i"]
+[ext_resource type="PackedScene" uid="uid://bi0fyjs74gjff" path="res://defenses/tower.tscn" id="7_eesdg"]
+[ext_resource type="PackedScene" uid="uid://blcm64pbdyg22" path="res://defenses/tower_bag/tower_bag.tscn" id="9_qs53i"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_03pqa"]
 resource_name = "FarmingTile"
@@ -21,11 +21,12 @@ scenes/1/scene = ExtResource("3_pnley")
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetScenesCollectionSource_03pqa")
 
-[node name="GameManager" type="Node" node_paths=PackedStringArray("pause_menu", "farming_tile_map", "money_sound_player")]
+[node name="GameManager" type="Node" node_paths=PackedStringArray("pause_menu", "farming_tile_map", "tool_manager", "money_sound_player")]
 script = ExtResource("1_ong7i")
 pause_menu_scene = ExtResource("2_mx6ys")
 pause_menu = NodePath("PauseUI/PauseMenu")
 farming_tile_map = NodePath("Game/CropTiles")
+tool_manager = NodePath("Game/ToolManager")
 money_sound_player = NodePath("MoneySound")
 
 [node name="Game" type="Node2D" parent="."]
@@ -49,9 +50,11 @@ metadata/_edit_lock_ = true
 stream = ExtResource("6_d3erd")
 volume_db = -2.0
 
-[node name="ToolManager" parent="Game" instance=ExtResource("6_2631c")]
+[node name="ToolManager" parent="Game" node_paths=PackedStringArray("tool_enum", "game_manager") instance=ExtResource("6_2631c")]
+tool_enum = NodePath("../../HUD/hud/ToolEnums")
+game_manager = NodePath("../..")
 
-[node name="Tower" parent="Game" node_paths=PackedStringArray("tool_manager") instance=ExtResource("12_qs53i")]
+[node name="Tower" parent="Game" node_paths=PackedStringArray("tool_manager") instance=ExtResource("7_eesdg")]
 tool_manager = NodePath("../ToolManager")
 
 [node name="HUD" type="CanvasLayer" parent="."]
@@ -61,7 +64,7 @@ layer = 3
 manager = NodePath("../..")
 metadata/_edit_lock_ = true
 
-[node name="TowerBag" parent="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer" index="1" node_paths=PackedStringArray("tool_manager") instance=ExtResource("8_oxvrm")]
+[node name="TowerBag" parent="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer" index="1" node_paths=PackedStringArray("tool_manager") instance=ExtResource("9_qs53i")]
 layout_mode = 2
 tool_manager = NodePath("../../../../../../Game/ToolManager")
 
@@ -99,8 +102,9 @@ bus = &"SFX"
 
 [connection signal="money_changed" from="." to="HUD/hud" method="_on_game_manager_money_changed"]
 [connection signal="request_seed_menu" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_request_seed_menu"]
-[connection signal="selected_tower_changed" from="Game/ToolManager" to="Game/Tower" method="_on_tool_manager_selected_tower_changed"]
 [connection signal="tool_changed" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_tool_changed"]
+[connection signal="selected_seed" from="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer/SeedBag" to="Game/ToolManager" method="_on_seed_bag_selected_seed"]
+[connection signal="selected_tower" from="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer/TowerBag" to="Game/ToolManager" method="_on_tower_bag_selected_tower"]
 [connection signal="pressed" from="PauseUI/CenterContainer/PauseButton" to="." method="_on_pause_button_pressed"]
 
 [editable path="HUD/hud"]

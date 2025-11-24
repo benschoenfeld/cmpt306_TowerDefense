@@ -18,7 +18,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if get_tree().paused:
 		return
 	
-	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_RIGHT:
 		if tool_manager == null:
 			print("DEBUGG Tower: current_tool = ", tool_manager.get_current_tool(), "required = ", required_tool_index, "selected_tower = ", tool_manager.get_selected_tower() if tool_manager.has_method("get_selected_tower") else tool_manager.selected_tower)
 

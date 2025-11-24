@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="TowerResource" load_steps=4 format=3 uid="uid://c61seo115ldlh"]
 
-[ext_resource type="Texture2D" uid="uid://d8vx7u471nvt" path="res://defenses/assets/tower_1.png" id="1_7pyuk"]
+[ext_resource type="Texture2D" uid="uid://fwdl7xwqn8c5" path="res://defenses/assets/tower_1.png" id="1_7pyuk"]
 [ext_resource type="Script" uid="uid://b72xnny36e77a" path="res://defenses/resources/tower_resource.gd" id="1_eu6q4"]
 [ext_resource type="PackedScene" uid="uid://d2qdossk0h6g2" path="res://defenses/resources/tower_1_scene.tscn" id="3_7pyuk"]
 

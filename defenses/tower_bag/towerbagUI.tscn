@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsdanqheuq5nn"]
+[gd_scene load_steps=3 format=3 uid="uid://dlc2r61x172q6"]
 
 [ext_resource type="Texture2D" uid="uid://8u38qoayulk6" path="res://general_ui/hud/assets/spritesheet-double.png" id="1_bil8b"]
 [ext_resource type="Texture2D" uid="uid://nigqyf4q4q1t" path="res://general_ui/hud/assets/Crop_Spritesheet.png" id="2_krt5c"]

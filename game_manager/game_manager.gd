@@ -58,7 +58,7 @@ func _load_and_connect_tile():
 	farming_tile_map.update_internals()
 	for tile in farming_tile_map.get_children():
 		if tile is FarmingTile and tool_manager != null:
-			tile.connect("send_tile_data", tool_manager.interact)
+			tile.connect("send_tile_data", Callable(tool_manager, "interact"))
 
 ## When the pause button is pressed is adds the pause scene to 
 ## the [param pause_menu_layer].
