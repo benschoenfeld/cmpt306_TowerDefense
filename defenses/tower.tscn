@@ -2,6 +2,5 @@
 
 [ext_resource type="Script" uid="uid://b7jfbrnk2byn1" path="res://defenses/tower.gd" id="1_lbtpy"]
 
-[node name="Tower" type="Node2D" node_paths=PackedStringArray("tool_manager")]
+[node name="Tower" type="Node2D"]
 script = ExtResource("1_lbtpy")
-tool_manager = NodePath("")

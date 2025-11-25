@@ -54,8 +54,9 @@ volume_db = -2.0
 tool_enum = NodePath("../../HUD/hud/ToolEnums")
 game_manager = NodePath("../..")
 
-[node name="Tower" parent="Game" node_paths=PackedStringArray("tool_manager") instance=ExtResource("7_eesdg")]
+[node name="Tower" parent="Game" node_paths=PackedStringArray("tool_manager", "game_manager") instance=ExtResource("7_eesdg")]
 tool_manager = NodePath("../ToolManager")
+game_manager = NodePath("../..")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 3
