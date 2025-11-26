@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://bi0fyjs74gjff"]
+[gd_scene load_steps=4 format=3 uid="uid://bi0fyjs74gjff"]
 
 [ext_resource type="Script" uid="uid://b7jfbrnk2byn1" path="res://defenses/tower.gd" id="1_lbtpy"]
+[ext_resource type="AudioStream" uid="uid://33v4gdfuhcqs" path="res://defenses/assets/TowerPlacing.wav" id="2_mu5db"]
+[ext_resource type="AudioStream" uid="uid://d1l7l5aq1vdjl" path="res://defenses/assets/DenySound.wav" id="3_0ce1p"]
 
 [node name="Tower" type="Node2D"]
 script = ExtResource("1_lbtpy")
+
+[node name="TowerSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_mu5db")
+
+[node name="DenySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0ce1p")

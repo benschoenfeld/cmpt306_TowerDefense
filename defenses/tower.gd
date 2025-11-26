@@ -9,8 +9,6 @@ class_name Tower
 
 @export var grid_size: Vector2 = Vector2(32, 32)
 
-
-
 @export var min_distance: float = 64.0
 
 @export var tower_sound: AudioStreamPlayer2D  #TODO
@@ -21,11 +19,13 @@ func _ready() -> void:
 	if (required_tool_index == 0 or required_tool_index == -1) and tool_manager:
 		required_tool_index = int(tool_manager.tool_enum.Tool.TARGET)
 
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if get_tree().paused:
 		return
 	
-	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_RIGHT:
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
 		if tool_manager == null:
 			return
 		if not tool_manager.has_method("get_current_tool"):

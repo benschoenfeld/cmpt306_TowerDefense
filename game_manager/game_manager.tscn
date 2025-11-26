@@ -60,8 +60,9 @@ game_manager = NodePath("../..")
 tool_manager = NodePath("../ToolManager")
 game_manager = NodePath("../..")
 
-[node name="BaseSpawn" parent="Game" instance=ExtResource("8_cp5ju")]
+[node name="BaseSpawn" parent="Game" node_paths=PackedStringArray("tool_manager") instance=ExtResource("8_cp5ju")]
 base_scene = ExtResource("9_lv052")
+tool_manager = NodePath("../ToolManager")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 3
