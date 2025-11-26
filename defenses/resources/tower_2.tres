@@ -8,5 +8,4 @@
 script = ExtResource("1_hqmhm")
 tower_scene = ExtResource("3_lww6q")
 icon = ExtResource("1_07axu")
-cost = 150
 metadata/_custom_type_script = "uid://b72xnny36e77a"

@@ -9,6 +9,8 @@ class_name Tower
 
 @export var grid_size: Vector2 = Vector2(32, 32)
 
+
+
 @export var min_distance: float = 64.0
 
 @export var tower_sound: AudioStreamPlayer2D  #TODO
@@ -48,15 +50,16 @@ func _unhandled_input(event: InputEvent) -> void:
 			print("Not enough moeny for: ", towerRes.tower_name, " cost:", towerRes.cost)
 			return
 			
-		var pos = get_global_mouse_position()
+		var mouse_pos = get_global_mouse_position()
 		if grid_size.x > 0 and grid_size.y > 0:
-			pos = _snap_position(pos)
+			mouse_pos = _snap_position(mouse_pos)
 			
-		if _is_too_close(pos):
-			if deny_sound:
-				deny_sound.play()
-			print("Tower cannot be placed too close to another tower")
+		var base = build_base(mouse_pos, min_distance)
+		if base == null:
+			print("No build base found udner cursor")
 			return
+			
+
 			
 		if towerRes.tower_scene == null:
 			push_error("TowerResource has no individual scene assigned")
@@ -67,9 +70,13 @@ func _unhandled_input(event: InputEvent) -> void:
 			push_error("Failed to instantiated tower scene")
 			return
 		
-		tower_instance.position = pos
-		add_child(tower_instance)
-		print("Tower placed at ", pos)
+		tower_instance.position = base.global_position
+		get_tree().get_current_scene().add_child(tower_instance)
+		print("Tower placed at ", mouse_pos)
+		
+		base.set_meta("occupied", true)
+		base.set_meta("occupier_path", tower_instance.get_path())
+		tower_instance.set_meta("base_node_path", base.get_path())
 		
 		if not tower_instance.is_in_group("Towers"):
 			tower_instance.add_to_group("Towers")
@@ -79,10 +86,23 @@ func _unhandled_input(event: InputEvent) -> void:
 		if tower_sound:
 			tower_sound.play()
 		
-		
+		print("Tower placed on base at ", base.global_position, " cost: ", towerRes.cost)
 
+func build_base(pos: Vector2, max_dist: float) -> Node2D:
+	var new_base: Node2D = null
+	var distanceToBase = max_dist
+	for base in get_tree().get_nodes_in_group("TowerBases"):
+		if not is_instance_valid(base):
+			continue
+		var dist = base.global_position.distance_to(pos)
+		if dist <= distanceToBase:
+			distanceToBase = dist
+			new_base = base
+	if new_base and new_base.get_meta("occupied", false):
+		return null
+	return new_base
 	
-
+	
 func _snap_position(pos: Vector2) -> Vector2:
 	return Vector2(round(pos.x / grid_size.x) * grid_size.x,
 					round(pos.y / grid_size.y) * grid_size.y)
@@ -97,12 +117,7 @@ func _buy_tower(cost: int) -> void:
 		game_manager.add_money(-cost)
 		return
 		
-func _is_too_close(pos: Vector2) -> bool:
-	for node in get_tree().get_nodes_in_group("Towers"):
-		if node is Node2D:
-			if node.position.distance_to(pos) < min_distance:
-				return true
-	return false
+
 		
 
 
