@@ -14,7 +14,7 @@ extends Control
 ## Constant path that is the [MainMenu]
 const MAIN_MENU_PATH: String = "res://general_ui/main_menu/main_menu.tscn"
 
-## [CanvasLayer] for the option menu to be added to.
+## A reference to the [OptionsMenu].
 @export var options: OptionsMenu
 
 ## A reference to the sound for opening and closing the menu.
