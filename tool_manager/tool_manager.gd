@@ -23,7 +23,7 @@ const CURSOR_SHAPE = Input.CURSOR_ARROW
 @export var tool_enum: ToolEnums
 
 @export_category("Mouse Icon Textures")
-<<<<<<< HEAD
+
 ## The asset of the shovel icon for the mouse.
 @export var tool_shovel: Texture = preload("res://tool_manager/assets/tool_shovel.png")
 
@@ -32,12 +32,10 @@ const CURSOR_SHAPE = Input.CURSOR_ARROW
 
 ## The asset of the hoe icon for the mouse.
 @export var tool_hoe: Texture = preload("res://tool_manager/assets/tool_hoe.png")
-=======
-@export var tool_shovel = preload("res://tool_manager/assets/tool_shovel.png")
-@export var tool_waterCan = preload("res://tool_manager/assets/tool_watering_can.png")
-@export var tool_hoe = preload("res://tool_manager/assets/tool_hoe.png")
+
+## The asset of the target icon for the mouse.
 @export var tool_target = preload("res://tool_manager/assets/target_round_a.png")
->>>>>>> feature/defenses
+
 
 @export_category("ToolManager Nodes")
 ## A reference to an [AudioStreamPlayer] for switching tools action.
