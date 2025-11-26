@@ -20,6 +20,9 @@ const DESELECTION_COLOR = Color(1.0, 1.0, 1.0, 1.0)
 ## A [TextureRect] of of the hoe tool.
 @export var hoe_image: TextureRect
 
+## A [TextureRect] of of the target tool.
+@export var target_image: TextureRect
+
 ## Where all the tool icons can be found as [TextureRect].
 @export var tool_bar: HBoxContainer
 
@@ -41,3 +44,6 @@ func highlight_tool(current_tool: int) -> void:
 		
 		int(tool_enum.Tool.HOE):
 			hoe_image.modulate = SELECTION_COLOR
+			
+		int(tool_enum.Tool.TARGET):
+			target_image.modulate = SELECTION_COLOR

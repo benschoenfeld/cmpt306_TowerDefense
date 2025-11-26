@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpsio5u3ypug7"]
+
+[ext_resource type="Script" uid="uid://cfi3omdvxxtcq" path="res://defenses/bullets/bullet_1.gd" id="1_hunix"]
+[ext_resource type="Texture2D" uid="uid://b6esb2bt7v1u" path="res://defenses/assets/bullet_1.png" id="2_4tpc7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7g6dp"]
+radius = 8.0
+height = 40.0
+
+[node name="Bullet" type="Area2D"]
+script = ExtResource("1_hunix")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_7g6dp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4tpc7")

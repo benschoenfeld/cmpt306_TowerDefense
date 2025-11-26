@@ -137,5 +137,5 @@ func _lower_saturation(delta: float) -> void:
 
 ## Used for interaction with the tile.
 func _on_interaction_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event.is_action_pressed("interact"):
+	if (event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT or event.is_action_pressed("interact")):
 		send_tile_data.emit(self)
