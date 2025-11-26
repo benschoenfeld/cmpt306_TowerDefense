@@ -10,7 +10,8 @@ signal selected_tower(tower_selection: TowerResource)
 
 @export var tower_choices: Array[TowerResource] = [
 	preload("res://defenses/resources/tower_1.tres"),
-	preload("res://defenses/resources/tower_2.tres")
+	preload("res://defenses/resources/tower_2.tres"),
+	preload("res://defenses/resources/tower_missile.tres")
 ]
 
 @export var tower_button_holder: GridContainer
