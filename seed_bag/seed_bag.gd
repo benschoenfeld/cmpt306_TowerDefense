@@ -13,6 +13,7 @@ signal selected_seed(seed_selection: CropResource)
 		preload("res://crops/resources/radish.tres"), 
 		]
 
+## A refernce to the [GridContainer] that has all of the [Button] nodes.
 @export var seed_button_holder: GridContainer
 
 ## The current seed selected.
@@ -44,6 +45,7 @@ func _send_seed_info(button: Button) -> void:
 	current_seed_selected = seed_choices[button_value]
 	selected_seed.emit(current_seed_selected)
 
+## A private function that visually shows the [Button] being selected.
 func _show_selection(button: Button) -> void:
 	button.modulate = Color(0.916, 0.437, 0.0, 0.7)
 
