@@ -39,7 +39,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_iqnve")
 }],
-"loop": false,
+"loop": true,
 "name": &"walk",
 "speed": 5.0
 }]
@@ -47,7 +47,8 @@ animations = [{
 [resource]
 script = ExtResource("2_kxjwq")
 name = "Basic"
-health = 100
-speed = 100.0
+health = 75
+damage = 75
+speed = 55.0
 frames = SubResource("SpriteFrames_1qpcp")
 metadata/_custom_type_script = "uid://corrfnng4rwk2"

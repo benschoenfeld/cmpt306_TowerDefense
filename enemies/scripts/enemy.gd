@@ -16,7 +16,15 @@ func setup(enemy_type: EnemyType) -> void:
 	animation.sprite_frames = type.frames
 	
 	if animation.sprite_frames != null:
-		animation.play(animation.sprite_frames.get_animation_names()[0])
+		var move_animation = String(type.walk_animation)
+		
+		if move_animation != "" and animation.sprite_frames.has_animation(move_animation):
+			animation.play(move_animation)
+		else:
+			var names = animation.sprite_frames.get_animation_names()
+			if names.size() > 0:
+				animation.play(names[0])
+			
 		
 	progress_ratio = 0.0
 	

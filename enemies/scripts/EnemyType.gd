@@ -6,3 +6,5 @@ class_name EnemyType
 @export var damage: int
 @export var speed: float
 @export var frames: SpriteFrames
+
+@export var walk_animation: StringName = "walk"
