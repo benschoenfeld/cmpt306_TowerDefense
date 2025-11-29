@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://0wsbgy801txt"]
+[gd_scene load_steps=18 format=4 uid="uid://0wsbgy801txt"]
 
 [ext_resource type="Script" uid="uid://ddh6nidkpvu7s" path="res://game_manager/game_manager.gd" id="1_ong7i"]
 [ext_resource type="PackedScene" uid="uid://bb0emy17c3vce" path="res://general_ui/pause_menu/pause_menu.tscn" id="2_mx6ys"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://dmmjsxbvqc2j3" path="res://tool_manager/tool_manager.tscn" id="6_2631c"]
 [ext_resource type="AudioStream" uid="uid://ccie4sn00x1ch" path="res://game_manager/assets/mixkit-clinking-coins-1993.wav" id="6_d3erd"]
 [ext_resource type="Texture2D" uid="uid://ofxp3ifgk660" path="res://path/assets/towerDefense_tilesheet.png" id="7_eesdg"]
+[ext_resource type="PackedScene" uid="uid://bi0fyjs74gjff" path="res://defenses/tower.tscn" id="8_qs53i"]
+[ext_resource type="PackedScene" uid="uid://blcm64pbdyg22" path="res://defenses/tower_bag/tower_bag.tscn" id="10_oxvrm"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_03pqa"]
 resource_name = "FarmingTile"
@@ -1259,12 +1261,20 @@ volume_db = -2.0
 tile_map_data = PackedByteArray("AAD1//7/AQAoAA0AAAD2//7/AQAoAA0AAAD3//7/AQAoAA0AAAD4//7/AQAoAA0AAAD5//7/AQAoAA0AAAD6//7/AQAoAA0AAAD7//7/AQAoAA0AAAD8//7/AQAoAA0AAAD9//7/AQAoAA0AAAD+//7/AQAoAA0AAAD///7/AQAoAA0AAAAAAP7/AQAoAA0AAAABAP7/AQAoAA0AAAACAP7/AQAoAA0AAAADAP7/AQAoAA0AAAAEAP7/AQAoAA0AAAAFAP7/AQAoAA0AAAAGAP7/AQAoAA0AAAAHAP7/AQAoAA0AAAAIAP7/AQAoAA0AAAAJAP7/AQAoAA0AAAAKAP7/AQAoAA0AAAA=")
 tile_set = SubResource("TileSet_oxvrm")
 
+[node name="Tower" parent="Game" node_paths=PackedStringArray("tool_manager", "game_manager") instance=ExtResource("8_qs53i")]
+tool_manager = NodePath("../ToolManager")
+game_manager = NodePath("../..")
+
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 3
 
 [node name="hud" parent="HUD" node_paths=PackedStringArray("manager") instance=ExtResource("4_r63pj")]
 manager = NodePath("../..")
 metadata/_edit_lock_ = true
+
+[node name="TowerBag" parent="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer" index="1" node_paths=PackedStringArray("tool_manager") instance=ExtResource("10_oxvrm")]
+layout_mode = 2
+tool_manager = NodePath("../../../../../../Game/ToolManager")
 
 [node name="UISounds" parent="." instance=ExtResource("3_kkxic")]
 root_path = NodePath("..")
