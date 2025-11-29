@@ -75,6 +75,9 @@ func get_health() -> int:
 ## A private function to handle the death of the player and issue a game over.
 func _player_death() -> void:
 	print("Death")
+	var game_over_scene: PackedScene = preload("res://general_ui/game_over/game_over_ui.tscn")
+	var game_over: GameOverUI = game_over_scene.instantiate()
+	$PauseUI.add_child(game_over)
 	get_tree().paused = true
 
 ## Finds all [FarmingTile] and connects them to the [ToolManager].
