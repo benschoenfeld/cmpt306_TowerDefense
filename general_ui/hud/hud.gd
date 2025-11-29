@@ -11,8 +11,11 @@ extends Control
 ## A reference to the [ToolUI].
 @export var tool_ui: ToolUI
 
-## A reference to the [MoneyCounter].
-@export var money_display: MoneyCounter
+## A reference to the [NumberDisplay] that displays health.
+@export var health_display: NumberDisplay
+
+## A reference to the [NumberDisplay] that displays money.
+@export var money_display: NumberDisplay
 
 ## A reference to the [SeedBag].
 @export var seed_bag: SeedBag
@@ -29,6 +32,10 @@ func _on_tool_manager_tool_changed(tool_index: int) -> void:
 func _on_tool_manager_request_seed_menu(show_item: bool) -> void:
 	seed_bag.visible = show_item
 
-## Updates the [MoneyCounter].
+## Updates the [param money_display].
 func _on_game_manager_money_changed(new_amount: int) -> void:
 	money_display.display_amount(new_amount)
+
+## Updates the [param health_display].
+func _on_game_manager_health_change(new_amount: int) -> void:
+	health_display.display_amount(new_amount)

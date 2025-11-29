@@ -32,7 +32,6 @@ expand_mode = 1
 [node name="Context" type="Label" parent="PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "   Money:    "
 horizontal_alignment = 1
 
 [node name="Number" type="Label" parent="PanelContainer"]

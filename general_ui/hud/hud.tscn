@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://8ccoultreyuc" path="res://seed_bag/seed_bag.tscn" id="4_kafub"]
 [ext_resource type="Script" uid="uid://cwejy8567ny70" path="res://enums/tools/tool_enums.gd" id="5_2jgvt"]
 
-[node name="Hud" type="Control" node_paths=PackedStringArray("tool_enum", "tool_ui", "seed_bag")]
+[node name="Hud" type="Control" node_paths=PackedStringArray("tool_enum", "tool_ui", "health_display", "money_display", "seed_bag")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,6 +19,8 @@ mouse_behavior_recursive = 1
 script = ExtResource("1_hk4rq")
 tool_enum = NodePath("ToolEnums")
 tool_ui = NodePath("VBoxContainer/CenterContainer/ToolUI")
+health_display = NodePath("VBoxContainer/HBoxContainer/Control/HBoxContainer/HealthDisplay")
+money_display = NodePath("VBoxContainer/HBoxContainer/Control/HBoxContainer/MoneyDisplay")
 seed_bag = NodePath("VBoxContainer/HBoxContainer/CenterContainer/SeedBag")
 
 [node name="ToolEnums" type="Node" parent="."]
@@ -51,11 +53,11 @@ offset_right = 488.0
 offset_bottom = 80.0
 theme_override_constants/separation = 215
 
-[node name="NumberDisplay" parent="VBoxContainer/HBoxContainer/Control/HBoxContainer" instance=ExtResource("3_kafub")]
+[node name="HealthDisplay" parent="VBoxContainer/HBoxContainer/Control/HBoxContainer" instance=ExtResource("3_kafub")]
 layout_mode = 2
 context_line = "Health:"
 
-[node name="NumberDisplay2" parent="VBoxContainer/HBoxContainer/Control/HBoxContainer" instance=ExtResource("3_kafub")]
+[node name="MoneyDisplay" parent="VBoxContainer/HBoxContainer/Control/HBoxContainer" instance=ExtResource("3_kafub")]
 layout_mode = 2
 icon = ExtResource("4_bk23a")
 context_line = "Money"
