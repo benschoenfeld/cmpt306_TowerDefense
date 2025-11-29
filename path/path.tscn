@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckbw8cegydtbp"]
+
+[ext_resource type="Texture2D" uid="uid://dfdv45m15wkby" path="res://path/assets/towerDefense_tile160.png" id="1_bqhv3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bqhv3"]
+size = Vector2(33, 31)
+
+[node name="Path" type="Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_bqhv3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_bqhv3")
