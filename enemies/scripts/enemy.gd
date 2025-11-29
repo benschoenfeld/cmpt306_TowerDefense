@@ -1,0 +1,47 @@
+extends PathFollow2D
+class_name Enemy
+
+@export var type: EnemyType
+
+var health: int
+
+@onready var animation: AnimatedSprite2D = $Area2D/AnimatedSprite2D
+
+signal reached_end(damage: int)
+
+func setup(enemy_type: EnemyType) -> void:
+	type = enemy_type
+	health = type.health
+	
+	animation.sprite_frames = type.frames
+	
+	if animation.sprite_frames != null:
+		var move_animation = String(type.walk_animation)
+		
+		if move_animation != "" and animation.sprite_frames.has_animation(move_animation):
+			animation.play(move_animation)
+		else:
+			var names = animation.sprite_frames.get_animation_names()
+			if names.size() > 0:
+				animation.play(names[0])
+			
+		
+	progress_ratio = 0.0
+	
+func _process(delta: float) -> void:
+	progress += type.speed * delta
+	
+	if progress_ratio >= 1.0:
+		emit_signal("reached_end", type.damage)
+		queue_free()
+	
+func do_damage(amount: int) -> void:
+	health -= amount
+	if health <= 0:
+		on_death()
+
+func on_death() -> void:
+	if animation.sprite_frames and animation.sprite_frames.has_animation("die"):
+		animation.play("die")
+		await animation.animation_finished
+	queue_free()
