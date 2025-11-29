@@ -28,7 +28,10 @@ signal money_changed(new_amount: int)
 @export var money_sound_player: AudioStreamPlayer
 
 ## The players resource.
-var money_amount: int = 0
+@export var money_amount: int = 0
+
+## The players health resource.
+@export var health_amount: int = 20
 
 ## Sets up the all the interactable game tiles
 func _ready() -> void:
@@ -49,6 +52,18 @@ func add_money(new_amount: int) -> void:
 ## Returns the [param money_amount]
 func get_money() -> int:
 	return money_amount
+
+## Takes away an [int] amount of health from the [param health_amount].
+func remove_health(damage: int) -> void:
+	pass
+
+## Returns the [param health_amount].
+func get_health() -> int:
+	return -1
+
+## A private function to handle the death of the player and issue a game over.
+func _player_death() -> void:
+	pass
 
 ## Finds all [FarmingTile] and connects them to the [ToolManager].
 func _load_and_connect_tile():
