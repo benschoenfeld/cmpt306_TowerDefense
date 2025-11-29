@@ -39,6 +39,7 @@ signal health_change(new_amount: int)
 ## Sets up the all the interactable game tiles
 func _ready() -> void:
 	_load_and_connect_tile()
+	set_health(health_amount)
 
 ## Sets the [param money_amount] and emits a signal.
 func set_money(new_amount: int) -> void:
@@ -58,15 +59,23 @@ func get_money() -> int:
 
 ## Takes away an [int] amount of health from the [param health_amount].
 func remove_health(damage: int) -> void:
-	pass
+	set_health(get_health() - damage)
+	if health_amount <= 0:
+		_player_death()
+
+## Set an [int] amount for the [param health_amount].
+func set_health(amount: int) -> void:
+	health_amount = amount
+	health_change.emit(health_amount)
 
 ## Returns the [param health_amount].
 func get_health() -> int:
-	return -1
+	return health_amount
 
 ## A private function to handle the death of the player and issue a game over.
 func _player_death() -> void:
-	pass
+	print("Death")
+	get_tree().paused = true
 
 ## Finds all [FarmingTile] and connects them to the [ToolManager].
 func _load_and_connect_tile():
