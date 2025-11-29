@@ -1,4 +1,4 @@
-extends Node2D
+extends BaseTile
 class_name BuildBase
 
 func _ready() -> void:
