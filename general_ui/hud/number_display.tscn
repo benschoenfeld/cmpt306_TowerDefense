@@ -1,13 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://nebwwifttxrv"]
+[gd_scene load_steps=2 format=3 uid="uid://nebwwifttxrv"]
 
-[ext_resource type="Script" uid="uid://balyxjhk0jgvb" path="res://general_ui/hud/money_counter.gd" id="1_g61ru"]
-[ext_resource type="Texture2D" uid="uid://d4de1wjl2s5v2" path="res://general_ui/hud/assets/genericItem_color_158.png" id="2_dv042"]
+[ext_resource type="Script" uid="uid://balyxjhk0jgvb" path="res://general_ui/hud/number_display.gd" id="1_iojwc"]
 
-[node name="MoneyCounter" type="Control" node_paths=PackedStringArray("money_label")]
+[node name="NumberDisplay" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_g61ru")
-money_label = NodePath("PanelContainer/Number")
+script = ExtResource("1_iojwc")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -23,15 +21,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/PanelContainer"]
+custom_minimum_size = Vector2(58, 58)
 layout_mode = 0
 offset_left = -100.0
 offset_top = 1.0
 offset_right = -42.0
 offset_bottom = 59.0
-texture = ExtResource("2_dv042")
 expand_mode = 1
 
-[node name="Money" type="Label" parent="PanelContainer"]
+[node name="Context" type="Label" parent="PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "   Money:    "

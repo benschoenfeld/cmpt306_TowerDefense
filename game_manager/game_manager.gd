@@ -10,6 +10,9 @@ extends Node
 ## Emits the new amount of money.
 signal money_changed(new_amount: int)
 
+## Emits the new amount of health.
+signal health_change(new_amount: int)
+
 ## A [PackedScene] of the [PauseMenu].
 @export var pause_menu_scene: PackedScene
 
