@@ -145,6 +145,7 @@ func interact(tile: BaseTile) -> void:
 				hoe_sound_player.play()
 				farmTile.set_tile_stats(farmTile.dry_dirt_stats)
 				farmTile.set_saturation(0.0)
+				# TODO update model
 				return
 			# if tile has grown crop: harvest
 			if farmTile.has_crop():
@@ -163,6 +164,7 @@ func interact(tile: BaseTile) -> void:
 			if farmTile.has_method("apply_water"):
 				watercan_sound_player.play()
 				farmTile.apply_water(watering_amount)
+				# TODO update model
 			else:
 				watercan_sound_player.play()
 				farmTile.add_saturation(watering_amount)
@@ -177,6 +179,7 @@ func interact(tile: BaseTile) -> void:
 				if farmTile.get_tile_type() == FarmingTileStats.TileType.DRY_DIRT or farmTile.get_tile_type() == FarmingTileStats.TileType.WET_DIRT:
 					$ShovelSound.play()
 					farmTile.set_crop(selected_seed)
+					# TODO update model
 					return
 		
 
