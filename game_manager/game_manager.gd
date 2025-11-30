@@ -51,11 +51,11 @@ func _ready() -> void:
 
 ## Sets the [param money_amount] and emits a signal.
 func set_money(new_amount: int) -> void:
+	# Play audio for money being collected
 	money_sound_player.play()
 	money_amount = new_amount
 	money_changed.emit(money_amount)
-	# Play audio for money being collected
-	money_sound_player.play()
+
 
 ## Adds to the [param money_amount].
 func add_money(new_amount: int) -> void:

@@ -6,6 +6,4 @@
 
 [node name="Watercan" instance=ExtResource("1_64ve7")]
 script = ExtResource("2_swgwg")
-
-[node name="SoundEffect" parent="." index="0"]
-stream = ExtResource("3_nce4n")
+sound_effect = ExtResource("3_nce4n")

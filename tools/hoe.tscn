@@ -6,6 +6,4 @@
 
 [node name="Hoe" instance=ExtResource("1_tcwyh")]
 script = ExtResource("2_8mjig")
-
-[node name="SoundEffect" parent="." index="0"]
-stream = ExtResource("3_hpu5p")
+sound_effect = ExtResource("3_hpu5p")

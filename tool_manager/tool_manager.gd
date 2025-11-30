@@ -150,8 +150,6 @@ func interact(tile: BaseTile) -> void:
 	match tool:
 		int(tool_enum.Tool.HOE):
 			strategy = $Hoe
-			var hoe: Hoe = strategy
-			hoe.set_game_manager(game_manager)
 		
 		int(tool_enum.Tool.WATERCAN):
 			strategy = $Watercan
@@ -185,3 +183,7 @@ func _on_tower_bag_selected_tower(towerResorce: TowerResource) -> void:
 ##
 func get_selected_tower() -> TowerResource:
 	return selected_tower
+
+
+func _on_hoe_money_updated(new_amount: int) -> void:
+	game_manager.add_money(new_amount)

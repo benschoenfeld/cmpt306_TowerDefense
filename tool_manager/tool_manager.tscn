@@ -24,3 +24,5 @@ bus = &"SFX"
 [node name="Hoe" parent="." instance=ExtResource("8_sao2t")]
 
 [node name="Watercan" parent="." instance=ExtResource("9_dmllw")]
+
+[connection signal="money_updated" from="Hoe" to="." method="_on_hoe_money_updated"]

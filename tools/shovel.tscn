@@ -6,6 +6,4 @@
 
 [node name="Shovel" instance=ExtResource("1_hac6i")]
 script = ExtResource("2_p17y4")
-
-[node name="SoundEffect" parent="." index="0"]
-stream = ExtResource("3_p17y4")
+sound_effect = ExtResource("3_p17y4")

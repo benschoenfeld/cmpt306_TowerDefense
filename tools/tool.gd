@@ -11,6 +11,9 @@ extends Node2D
 ##
 @onready var sound_player: AudioStreamPlayer = $SoundEffect
 
+func _ready() -> void:
+	set_sound_effect(sound_effect)
+
 ##
 func interact_effect(_tile: BaseTile):
 	pass

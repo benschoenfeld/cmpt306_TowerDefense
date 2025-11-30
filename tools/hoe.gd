@@ -6,7 +6,7 @@ extends ToolBase
 ##
 
 ##
-var game_manager: GameManager
+signal money_updated(new_amount: int)
 
 ##
 func interact_effect(tile: BaseTile):
@@ -17,11 +17,7 @@ func interact_effect(tile: BaseTile):
 			tile.set_saturation(0.0)
 		else:
 			var harvested: CropResource = tile.harvest_crop()
-			if harvested != null and game_manager != null:
+			if harvested != null:
 				sound_player.play()
 				# award money
-				game_manager.add_money(harvested.get_value())
-
-##
-func set_game_manager(new_game_manager: GameManager):
-	game_manager = new_game_manager
+				money_updated.emit(harvested.get_value())
