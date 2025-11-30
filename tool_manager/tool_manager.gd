@@ -145,60 +145,35 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("equip_defenses"):
 		_set_current_tool(tool_enum.Tool.TARGET)
 
-## Called by [GameManager]'s connect: tile.connect("send_tile_data", Callable(tool_manager, "interact"))
-## Accepts a [BaseTile] (or [FarmingTile])  and applies the currently selected tool to it
+## 
 func interact(tile: BaseTile) -> void:
 	if tile == null:
 		return
 	if not (tile is FarmingTile):
 		# ignore
 		return
-	var farmTile: FarmingTile = tile
+	
 	var tool = current_tool_index
+	var strategy: ToolBase
+	
 	match tool:
 		int(tool_enum.Tool.HOE):
-			# Use 'Hoe': till grass -> dry dirt; harvest if ripe
-			if farmTile.get_tile_type() == FarmingTileStats.TileType.GRASS:
-				hoe_sound_player.play()
-				farmTile.set_tile_stats(farmTile.dry_dirt_stats)
-				farmTile.set_saturation(0.0)
-				# TODO update model
-				return
-			# if tile has grown crop: harvest
-			if farmTile.has_crop():
-				var harvested: CropResource = farmTile.harvest_crop()
-				if harvested != null and game_manager != null:
-					$HoeSound.play()
-					# award money
-					game_manager.add_money(harvested.get_value())
-				return
+			strategy = $Hoe
+			var hoe: Hoe = strategy
+			hoe.set_game_manager(game_manager)
 		
 		int(tool_enum.Tool.WATERCAN):
-			# Use watering can: no effect on grass
-			if farmTile.get_tile_type() == FarmingTileStats.TileType.GRASS:
-				return
-			# apply saturation
-			if farmTile.has_method("apply_water"):
-				watercan_sound_player.play()
-				farmTile.apply_water(watering_amount)
-				# TODO update model
-			else:
-				watercan_sound_player.play()
-				farmTile.add_saturation(watering_amount)
-				if farmTile.has_saturation() and farmTile.get_tile_type() == FarmingTileStats.TileType.DRY_DIRT:
-					farmTile.set_tile_stats(farmTile.wet_dirt_stats)
+			strategy = $Watercan
+			var watercan: Watercan = strategy
+			watercan.set_watering_amount(watering_amount)
 		
 		int(tool_enum.Tool.SHOVEL):
-			# Shovel opens seed menu ( if no seed selected) otherwise plant if valid
-			# if there is a selected seed, plant it into dry/wet dirt
+			strategy = $Shovel
+			var shovel: Shovel = strategy
+			shovel.set_seed(selected_seed)
 			
-			if selected_seed != null:
-				if farmTile.get_tile_type() == FarmingTileStats.TileType.DRY_DIRT or farmTile.get_tile_type() == FarmingTileStats.TileType.WET_DIRT:
-					$ShovelSound.play()
-					farmTile.set_crop(selected_seed)
-					# TODO update model
-					return
-		
+	strategy.interact_effect(tile)
+
 ## Setter for [param tile_map].
 func set_tile_map(new_map: TileMapLayer) -> void:
 	tile_map = new_map

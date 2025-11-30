@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://bea0dc5hi48dg"]
+
+[ext_resource type="PackedScene" uid="uid://mujp8qao5svr" path="res://tools/tool.tscn" id="1_64ve7"]
+[ext_resource type="Script" uid="uid://cny8w5ruwabkd" path="res://tools/watercan.gd" id="2_swgwg"]
+[ext_resource type="AudioStream" uid="uid://dgtbseqics886" path="res://tool_manager/assets/splash1.wav" id="3_nce4n"]
+
+[node name="Watercan" instance=ExtResource("1_64ve7")]
+script = ExtResource("2_swgwg")
+
+[node name="SoundEffect" parent="." index="0"]
+stream = ExtResource("3_nce4n")

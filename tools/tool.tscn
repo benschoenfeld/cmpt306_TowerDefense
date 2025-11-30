@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://mujp8qao5svr"]
+
+[ext_resource type="Script" uid="uid://cjcu6g7h4eqqe" path="res://tools/tool.gd" id="1_emdj3"]
+
+[node name="Tool" type="Node2D"]
+script = ExtResource("1_emdj3")
+
+[node name="SoundEffect" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

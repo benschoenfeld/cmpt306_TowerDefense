@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmmjsxbvqc2j3"]
+[gd_scene load_steps=10 format=3 uid="uid://dmmjsxbvqc2j3"]
 
 [ext_resource type="Script" uid="uid://cvvvfjm75a7rh" path="res://tool_manager/tool_manager.gd" id="1_b78em"]
 [ext_resource type="AudioStream" uid="uid://c4bbxasnc6qbw" path="res://tool_manager/assets/hoe-sound.mp3" id="3_dbhpb"]
@@ -6,6 +6,9 @@
 [ext_resource type="AudioStream" uid="uid://bem4s4laqagg1" path="res://tool_manager/assets/shovel.ogg" id="3_y7cfh"]
 [ext_resource type="AudioStream" uid="uid://dgtbseqics886" path="res://tool_manager/assets/splash1.wav" id="6_exrli"]
 [ext_resource type="PackedScene" uid="uid://c3red2wj3rsul" path="res://enums/tools/tool_enums.tscn" id="6_ola5a"]
+[ext_resource type="PackedScene" uid="uid://7e8hesjk7gwl" path="res://tools/shovel.tscn" id="7_rjpn1"]
+[ext_resource type="PackedScene" uid="uid://cktag0k6gm3qw" path="res://tools/hoe.tscn" id="8_sao2t"]
+[ext_resource type="PackedScene" uid="uid://bea0dc5hi48dg" path="res://tools/watercan.tscn" id="9_dmllw"]
 
 [node name="ToolManager" type="Node2D" node_paths=PackedStringArray("tool_enum", "switch_sound_player", "hoe_sound_player", "shovel_sound_player", "watercan_sound_player")]
 script = ExtResource("1_b78em")
@@ -33,3 +36,9 @@ stream = ExtResource("6_exrli")
 bus = &"SFX"
 
 [node name="ToolEnums" parent="." instance=ExtResource("6_ola5a")]
+
+[node name="Shovel" parent="." instance=ExtResource("7_rjpn1")]
+
+[node name="Hoe" parent="." instance=ExtResource("8_sao2t")]
+
+[node name="Watercan" parent="." instance=ExtResource("9_dmllw")]
