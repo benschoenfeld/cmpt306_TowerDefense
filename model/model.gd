@@ -5,6 +5,12 @@ extends RefCounted
 ##
 ## Holds tiles such as [FarmingTile] and [BuildBase].
 
+## Size of the tilemaps cells.
+const TILE_SIZE = 32
+
+## Positioning offset for the tiles.
+const OFFSET = 0.5
+
 ## Holds the grid data within a [Dictionary]. 
 ## Has [Vector2i] as a key and [Node2D] as a value.
 var tiles: Dictionary[Vector2i, Node2D]
@@ -34,6 +40,6 @@ func get_all() -> Dictionary:
 ## to the [param tiles] dictionary with the position as a key.
 func create_dict(tile_map: TileMapLayer) -> void:
 	for tile in tile_map.get_children():
-		var tile_position = tile.position / 32
+		var tile_position = tile.position / TILE_SIZE
 		if tile_position != null:
-			tiles[Vector2i(tile_position.x-0.5, tile_position.y-0.5)] = tile
+			tiles[Vector2i(tile_position.x-OFFSET, tile_position.y-OFFSET)] = tile
