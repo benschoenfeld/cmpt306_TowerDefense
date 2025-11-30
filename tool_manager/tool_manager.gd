@@ -4,7 +4,7 @@ extends Node2D
 ## Allows the player to switch tools and interact with tiles.
 ##
 ## Updates visuals of [ToolUI], [SeedBag], and mouse.
-## Also allows interaction with [FarmingTiles] based upon what tool
+## Also allows interaction with [BaseTiles] children based upon what tool
 ## is currently being used.
 
 ## Sends out what tool is being selected.
@@ -40,15 +40,6 @@ const CURSOR_SHAPE = Input.CURSOR_ARROW
 @export_category("ToolManager Nodes")
 ## A reference to an [AudioStreamPlayer] for switching tools action.
 @export var switch_sound_player: AudioStreamPlayer
-
-## A reference to an [AudioStreamPlayer] for using the hoe tool.
-@export var hoe_sound_player: AudioStreamPlayer
-
-## A reference to an [AudioStreamPlayer] for using the shovel tool.
-@export var shovel_sound_player: AudioStreamPlayer
-
-## A reference to an [AudioStreamPlayer] for using the watercan tool.
-@export var watercan_sound_player: AudioStreamPlayer
 
 @export_category("Game Settings")
 ## Index of the currrent tools selected
@@ -182,15 +173,15 @@ func set_tile_map(new_map: TileMapLayer) -> void:
 func set_model(new_model: Model) -> void:
 	model = new_model
 
-
 ## Changes the [param selected_seed] to new CropResource
 func _on_seed_bag_selected_seed(seed_selection: CropResource) -> void:
 	selected_seed = seed_selection
-	
+
+##
 func _on_tower_bag_selected_tower(towerResorce: TowerResource) -> void:
 	selected_tower = towerResorce
 	emit_signal("selected_tower_changed", selected_tower)
 
-
+##
 func get_selected_tower() -> TowerResource:
 	return selected_tower
