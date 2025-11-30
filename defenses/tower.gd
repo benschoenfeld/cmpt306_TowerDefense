@@ -5,6 +5,8 @@ class_name Tower
 
 @export var game_manager: GameManager
 
+@export var tower_instance: PackedScene
+
 @export var required_tool_index: int
 
 @export var grid_size: Vector2 = Vector2(32, 32)
@@ -58,26 +60,31 @@ func _unhandled_input(event: InputEvent) -> void:
 		if base == null:
 			print("No build base found udner cursor")
 			return
-
-		if towerRes.tower_scene == null:
-			push_error("TowerResource has no individual scene assigned")
+			
+		if tower_instance == null:
+			push_error("Tower: No tower instance assigned in Inspector")
 			return
 		
-		var tower_instance = towerRes.tower_scene.instantiate()
-		if tower_instance == null:
+		var towerInstance = tower_instance.instantiate()
+		if towerInstance == null:
 			push_error("Failed to instantiated tower scene")
 			return
 		
-		tower_instance.position = base.global_position
-		get_tree().get_current_scene().add_child(tower_instance)
+		towerInstance.position = base.global_position
+		get_tree().get_current_scene().add_child(towerInstance)
+		
+		if towerInstance.has_method("apply_tower_resource"):
+			towerInstance.apply_tower_resource(towerRes)
+		else:
+			print("TowerInstance has no apply_tower_resource method -> Incorrect assigned?")
 		print("Tower placed at ", mouse_pos)
 		
 		base.set_meta("occupied", true)
-		base.set_meta("occupier_path", tower_instance.get_path())
-		tower_instance.set_meta("base_node_path", base.get_path())
+		base.set_meta("occupier_path", towerInstance.get_path())
+		towerInstance.set_meta("base_node_path", base.get_path())
 		
-		if not tower_instance.is_in_group("Towers"):
-			tower_instance.add_to_group("Towers")
+		if not towerInstance.is_in_group("Towers"):
+			towerInstance.add_to_group("Towers")
 		# deduct money for the cost of building tower
 		_buy_tower(towerRes.cost)
 		
