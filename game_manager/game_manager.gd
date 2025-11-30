@@ -13,12 +13,12 @@ signal money_changed(new_amount: int)
 ## Emits the new amount of health.
 signal health_change(new_amount: int)
 
-## A [PackedScene] of the [PauseMenu].
-@export var pause_menu_scene: PackedScene
-
 @export_category("GameManager Nodes")
 ## A reference to a [PauseMenu].
 @export var pause_menu: PauseMenu
+
+## A reference to a [CanvasLayer].
+@export var pause_ui_canvas: CanvasLayer
 
 ## A reference to the [TileMapLayer] that holds the [FarmingTile].
 @export var farming_tile_map: TileMapLayer
@@ -30,6 +30,7 @@ signal health_change(new_amount: int)
 ## when the money is changed.
 @export var money_sound_player: AudioStreamPlayer
 
+@export_category("Game Settings")
 ## The players resource.
 @export var money_amount: int = 0
 
@@ -47,7 +48,7 @@ func set_money(new_amount: int) -> void:
 	money_amount = new_amount
 	money_changed.emit(money_amount)
 	# Play audio for money being collected
-	$Game/MoneySound.play()
+	money_sound_player.play()
 
 ## Adds to the [param money_amount].
 func add_money(new_amount: int) -> void:
@@ -77,7 +78,7 @@ func _player_death() -> void:
 	print("Death")
 	var game_over_scene: PackedScene = preload("res://general_ui/game_over/game_over_ui.tscn")
 	var game_over: GameOverUI = game_over_scene.instantiate()
-	$PauseUI.add_child(game_over)
+	pause_ui_canvas.add_child(game_over)
 	get_tree().paused = true
 
 ## Finds all [FarmingTile] and connects them to the [ToolManager].

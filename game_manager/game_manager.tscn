@@ -31,10 +31,10 @@ _data = {
 }
 point_count = 7
 
-[node name="GameManager" type="Node" node_paths=PackedStringArray("pause_menu", "farming_tile_map", "tool_manager", "money_sound_player")]
+[node name="GameManager" type="Node" node_paths=PackedStringArray("pause_menu", "pause_ui_canvas", "farming_tile_map", "tool_manager", "money_sound_player")]
 script = ExtResource("1_ong7i")
-pause_menu_scene = ExtResource("2_mx6ys")
 pause_menu = NodePath("PauseUI/PauseMenu")
+pause_ui_canvas = NodePath("PauseUI")
 farming_tile_map = NodePath("Game/CropTiles")
 tool_manager = NodePath("Game/ToolManager")
 money_sound_player = NodePath("MoneySound")
