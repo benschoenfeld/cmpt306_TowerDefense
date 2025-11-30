@@ -60,7 +60,7 @@ context_line = "Health:"
 [node name="MoneyDisplay" parent="VBoxContainer/HBoxContainer/Control/HBoxContainer" instance=ExtResource("3_kafub")]
 layout_mode = 2
 icon = ExtResource("4_bk23a")
-context_line = "Money"
+context_line = "Money:"
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)

@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://nebwwifttxrv"]
 
-[ext_resource type="Script" uid="uid://balyxjhk0jgvb" path="res://general_ui/hud/number_display.gd" id="1_iojwc"]
+[ext_resource type="Script" uid="uid://balyxjhk0jgvb" path="res://general_ui/hud/number_display.gd" id="1_cjmw7"]
 
 [node name="NumberDisplay" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_iojwc")
+script = ExtResource("1_cjmw7")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1

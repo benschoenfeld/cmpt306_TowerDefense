@@ -66,7 +66,14 @@ var toolArray: Array[Texture] = []
 ## Currently selected seed resource (set by seed menu; CropResource or null)
 var selected_seed: CropResource = null
 
+##
 var selected_tower: TowerResource = null
+
+## A reference to a [TileMapLayer] that will be interacted with.
+var tile_map: TileMapLayer
+
+## A reference to a model that will be interacted with.
+var model: Model
 
 func _ready() -> void:
 	toolArray = [tool_shovel, tool_waterCan, tool_hoe, tool_target]
@@ -112,6 +119,16 @@ func _unhandled_input(event: InputEvent) -> void:
 			_set_current_tool(( current_tool_index + 1) % toolArray.size())
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
 			_set_current_tool(( current_tool_index - 1 + toolArray.size()) % toolArray.size())
+
+	if (
+		event.is_action("interact") and 
+		event.is_pressed()
+		):
+			var canvas_pos: Vector2 = make_canvas_position_local(event.global_position)
+			var tile_map_pos: Vector2i = tile_map.local_to_map(canvas_pos)
+			var tile: BaseTile = model.get_tile(tile_map_pos)
+			if tile:
+				interact(tile)
 
 ## Handles input of changing the tools.
 func _process(_delta: float) -> void:
@@ -182,6 +199,13 @@ func interact(tile: BaseTile) -> void:
 					# TODO update model
 					return
 		
+## Setter for [param tile_map].
+func set_tile_map(new_map: TileMapLayer) -> void:
+	tile_map = new_map
+
+## Setter for [param model].
+func set_model(new_model: Model) -> void:
+	model = new_model
 
 
 ## Changes the [param selected_seed] to new CropResource

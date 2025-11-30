@@ -21,7 +21,7 @@ signal health_change(new_amount: int)
 @export var pause_ui_canvas: CanvasLayer
 
 ## A reference to the [TileMapLayer] that holds the [FarmingTile].
-@export var farming_tile_map: TileMapLayer
+@export var game_map_tile_map: TileMapLayer
 
 ## A reference to the [ToolManager] to interact with [FarmingTile].
 @export var tool_manager: ToolManager
@@ -37,10 +37,16 @@ signal health_change(new_amount: int)
 ## The players health resource.
 @export var health_amount: int = 20
 
+## A reference to the model that holds interactable game objects.
+@onready var model: Model = Model.new()
+
 ## Sets up the all the interactable game tiles
 func _ready() -> void:
-	_load_and_connect_tile()
+	#_load_and_connect_tile()
 	set_health(health_amount)
+	_set_up_model()
+	tool_manager.set_tile_map(game_map_tile_map)
+	tool_manager.set_model(model)
 
 ## Sets the [param money_amount] and emits a signal.
 func set_money(new_amount: int) -> void:
@@ -73,6 +79,10 @@ func set_health(amount: int) -> void:
 func get_health() -> int:
 	return health_amount
 
+## Return the [param model].
+func get_model() -> Model:
+	return model
+
 ## A private function to handle the death of the player and issue a game over.
 func _player_death() -> void:
 	print("Death")
@@ -81,14 +91,19 @@ func _player_death() -> void:
 	pause_ui_canvas.add_child(game_over)
 	get_tree().paused = true
 
+## A private funtion to handle the making and conenction of the [param model].
+func _set_up_model() -> void:
+	game_map_tile_map.update_internals()
+	model.create_dict(game_map_tile_map)
+
 ## Finds all [FarmingTile] and connects them to the [ToolManager].
-func _load_and_connect_tile():
-	# This is important to update the children being added a children 
-	# to the tile map node
-	farming_tile_map.update_internals()
-	for tile in farming_tile_map.get_children():
-		if tile is FarmingTile and tool_manager != null:
-			tile.connect("send_tile_data", Callable(tool_manager, "interact"))
+#func _load_and_connect_tile():
+	## This is important to update the children being added a children 
+	## to the tile map node
+	#farming_tile_map.update_internals()
+	#for tile in farming_tile_map.get_children():
+		#if tile is FarmingTile and tool_manager != null:
+			#tile.connect("send_tile_data", Callable(tool_manager, "interact"))
 
 ## When the pause button is pressed is adds the pause scene to 
 ## the [param pause_menu_layer].
