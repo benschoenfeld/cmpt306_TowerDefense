@@ -58,9 +58,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if base == null:
 			print("No build base found udner cursor")
 			return
-			
 
-			
 		if towerRes.tower_scene == null:
 			push_error("TowerResource has no individual scene assigned")
 			return
@@ -86,7 +84,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		if tower_sound:
 			tower_sound.play()
 		
-		print("Tower placed on base at ", base.global_position, " cost: ", towerRes.cost)
 
 func build_base(pos: Vector2, max_dist: float) -> Node2D:
 	var new_base: Node2D = null
