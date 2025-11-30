@@ -6,6 +6,8 @@ class_name TowerInstance
 @export var range_area_path: NodePath = NodePath("AreaRange")
 @export var tower_combat_path: NodePath = NodePath("TowerCombat")
 
+
+
 var tower_resource: TowerResource = null 
 
 func _set_resource(towerRes: TowerResource) -> void:
@@ -43,7 +45,7 @@ func apply_tower_resource(towerRes: TowerResource) -> void:
 		
 	var areaRange = get_node(range_area_path)
 	if areaRange:
-		var ColShape = areaRange.get_node("AreaRange/CollisionShape2D")
+		var ColShape = get_node("AreaRange/CollisionShape2D")
 		if ColShape and ColShape is CollisionShape2D and ColShape.shape:
 			if ColShape is CircleShape2D:
 				ColShape.radius = float(towerRes.area_range)
