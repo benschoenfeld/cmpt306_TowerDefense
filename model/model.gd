@@ -1,37 +1,39 @@
 class_name Model
 
-extends Node
+extends RefCounted
+## The data model that holds the game tiles.
+##
+## Holds tiles such as [FarmingTile] and [BuildBase].
 
-# currently tool_manager is acting as the controller
+## Holds the grid data within a [Dictionary]. 
+## Has [Vector2i] as a key and [Node2D] as a value.
+var tiles: Dictionary[Vector2i, Node2D]
 
-enum tile_types {
-	GRASS,
-	DRY_DIRT,
-	WET_DIRT,
-}
-
-# model dictionary for tracking the state of tiles in game
-var tiles:= {} # (Vector2i, FarmingTile)
-
-func get_tile(pos: Vector2i) -> FarmingTile:
+## Returns a tile scene reference or null.
+func get_tile(pos: Vector2i) -> Node2D:
 	return tiles.get(pos)
 
-func set_tile(pos: Vector2i, tile: FarmingTile) -> void:
+## Sets a tile in the dictionary based on position.
+func add_tile(pos: Vector2i, tile: Node2D) -> void:
 	tiles[pos] = tile
 
-func all() -> Dictionary:
+## Sets a tile in the dictionary based on position.
+## Returns true if the tile was set and false if it was not changed
+func set_tile(pos: Vector2i, tile: Node2D) -> bool:
+	if tiles.has(pos):
+		tiles[pos] = tile
+		return true
+	
+	return false
+
+## Returns the [param tiles].
+func get_all() -> Dictionary:
 	return tiles
 
-func test_model(pos: Vector2i):
-	if tiles.has(pos):
-		print(tiles[pos])
-
-# loops through the used cells in the TileMapLayer and adds the tile data to dict
-func create_dict(tile_map: TileMapLayer) -> Dictionary:
-	tile_map.update_internals()
+## Loops through the children in a [TileMapLayer] and adds the tile data
+## to the [param tiles] dictionary with the position as a key.
+func create_dict(tile_map: TileMapLayer) -> void:
 	for tile in tile_map.get_children():
 		var tile_position = tile.position / 32
 		if tile_position != null:
 			tiles[Vector2i(tile_position.x-0.5, tile_position.y-0.5)] = tile
-	print(tiles)
-	return tiles
