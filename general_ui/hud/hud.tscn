@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d4de1wjl2s5v2" path="res://general_ui/hud/assets/genericItem_color_158.png" id="4_bk23a"]
 [ext_resource type="PackedScene" uid="uid://8ccoultreyuc" path="res://seed_bag/seed_bag.tscn" id="4_kafub"]
 
-[node name="Hud" type="Control" node_paths=PackedStringArray("tool_ui", "health_display", "money_display", "seed_bag")]
+[node name="Hud" type="Control" node_paths=PackedStringArray("tool_ui", "health_display", "money_display", "seed_bag", "wave_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,10 +16,11 @@ grow_vertical = 2
 mouse_filter = 2
 mouse_behavior_recursive = 1
 script = ExtResource("1_hk4rq")
-tool_ui = NodePath("VBoxContainer/CenterContainer/ToolUI")
+tool_ui = NodePath("VBoxContainer/HBoxContainer2/ToolUI")
 health_display = NodePath("VBoxContainer/HBoxContainer/Control/HBoxContainer/HealthDisplay")
 money_display = NodePath("VBoxContainer/HBoxContainer/Control/HBoxContainer/MoneyDisplay")
 seed_bag = NodePath("VBoxContainer/HBoxContainer/CenterContainer/SeedBag")
+wave_button = NodePath("VBoxContainer/HBoxContainer2/HBoxContainer/StartWaveButton")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -45,7 +46,7 @@ size_flags_horizontal = 3
 layout_mode = 0
 offset_right = 488.0
 offset_bottom = 80.0
-theme_override_constants/separation = 215
+theme_override_constants/separation = 40
 
 [node name="HealthDisplay" parent="VBoxContainer/HBoxContainer/Control/HBoxContainer" instance=ExtResource("3_kafub")]
 layout_mode = 2
@@ -65,10 +66,40 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
-[node name="ToolUI" parent="VBoxContainer/CenterContainer" instance=ExtResource("2_br5ty")]
+[node name="Spacer1" type="Control" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+
+[node name="ToolUI" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("2_br5ty")]
 layout_mode = 2
 size_flags_vertical = 6
+
+[node name="Spacer2" type="Control" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="WaveCounter" parent="VBoxContainer/HBoxContainer2/HBoxContainer" instance=ExtResource("3_kafub")]
+layout_mode = 2
+context_line = "Wave:"
+
+[node name="StartWaveButton" type="Button" parent="VBoxContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_behavior_recursive = 2
+text = "Start Wave"
+
+[node name="Spacer3" type="Control" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/HBoxContainer/StartWaveButton" to="." method="_on_start_wave_button_pressed"]

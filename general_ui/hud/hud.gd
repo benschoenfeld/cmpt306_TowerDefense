@@ -3,6 +3,8 @@ class_name HUD
 extends Control
 ## Displays the [ToolUI], [SeedBag], and [MoneyCounter] for the player.
 
+signal started_wave
+
 @export_category("Local Nodes")
 ## A reference to the [ToolUI].
 @export var tool_ui: ToolUI
@@ -15,6 +17,9 @@ extends Control
 
 ## A reference to the [SeedBag].
 @export var seed_bag: SeedBag
+
+## A refernce to a [Button] that starts an enemy wave.
+@export var wave_button: Button
 
 @export_category("Outside Nodes")
 ## A reference to the [GameManager].
@@ -38,3 +43,8 @@ func _on_game_manager_money_changed(new_amount: int) -> void:
 ## Updates the [param health_display].
 func _on_game_manager_health_change(new_amount: int) -> void:
 	health_display.display_amount(new_amount)
+
+## Emits a signal to start the next wave.
+func _on_start_wave_button_pressed() -> void:
+	wave_button.hide()
+	started_wave.emit()
