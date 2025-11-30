@@ -42,9 +42,10 @@ signal health_change(new_amount: int)
 
 ## Sets up the all the interactable game tiles
 func _ready() -> void:
-	#_load_and_connect_tile()
 	set_health(health_amount)
 	_set_up_model()
+	# Give information to the tool manager to allow player 
+	# to interact with tiles.
 	tool_manager.set_tile_map(game_map_tile_map)
 	tool_manager.set_model(model)
 
@@ -95,15 +96,6 @@ func _player_death() -> void:
 func _set_up_model() -> void:
 	game_map_tile_map.update_internals()
 	model.create_dict(game_map_tile_map)
-
-## Finds all [FarmingTile] and connects them to the [ToolManager].
-#func _load_and_connect_tile():
-	## This is important to update the children being added a children 
-	## to the tile map node
-	#farming_tile_map.update_internals()
-	#for tile in farming_tile_map.get_children():
-		#if tile is FarmingTile and tool_manager != null:
-			#tile.connect("send_tile_data", Callable(tool_manager, "interact"))
 
 ## When the pause button is pressed is adds the pause scene to 
 ## the [param pause_menu_layer].
