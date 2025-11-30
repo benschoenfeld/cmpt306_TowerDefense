@@ -32,7 +32,7 @@ signal health_change(new_amount: int)
 
 @export_category("Game Settings")
 ## The players resource.
-@export var money_amount: int = 0
+@export var money_amount: int = 100
 
 ## The players health resource.
 @export var health_amount: int = 20
@@ -43,6 +43,7 @@ signal health_change(new_amount: int)
 ## Sets up the all the interactable game tiles
 func _ready() -> void:
 	set_health(health_amount)
+	set_money(money_amount)
 	_set_up_model()
 	# Give information to the tool manager to allow player 
 	# to interact with tiles.

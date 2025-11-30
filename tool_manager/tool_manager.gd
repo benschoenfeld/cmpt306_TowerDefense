@@ -18,10 +18,6 @@ signal selected_tower_changed(towerResorce: TowerResource)
 const CURSOR_HOTSPOT = Vector2(16, 16)
 const CURSOR_SHAPE = Input.CURSOR_ARROW
 
-@export_category("Enums")
-## Give the enum for tools that can be shared between scenes.
-@export var tool_enum: ToolEnums
-
 @export_category("Mouse Icon Textures")
 
 ## The asset of the shovel icon for the mouse.
@@ -50,6 +46,9 @@ const CURSOR_SHAPE = Input.CURSOR_ARROW
 
 ## Amount of saturation aplied by the tool 'WaterCan'
 @export var watering_amount: float = 100.0
+
+## Give the enum for tools that can be shared between scenes.
+var tool_enum: ToolEnums = ToolEnums.new()
 
 ## Tools array that holds all of the tool [Texture]
 var toolArray: Array[Texture] = []
