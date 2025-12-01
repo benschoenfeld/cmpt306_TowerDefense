@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="TowerResource" load_steps=3 format=3 uid="uid://ck4t43vb3w1vv"]
+[gd_resource type="Resource" script_class="TowerResource" load_steps=4 format=3 uid="uid://ck4t43vb3w1vv"]
 
 [ext_resource type="Texture2D" uid="uid://dcm0g44wpcpgo" path="res://defenses/assets/tower_2.png" id="1_07axu"]
 [ext_resource type="Script" uid="uid://b72xnny36e77a" path="res://defenses/resources/tower_resource.gd" id="1_hqmhm"]
+[ext_resource type="PackedScene" uid="uid://pj08ne85texd" path="res://defenses/bullets/bullet_2.tscn" id="1_lww6q"]
 
 [resource]
 script = ExtResource("1_hqmhm")
 icon = ExtResource("1_07axu")
 turret_texture = ExtResource("1_07axu")
-cost = 100
-damage = 10
+damage = 4
+area_range = 20.0
+bullet_scene = ExtResource("1_lww6q")
+bullet_speed = 300.0
 metadata/_custom_type_script = "uid://b72xnny36e77a"
