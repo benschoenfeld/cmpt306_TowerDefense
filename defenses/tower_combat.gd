@@ -76,19 +76,29 @@ func fire_at(target: Node2D):
 	if not is_instance_valid(target):
 		return
 	var bullet = bullet_scene.instantiate()
-	var global_pos := global_position
+	if bullet == null:
+		push_error("Failed to instantiate bullet scene in TowerCommbat")
+		return
+		
+	var spawn_pos := global_position
 	if _marker and is_instance_valid(_marker):
-		global_pos = _marker.global_position
-	bullet.global_position = global_pos
-	bullet.target = target
-	bullet.damage = damage
+		spawn_pos = _marker.global_position
+	bullet.global_position = spawn_pos
+	bullet.set("target", target)
+	bullet.set("damage", int(damage))
 	
-	if "speed" in bullet:
-		bullet.speed = bullet_speed
-	var direction = (target.global_position - global_pos)
+	if bullet.has_method("set"):
+		bullet.set("speed", float(bullet_speed))
+		bullet.set("bullet_speed", float(bullet_speed))
+	var direction = (target.global_position - spawn_pos)
 	if direction.length() > 0:
 		bullet.rotation = direction.normalized().angle()
-	get_tree().get_curent_scene().add_child(bullet)
+	
+	var current_scene = get_tree().get_current_scene()
+	if current_scene:
+		current_scene.add_child(bullet)
+	else:
+		get_tree().get_root().add_child(bullet)
 	
 func targets_append_unique(node: Node) -> void:
 	if node == null:

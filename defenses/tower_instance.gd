@@ -50,17 +50,15 @@ func apply_tower_resource(towerRes: TowerResource) -> void:
 			if ColShape is CircleShape2D:
 				ColShape.radius = float(towerRes.area_range)
 	
-	#var towerCombat = get_node(tower_combat_path)
-	#if towerCombat:
-		#if towerCombat.has_variable("damage"):
-			#towerCombat.damage = int(towerRes.damage)
-		#if towerCombat.has_variable("fire_rate"):
-			#towerCombat.fire_rate = float(towerRes.fire_rate)
-		#if towerCombat.has_variable("bullet_scene") and towerRes.bullet_scene:
-			#towerCombat.bullet_scene = towerRes.bullet_scene
-		#if towerCombat.has_variable("bullet_speed"):
-			#towerCombat.bullet_speed = float(towerRes.bullet_speed)
-			
+	var towerCombat = get_node(tower_combat_path)
+	if towerCombat:
+		towerCombat.set("damage", int(towerRes.damage))
+		towerCombat.set("fire_rate", float(towerRes.fire_rate))
+		if towerRes.bullet_scene:
+			towerCombat.bullet_scene = towerRes.bullet_scene
+		towerCombat.set("bullet_speed", float(towerRes.bullet_speed))
+	else:
+		print("TowerInstance: towercombat path not found")
 	
 	if not is_in_group("Towers"):
 		add_to_group("Towers")

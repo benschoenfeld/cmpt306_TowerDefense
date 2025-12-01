@@ -41,7 +41,8 @@ func do_damage(amount: int) -> void:
 		on_death()
 
 func on_death() -> void:
-	if animation.sprite_frames and animation.sprite_frames.has_animation("die"):
-		animation.play("die")
-		await animation.animation_finished
+	## The dead enemeis were still following the path so I commented animation for now
+	#if animation.sprite_frames and animation.sprite_frames.has_animation("die"):
+		#animation.play("die")
+		#await animation.animation_finished
 	queue_free()
