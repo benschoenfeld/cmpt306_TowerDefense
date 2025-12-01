@@ -141,10 +141,7 @@ func _process(_delta: float) -> void:
 func interact(tile: BaseTile) -> void:
 	if tile == null:
 		return
-	if not (tile is FarmingTile):
-		# ignore
-		return
-	
+
 	var tool = current_tool_index
 	var strategy: ToolBase
 	
@@ -162,8 +159,12 @@ func interact(tile: BaseTile) -> void:
 			var shovel: Shovel = strategy
 			shovel.set_seed(selected_seed)
 			
-		#int(tool_enum.Tool.TARGET):
-			# TODO: Add this logic and node to scece
+		int(tool_enum.Tool.TARGET):
+			print("Target Selected")
+			strategy = $TowerTool
+			var tower_tool: TowerTool = strategy
+			tower_tool.set_money_amount(game_manager.get_money())
+			tower_tool.set_tower(selected_tower)
 			
 	strategy.interact_effect(tile)
 
@@ -188,7 +189,12 @@ func _on_tower_bag_selected_tower(towerResorce: TowerResource) -> void:
 func get_selected_tower() -> TowerResource:
 	return selected_tower
 
-
+##
 func _on_hoe_money_updated(new_amount: int) -> void:
 	if game_manager:
 		game_manager.add_money(new_amount)
+
+##
+func _on_tower_tool_money_changed(new_amount: int) -> void:
+	if game_manager:
+		game_manager.add_money(-new_amount)
