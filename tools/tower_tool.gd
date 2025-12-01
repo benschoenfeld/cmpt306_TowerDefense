@@ -9,7 +9,7 @@ extends ToolBase
 signal money_changed(new_amount: int)
 
 ##
-@export var tower_instance_scene: PackedScene = preload("res://defenses/tower_instance.tscn")
+@export var tower_instance_scene: PackedScene = preload("res://defenses/towerInstance/tower_instance.tscn")
 
 ##
 var selected_tower: TowerResource
