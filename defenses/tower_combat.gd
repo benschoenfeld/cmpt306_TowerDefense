@@ -25,13 +25,24 @@ func _ready() -> void:
 		_areaRange.connect("area_exited", Callable(self, "_on_area_exited"))
 
 func _process(delta: float) -> void:
+	# reduce the cooldown
 	cooldown = max(0.0, cooldown - delta)
+	
+	# remove dead enemies from being the target
 	cleanup_targets()
+	
+	# choose nearest target
 	var target = choose_target()
-	if target:
-		_rotate_towards(target)
+	if not target:
+		return
+	
+	# rotate towareds the enemy smoothly
+	_rotate_towards(target)
+	
+	if cooldown <= 0.0:
 		fire_at(target)
-		cooldown = 1.0 / max(0.0001, fire_rate)
+		var rate = max(0.0001, fire_rate)
+		cooldown = 1.0 / rate
 	
 
 func _on_area_entered(area: Area2D) -> void:
@@ -84,12 +95,18 @@ func fire_at(target: Node2D):
 	if _marker and is_instance_valid(_marker):
 		spawn_pos = _marker.global_position
 	bullet.global_position = spawn_pos
-	bullet.set("target", target)
-	bullet.set("damage", int(damage))
 	
 	if bullet.has_method("set"):
+		bullet.set("target", target)
+		bullet.set("damage", int(damage))
 		bullet.set("speed", float(bullet_speed))
-		bullet.set("bullet_speed", float(bullet_speed))
+	else:
+		if "target" in bullet:
+			bullet.target = target
+		if "damage" in bullet:
+			bullet.damage = damage
+		if "speed" in bullet:
+			bullet.speed = float(bullet_speed)
 	var direction = (target.global_position - spawn_pos)
 	if direction.length() > 0:
 		bullet.rotation = direction.normalized().angle()
