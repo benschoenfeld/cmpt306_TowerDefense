@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://0wsbgy801txt"]
+[gd_scene load_steps=18 format=4 uid="uid://0wsbgy801txt"]
 
 [ext_resource type="Script" uid="uid://ddh6nidkpvu7s" path="res://game_manager/game_manager.gd" id="1_ong7i"]
 [ext_resource type="PackedScene" uid="uid://bb0emy17c3vce" path="res://general_ui/pause_menu/pause_menu.tscn" id="2_mx6ys"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://ccie4sn00x1ch" path="res://game_manager/assets/mixkit-clinking-coins-1993.wav" id="6_d3erd"]
 [ext_resource type="PackedScene" uid="uid://ckbw8cegydtbp" path="res://path/path.tscn" id="7_cp5ju"]
 [ext_resource type="PackedScene" uid="uid://bi0fyjs74gjff" path="res://defenses/tower.tscn" id="8_qs53i"]
+[ext_resource type="PackedScene" uid="uid://ojx03imwc7y3" path="res://enemies/scenes/spawner.tscn" id="9_cp5ju"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_03pqa"]
 resource_name = "FarmingTile"
@@ -71,6 +72,9 @@ game_manager = NodePath("../..")
 
 [node name="EnemyPath" type="Path2D" parent="Game"]
 curve = SubResource("Curve2D_cp5ju")
+
+[node name="Spawner" parent="Game" node_paths=PackedStringArray("path") instance=ExtResource("9_cp5ju")]
+path = NodePath("../EnemyPath")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 3

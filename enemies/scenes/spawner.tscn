@@ -1,0 +1,15 @@
+[gd_scene load_steps=6 format=3 uid="uid://ojx03imwc7y3"]
+
+[ext_resource type="Script" uid="uid://ddevai72ilpnu" path="res://enemies/scripts/spawner.gd" id="1_6jdf2"]
+[ext_resource type="PackedScene" uid="uid://brubuawgcp3yj" path="res://enemies/scenes/enemy.tscn" id="2_1bqtj"]
+[ext_resource type="Resource" uid="uid://dx5yxvorwheb" path="res://enemies/resources/Normal.tres" id="3_ntsrd"]
+[ext_resource type="Resource" uid="uid://c5evdd87ruxym" path="res://enemies/resources/Fast.tres" id="4_p8ca5"]
+[ext_resource type="Resource" uid="uid://c30ygqmp03miq" path="res://enemies/resources/Tank.tres" id="5_o35nu"]
+
+[node name="Spawner" type="Node" node_paths=PackedStringArray("path")]
+script = ExtResource("1_6jdf2")
+path = NodePath("")
+enemy_scene = ExtResource("2_1bqtj")
+normal_enemy = ExtResource("3_ntsrd")
+fast_enemy = ExtResource("4_p8ca5")
+tank_enemy = ExtResource("5_o35nu")

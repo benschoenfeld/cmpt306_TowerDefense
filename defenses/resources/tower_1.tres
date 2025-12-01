@@ -7,4 +7,6 @@
 script = ExtResource("1_eu6q4")
 icon = ExtResource("1_7pyuk")
 turret_texture = ExtResource("1_7pyuk")
+cost = 50
+damage = 5
 metadata/_custom_type_script = "uid://b72xnny36e77a"
