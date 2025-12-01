@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Wave" load_steps=4 format=3 uid="uid://bcoq3646h64nb"]
+
+[ext_resource type="Script" uid="uid://cc7cvihtppahe" path="res://enemies/scripts/Wave.gd" id="1_k28lm"]
+[ext_resource type="Script" uid="uid://c4xq245d30i11" path="res://enemies/scripts/EnemySequence.gd" id="2_0pmfm"]
+[ext_resource type="Resource" uid="uid://cxpqk60wlgq6q" path="res://enemies/waves/seq_6_fast.tres" id="3_0pmfm"]
+
+[resource]
+script = ExtResource("1_k28lm")
+sequences = Array[ExtResource("2_0pmfm")]([ExtResource("3_0pmfm")])
+delay = 30.0
+metadata/_custom_type_script = "uid://cc7cvihtppahe"

@@ -1,8 +1,14 @@
-[gd_scene load_steps=7 format=4 uid="uid://dphi6aiemr4y1"]
+[gd_scene load_steps=13 format=4 uid="uid://dphi6aiemr4y1"]
 
 [ext_resource type="PackedScene" uid="uid://ojx03imwc7y3" path="res://enemies/scenes/spawner.tscn" id="1_t414q"]
+[ext_resource type="Script" uid="uid://cc7cvihtppahe" path="res://enemies/scripts/Wave.gd" id="2_noe05"]
+[ext_resource type="Resource" uid="uid://cjxuje0dennvv" path="res://enemies/waves/wave_1.tres" id="3_om7h1"]
+[ext_resource type="Resource" uid="uid://bcoq3646h64nb" path="res://enemies/waves/wave_2.tres" id="4_wjgdk"]
+[ext_resource type="Resource" uid="uid://dk82sxff7f7h2" path="res://enemies/waves/wave_3.tres" id="5_sjjxq"]
+[ext_resource type="Resource" uid="uid://d2ar7angy1077" path="res://enemies/waves/wave_4.tres" id="6_8mj4k"]
 [ext_resource type="Texture2D" uid="uid://ofxp3ifgk660" path="res://path/assets/towerDefense_tilesheet.png" id="6_l2qbe"]
 [ext_resource type="PackedScene" uid="uid://3dkwwgndl3o" path="res://defenses/base/base.tscn" id="7_m8nhv"]
+[ext_resource type="Resource" uid="uid://dl2l15tp5kbvl" path="res://enemies/waves/wave_5.tres" id="7_om7h1"]
 
 [sub_resource type="Curve2D" id="Curve2D_yfmo6"]
 _data = {
@@ -1219,7 +1225,9 @@ rotation = -0.0015141064
 scale = Vector2(2.141, 1)
 curve = SubResource("Curve2D_yfmo6")
 
-[node name="Spawner" parent="." instance=ExtResource("1_t414q")]
+[node name="Spawner" parent="." node_paths=PackedStringArray("path") instance=ExtResource("1_t414q")]
+path = NodePath("../Path2D")
+waves = Array[ExtResource("2_noe05")]([ExtResource("3_om7h1"), ExtResource("4_wjgdk"), ExtResource("5_sjjxq"), ExtResource("6_8mj4k"), ExtResource("7_om7h1")])
 
 [node name="TileMap" type="TileMapLayer" parent="."]
 position = Vector2(0, -1)
