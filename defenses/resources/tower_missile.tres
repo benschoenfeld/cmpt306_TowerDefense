@@ -8,6 +8,8 @@
 script = ExtResource("1_edcit")
 icon = ExtResource("1_csb51")
 turret_texture = ExtResource("1_csb51")
-cost = 150
+damage = 8
+area_range = 20.0
 bullet_scene = ExtResource("1_x6s2u")
+bullet_speed = 200.0
 metadata/_custom_type_script = "uid://b72xnny36e77a"

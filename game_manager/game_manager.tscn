@@ -44,7 +44,7 @@ metadata/_edit_lock_ = true
 
 [node name="ToolManager" parent="Game" node_paths=PackedStringArray("game_manager") instance=ExtResource("6_2631c")]
 game_manager = NodePath("../..")
-watering_amount = 0.5
+watering_amount = 5.0
 metadata/_edit_lock_ = true
 
 [node name="VisualTiles" type="TileMapLayer" parent="Game"]
