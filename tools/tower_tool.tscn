@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqu5o84elqefp"]
+
+[ext_resource type="PackedScene" uid="uid://mujp8qao5svr" path="res://tools/tool.tscn" id="1_fjcmi"]
+[ext_resource type="Script" uid="uid://cjk8j13mvmwku" path="res://tools/tower_tool.gd" id="2_r1rh7"]
+[ext_resource type="PackedScene" uid="uid://by37g527bvnb8" path="res://defenses/tower_instance.tscn" id="3_r1rh7"]
+
+[node name="TowerTool" instance=ExtResource("1_fjcmi")]
+script = ExtResource("2_r1rh7")
+tower_instance_scene = ExtResource("3_r1rh7")
+
+[node name="DenySound" type="AudioStreamPlayer" parent="." index="1"]

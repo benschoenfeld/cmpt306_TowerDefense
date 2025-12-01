@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmmjsxbvqc2j3"]
+[gd_scene load_steps=7 format=3 uid="uid://dmmjsxbvqc2j3"]
 
 [ext_resource type="Script" uid="uid://cvvvfjm75a7rh" path="res://tool_manager/tool_manager.gd" id="1_b78em"]
 [ext_resource type="AudioStream" uid="uid://cd6oqp8pkru3m" path="res://tool_manager/assets/metal_interaction1.wav" id="3_exrli"]
+[ext_resource type="PackedScene" uid="uid://cqu5o84elqefp" path="res://tools/tower_tool.tscn" id="6_exrli"]
 [ext_resource type="PackedScene" uid="uid://7e8hesjk7gwl" path="res://tools/shovel.tscn" id="7_rjpn1"]
 [ext_resource type="PackedScene" uid="uid://cktag0k6gm3qw" path="res://tools/hoe.tscn" id="8_sao2t"]
 [ext_resource type="PackedScene" uid="uid://bea0dc5hi48dg" path="res://tools/watercan.tscn" id="9_dmllw"]
@@ -21,4 +22,7 @@ bus = &"SFX"
 
 [node name="Watercan" parent="." instance=ExtResource("9_dmllw")]
 
+[node name="TowerTool" parent="." instance=ExtResource("6_exrli")]
+
 [connection signal="money_updated" from="Hoe" to="." method="_on_hoe_money_updated"]
+[connection signal="money_changed" from="TowerTool" to="." method="_on_tower_tool_money_changed"]
