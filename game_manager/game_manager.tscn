@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://0wsbgy801txt"]
+[gd_scene load_steps=17 format=4 uid="uid://0wsbgy801txt"]
 
 [ext_resource type="Script" uid="uid://ddh6nidkpvu7s" path="res://game_manager/game_manager.gd" id="1_ong7i"]
 [ext_resource type="PackedScene" uid="uid://bb0emy17c3vce" path="res://general_ui/pause_menu/pause_menu.tscn" id="2_mx6ys"]
@@ -13,7 +13,6 @@
 [ext_resource type="AudioStream" uid="uid://ccie4sn00x1ch" path="res://game_manager/assets/mixkit-clinking-coins-1993.wav" id="6_d3erd"]
 [ext_resource type="PackedScene" uid="uid://ckbw8cegydtbp" path="res://path/path.tscn" id="7_cp5ju"]
 [ext_resource type="PackedScene" uid="uid://bi0fyjs74gjff" path="res://defenses/tower.tscn" id="8_qs53i"]
-[ext_resource type="PackedScene" uid="uid://blcm64pbdyg22" path="res://defenses/tower_bag/tower_bag.tscn" id="10_oxvrm"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_03pqa"]
 resource_name = "FarmingTile"
@@ -80,9 +79,11 @@ layer = 3
 manager = NodePath("../..")
 metadata/_edit_lock_ = true
 
-[node name="TowerBag" parent="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer" index="1" node_paths=PackedStringArray("tool_manager") instance=ExtResource("10_oxvrm")]
-layout_mode = 2
-tool_manager = NodePath("../../../../../../Game/ToolManager")
+[node name="SeedBag" parent="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer" index="0"]
+visible = false
+
+[node name="TowerBag" parent="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer" index="1"]
+visible = false
 
 [node name="UISounds" parent="." instance=ExtResource("3_kkxic")]
 root_path = NodePath("..")
@@ -117,9 +118,11 @@ bus = &"Music"
 [connection signal="health_change" from="." to="HUD/hud" method="_on_game_manager_health_change"]
 [connection signal="money_changed" from="." to="HUD/hud" method="_on_game_manager_money_changed"]
 [connection signal="request_seed_menu" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_request_seed_menu"]
+[connection signal="request_tower_bag" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_request_tower_bag"]
 [connection signal="selected_tower_changed" from="Game/ToolManager" to="Game/Tower" method="_on_tool_manager_selected_tower_changed"]
 [connection signal="tool_changed" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_tool_changed"]
 [connection signal="selected_seed" from="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer/SeedBag" to="Game/ToolManager" method="_on_seed_bag_selected_seed"]
+[connection signal="selected_tower" from="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer/TowerBag" to="Game/ToolManager" method="_on_tower_bag_selected_tower"]
 [connection signal="pressed" from="PauseUI/CenterContainer/PauseButton" to="." method="_on_pause_button_pressed"]
 
 [editable path="HUD/hud"]

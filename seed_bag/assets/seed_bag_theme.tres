@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=4 uid="uid://di8blm5mdlu7f"]
+[gd_resource type="Theme" load_steps=12 format=4 uid="uid://di8blm5mdlu7f"]
 
 [ext_resource type="Texture2D" uid="uid://h3uc7gik0ps3" path="res://seed_bag/assets/seed-background.png" id="1_x0dt6"]
 
@@ -871,6 +871,17 @@ texture_margin_right = 32.48479
 texture_margin_bottom = 32.842148
 region_rect = Rect2(0, 0, 128, 128)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x0dt6"]
+load_path = "res://.godot/imported/seed-background.png-6f2613631295f61ffd3e273d60d74b39.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0k4kj"]
+texture = SubResource("CompressedTexture2D_x0dt6")
+texture_margin_left = 33.0
+texture_margin_top = 32.842148
+texture_margin_right = 32.48479
+texture_margin_bottom = 32.842148
+region_rect = Rect2(0, 0, 128, 128)
+
 [resource]
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
@@ -897,3 +908,4 @@ Button/styles/hover = SubResource("StyleBoxFlat_cf0tb")
 Button/styles/normal = SubResource("StyleBoxFlat_0f6ni")
 Button/styles/pressed = SubResource("StyleBoxFlat_kaxl6")
 Panel/styles/panel = SubResource("StyleBoxTexture_6rjhh")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_0k4kj")

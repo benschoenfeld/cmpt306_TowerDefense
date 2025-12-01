@@ -18,6 +18,9 @@ signal started_wave
 ## A reference to the [SeedBag].
 @export var seed_bag: SeedBag
 
+## A reference to the [TowerBag].
+@export var tower_bag: TowerBag
+
 ## A refernce to a [Button] that starts an enemy wave.
 @export var wave_button: Button
 
@@ -48,3 +51,7 @@ func _on_game_manager_health_change(new_amount: int) -> void:
 func _on_start_wave_button_pressed() -> void:
 	wave_button.hide()
 	started_wave.emit()
+
+##
+func _on_tool_manager_request_tower_bag(show_item: bool) -> void:
+	tower_bag.visible = show_item

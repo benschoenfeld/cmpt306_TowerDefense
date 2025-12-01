@@ -12,6 +12,7 @@ signal tool_changed(tool_index: int)
 
 ## Communicates with the [SeedBag] to visually show it or not.
 signal request_seed_menu(show_item: bool)
+signal request_tower_bag(show_item: bool)
 signal selected_tower_changed(towerResorce: TowerResource)
 
 # Cursor constants
@@ -30,7 +31,7 @@ const CURSOR_SHAPE = Input.CURSOR_ARROW
 @export var tool_hoe: Texture = preload("res://tool_manager/assets/tool_hoe.png")
 
 ## The asset of the target icon for the mouse.
-@export var tool_target = preload("res://tool_manager/assets/target_round_a.png")
+@export var tool_target: Texture = preload("res://tool_manager/assets/target_round_a.png")
 
 
 @export_category("ToolManager Nodes")
@@ -88,6 +89,7 @@ func _set_current_tool(index: int) -> void:
 	
 	tool_changed.emit(current_tool_index)
 	request_seed_menu.emit(current_tool_index == tool_enum.Tool.SHOVEL)
+	request_tower_bag.emit(current_tool_index == tool_enum.Tool.TARGET)
 
 ## Switches the [param current_tool_index] and switches the mouse icon texture.
 func set_current_tool(index: int) -> void:
@@ -160,6 +162,9 @@ func interact(tile: BaseTile) -> void:
 			var shovel: Shovel = strategy
 			shovel.set_seed(selected_seed)
 			
+		#int(tool_enum.Tool.TARGET):
+			# TODO: Add this logic and node to scece
+			
 	strategy.interact_effect(tile)
 
 ## Setter for [param tile_map].
@@ -185,4 +190,5 @@ func get_selected_tower() -> TowerResource:
 
 
 func _on_hoe_money_updated(new_amount: int) -> void:
-	game_manager.add_money(new_amount)
+	if game_manager:
+		game_manager.add_money(new_amount)

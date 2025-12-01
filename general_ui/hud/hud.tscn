@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://me31tyggjdy4"]
+[gd_scene load_steps=7 format=3 uid="uid://me31tyggjdy4"]
 
 [ext_resource type="Script" uid="uid://dt15eegl850rw" path="res://general_ui/hud/hud.gd" id="1_hk4rq"]
 [ext_resource type="PackedScene" uid="uid://26g0tisiojj8" path="res://general_ui/hud/ToolUI.tscn" id="2_br5ty"]
 [ext_resource type="PackedScene" uid="uid://nebwwifttxrv" path="res://general_ui/hud/number_display.tscn" id="3_kafub"]
 [ext_resource type="Texture2D" uid="uid://d4de1wjl2s5v2" path="res://general_ui/hud/assets/genericItem_color_158.png" id="4_bk23a"]
 [ext_resource type="PackedScene" uid="uid://8ccoultreyuc" path="res://seed_bag/seed_bag.tscn" id="4_kafub"]
+[ext_resource type="PackedScene" uid="uid://blcm64pbdyg22" path="res://defenses/tower_bag/tower_bag.tscn" id="5_bk23a"]
 
-[node name="Hud" type="Control" node_paths=PackedStringArray("tool_ui", "health_display", "money_display", "seed_bag", "wave_button")]
+[node name="Hud" type="Control" node_paths=PackedStringArray("tool_ui", "health_display", "money_display", "seed_bag", "tower_bag", "wave_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,9 +18,10 @@ mouse_filter = 2
 mouse_behavior_recursive = 1
 script = ExtResource("1_hk4rq")
 tool_ui = NodePath("VBoxContainer/HBoxContainer2/ToolUI")
-health_display = NodePath("VBoxContainer/HBoxContainer/Control/HBoxContainer/HealthDisplay")
-money_display = NodePath("VBoxContainer/HBoxContainer/Control/HBoxContainer/MoneyDisplay")
+health_display = NodePath("VBoxContainer/HBoxContainer/Spacer1/HBoxContainer/HealthDisplay")
+money_display = NodePath("VBoxContainer/HBoxContainer/Spacer1/HBoxContainer/MoneyDisplay")
 seed_bag = NodePath("VBoxContainer/HBoxContainer/CenterContainer/SeedBag")
+tower_bag = NodePath("VBoxContainer/HBoxContainer/CenterContainer/TowerBag")
 wave_button = NodePath("VBoxContainer/HBoxContainer2/HBoxContainer/StartWaveButton")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -38,21 +40,21 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer"]
+[node name="Spacer1" type="Control" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Control"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Spacer1"]
 layout_mode = 0
 offset_right = 488.0
 offset_bottom = 80.0
 theme_override_constants/separation = 40
 
-[node name="HealthDisplay" parent="VBoxContainer/HBoxContainer/Control/HBoxContainer" instance=ExtResource("3_kafub")]
+[node name="HealthDisplay" parent="VBoxContainer/HBoxContainer/Spacer1/HBoxContainer" instance=ExtResource("3_kafub")]
 layout_mode = 2
 context_line = "Health:"
 
-[node name="MoneyDisplay" parent="VBoxContainer/HBoxContainer/Control/HBoxContainer" instance=ExtResource("3_kafub")]
+[node name="MoneyDisplay" parent="VBoxContainer/HBoxContainer/Spacer1/HBoxContainer" instance=ExtResource("3_kafub")]
 layout_mode = 2
 icon = ExtResource("4_bk23a")
 context_line = "Money:"
@@ -60,11 +62,14 @@ context_line = "Money:"
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="SeedBag" parent="VBoxContainer/HBoxContainer/CenterContainer" instance=ExtResource("4_kafub")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+
+[node name="TowerBag" parent="VBoxContainer/HBoxContainer/CenterContainer" instance=ExtResource("5_bk23a")]
+layout_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 128)
