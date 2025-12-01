@@ -1,19 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://pj08ne85texd"]
 
 [ext_resource type="Script" uid="uid://cfi3omdvxxtcq" path="res://defenses/bullets/bullet.gd" id="1_cn0yd"]
-[ext_resource type="Texture2D" uid="uid://d1jt2k6a0wg15" path="res://defenses/bullets/barrelRed_top.png" id="2_y0hs1"]
+[ext_resource type="Texture2D" uid="uid://djkun732yj0xq" path="res://defenses/bullets/bullet_2.png" id="2_cn0yd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wmrre"]
+radius = 13.170778
 
 [node name="Bullet2" type="Area2D"]
 script = ExtResource("1_cn0yd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = -2.3143065
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.7, 0.7)
 shape = SubResource("CircleShape2D_wmrre")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 3.9688787
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_y0hs1")
+rotation = 4.712389
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_cn0yd")
