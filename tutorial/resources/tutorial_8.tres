@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource("1_ryv25")
-tutorial_text = "Towers will kill the bugs! Towers are important to win but  you must keep up with crops so you will have enough money to place towers. Good luck dealing with the waves of bugs!"
+tutorial_text = "[wave]Towers will kill the bugs![/wave] Towers are important to win but you must keep up with crops so you will have enough money to place towers. [wave]Good luck dealing with the waves of bugs![/wave]"
 animation = ExtResource("1_7lqcp")
 metadata/_custom_type_script = "uid://cmrs3wvggadjl"

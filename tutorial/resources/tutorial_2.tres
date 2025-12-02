@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource("1_x6bxj")
-tutorial_text = "You have a set of tools that will help you plant and harvest crops."
+tutorial_text = "You have a set of [pulse]tools[/pulse] that will help you [wave]plant and harvest crops.[/wave]"
 animation = ExtResource("1_cj7ua")
 metadata/_custom_type_script = "uid://cmrs3wvggadjl"

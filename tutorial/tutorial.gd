@@ -16,11 +16,13 @@ var tutorial_content_index: int = 0
 ## or finished the tutorial
 @onready var next_button = $PanelContainer/VBoxContainer/HBoxContainer/NextButton
 
-##
+## A reference to the text box for the turorial text.
 @onready var tutorial_text = $PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer/TutorialText
 
+## A [CanvasLayer] that holds sprites for the animation.
 @onready var sprite_holder = $Sprites
 
+## A reference to an [AnimationPlayer].
 @onready var anim_player = $AnimationPlayer
 
 func _ready() -> void:

@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource("1_kemcf")
-tutorial_text = "You must protect your home against the bugs! Stop the bugs before they reach you house!"
+tutorial_text = "You must protect your home against the [wave]bugs![/wave] Stop the bugs before they reach you [pulse]house![/pulse]"
 animation = ExtResource("1_livju")
 metadata/_custom_type_script = "uid://cmrs3wvggadjl"

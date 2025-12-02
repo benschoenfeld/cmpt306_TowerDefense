@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_y1str")
-tutorial_text = "Once you have money you can place towers with the target tool. Select a tower from the tower bag."
+tutorial_text = "Once you have [pulse]money[/pulse] you can [wave]place towers[/wave] with the [pulse]target tool.[/pulse] 
+Select a tower from the [pulse]tower bag.[/pulse]"
 animation = ExtResource("1_v8g0h")
 metadata/_custom_type_script = "uid://cmrs3wvggadjl"

@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource("1_d17vw")
-tutorial_text = "The water can will grow the crop. You might have to water a crop more than once for it to grow! "
+tutorial_text = "The [pulse]water can[/pulse] will [wave]grow the crop[/wave]. You might have to water a crop more than once for it to grow! "
 animation = ExtResource("1_1xx3l")
 metadata/_custom_type_script = "uid://cmrs3wvggadjl"

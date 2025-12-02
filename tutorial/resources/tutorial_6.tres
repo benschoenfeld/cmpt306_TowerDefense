@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource("1_aanwp")
-tutorial_text = "Once a crop is grown then you can harvest the crop with the hoe tool! This will award you money."
+tutorial_text = "Once a crop is grown then you can [wave]harvest the crop[/wave] with the [pulse]hoe tool![/pulse] This will award you [pulse]money.[/pulse] "
 animation = ExtResource("1_fcjo1")
 metadata/_custom_type_script = "uid://cmrs3wvggadjl"

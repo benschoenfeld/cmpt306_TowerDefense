@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource("1_7ae4m")
-tutorial_text = "The shovel will allow you to plant crops on dry or wet dirt. You must select a seed from the seed bag to the right. Different seeds will give different amounts of money but also can take more time to grow.  "
+tutorial_text = "The [pulse]shovel[/pulse] will allow you to [wave]plant crops on dry or wet dirt.[/wave] You must select a seed from the [pulse]seed bag[/pulse] to the right. Different seeds will give different amounts of [pulse]money[/pulse] but also can take more time to grow."
 animation = ExtResource("1_8uafm")
 metadata/_custom_type_script = "uid://cmrs3wvggadjl"
