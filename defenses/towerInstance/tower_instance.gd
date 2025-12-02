@@ -62,7 +62,5 @@ func apply_tower_resource(towerRes: TowerResource) -> void:
 	
 	if not is_in_group("Towers"):
 		add_to_group("Towers")
-	
-	print("TowerInstance: applied resource:", towerRes.tower_name, "turret_texture:", towerRes.turret_texture, "areaRange: ", towerRes.area_range)
-		
+			
 	
