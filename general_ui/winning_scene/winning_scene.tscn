@@ -1,0 +1,90 @@
+[gd_scene load_steps=2 format=3 uid="uid://bt1ffw4hej4b2"]
+
+[ext_resource type="Script" uid="uid://whgqxkonp0vh" path="res://general_ui/winning_scene/winning_scene.gd" id="1_xf154"]
+
+[node name="WinningScene" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xf154")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1000, 200)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 156
+bbcode_enabled = true
+text = "[pulse][wave amp=50.0 freq=5.0 connected=1]You Win![/wave][/pulse]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "You killed all of the bugs!"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 45
+
+[node name="PlayAgainButton" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 110)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Play Again"
+
+[node name="MainMenuButton" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 110)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Main Menu"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 110)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Quit"
+
+[node name="VictoryMusic" type="AudioStreamPlayer" parent="."]
+autoplay = true
+bus = &"Music"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
