@@ -7,7 +7,7 @@ class_name Enemy
 ## A reference to the direct path of the animation for the AnimatedSprite2D.
 @onready var animation: AnimatedSprite2D = $Area2D/AnimatedSprite2D
 
-# Determines the health of the enemy.
+# Determines the health of the player.
 var health: int
 
 ## A signal that indicates the enemy has completed it's Path2D.
@@ -31,7 +31,7 @@ func setup(enemy_type: EnemyType) -> void:
 			if names.size() > 0:
 				animation.play(names[0])
 			
-		
+	loop = false
 	progress_ratio = 0.0
 	
 ## Physics method to control movement of the enemy.
