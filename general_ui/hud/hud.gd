@@ -48,6 +48,7 @@ func _on_game_manager_money_changed(new_amount: int) -> void:
 
 ## Updates the [param health_display].
 func _on_game_manager_health_change(new_amount: int) -> void:
+	health_display.set_context("Health:")
 	health_display.display_amount(new_amount)
 
 ## Emits a signal to start the next wave.

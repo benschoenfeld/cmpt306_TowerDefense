@@ -9,20 +9,20 @@ extends Node
 ## A reference to the array of Wave resources; initially empty.
 @export var waves: Array[Wave] = []
 
-## A reference to the wave controller from HUD.
+@export_category("External Nodes")
+## A reference to the wave controller from [HUD].
 @export var wave_controller: HUD
 
-@export var base_health: int = 40
+## A refernce to the [GameManager].
+@export var game_manager: GameManager
 
-var current_health: int
-
-# Keeps track of the current wave in the array of waves, 'waves'.
+## Keeps track of the current wave in the array of waves, 'waves'.
 var current_wave_index: int = 0
 
-# Boolean flag to determine if a current wave is running.
+## Boolean flag to determine if a current wave is running.
 var wave_running: bool = false
 
-# Keeps track of how many waves have elapsed.
+## Keeps track of how many waves have elapsed.
 var wave_count: int = 0
 
 ## A signal to indicate that the current wave has finished.
@@ -34,16 +34,8 @@ func _ready() -> void:
 		wave_controller.started_wave.connect(_on_start_wave_button_pressed)
 		wave_finished.connect(wave_controller._on_wave_finished)
 	
-	current_health = base_health
-	
-	call_deferred("_init_health_display")
-
 	current_wave_index = 0
 	wave_running = false
-
-func _init_health_display() -> void:
-	if wave_controller:
-		wave_controller._on_game_manager_health_change(current_health)
 
 ## Handles action when UI 'start wave' button has been pressed.
 func _on_start_wave_button_pressed() -> void:
@@ -95,12 +87,5 @@ func spawn_enemy(type: EnemyType) -> void:
 	enemy.reached_end.connect(_on_enemy_at_base)
 
 func _on_enemy_at_base(damage: int) -> void:
-	current_health -= damage
-	if current_health < 0:
-		current_health = 0
-	
-	if wave_controller:
-		wave_controller._on_game_manager_health_change(current_health)
-
-	if current_health <= 0:
-		get_tree().quit()
+	if game_manager:
+		game_manager.remove_health(damage)

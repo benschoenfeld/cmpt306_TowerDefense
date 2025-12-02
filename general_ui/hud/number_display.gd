@@ -16,13 +16,13 @@ extends Control
 @export var context_line: String
 
 ## A reference to a [TextureRect] for displaying an icon.
-@onready var icon_node: TextureRect = $PanelContainer/PanelContainer/TextureRect
+@onready var icon_node: TextureRect = $PanelContainer/HBoxContainer/TextureRect
 
 ## A reference to a [Label] for displaying a context to a number. EX: How much money
-@onready var context_label: Label = $PanelContainer/Context
+@onready var context_label: Label = $PanelContainer/HBoxContainer/Context
 
 ## A reference to a [Label] for displaying a number.
-@onready var number_label: Label = $PanelContainer/Number
+@onready var number_label: Label = $PanelContainer/HBoxContainer/Number
 
 func _ready() -> void:
 	set_icon(icon)
@@ -30,7 +30,8 @@ func _ready() -> void:
 
 ## Sets the [param icon_node] with a new texture
 func set_icon(new_icon: Texture):
-	icon_node.texture = new_icon
+	if icon:
+		icon_node.texture = new_icon
 
 ## Sets the [param context_line] and visually update the [param context_label] text.
 func set_context(new_context: String):

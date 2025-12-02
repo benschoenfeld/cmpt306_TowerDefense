@@ -74,10 +74,11 @@ bus = &"SFX"
 [node name="EnemyPath" type="Path2D" parent="Game"]
 curve = SubResource("Curve2D_cp5ju")
 
-[node name="Spawner" parent="Game" node_paths=PackedStringArray("path", "wave_controller") instance=ExtResource("9_cp5ju")]
+[node name="Spawner" parent="Game" node_paths=PackedStringArray("path", "wave_controller", "game_manager") instance=ExtResource("9_cp5ju")]
 path = NodePath("../EnemyPath")
 waves = Array[ExtResource("9_tafu7")]([ExtResource("10_7c8rc"), ExtResource("11_fikbl"), ExtResource("12_i24ge"), ExtResource("13_s5nag"), ExtResource("14_oats1")])
 wave_controller = NodePath("../../HUD/hud")
+game_manager = NodePath("../..")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 3
