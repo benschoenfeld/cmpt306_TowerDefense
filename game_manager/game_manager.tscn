@@ -132,6 +132,7 @@ bus = &"Music"
 [connection signal="request_seed_menu" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_request_seed_menu"]
 [connection signal="request_tower_bag" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_request_tower_bag"]
 [connection signal="tool_changed" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_tool_changed"]
+[connection signal="wave_finished" from="Game/Spawner" to="." method="_on_spawner_wave_finished"]
 [connection signal="selected_seed" from="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer/SeedBag" to="Game/ToolManager" method="_on_seed_bag_selected_seed"]
 [connection signal="selected_tower" from="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer/TowerBag" to="Game/ToolManager" method="_on_tower_bag_selected_tower"]
 [connection signal="pressed" from="PauseUI/CenterContainer/PauseButton" to="." method="_on_pause_button_pressed"]

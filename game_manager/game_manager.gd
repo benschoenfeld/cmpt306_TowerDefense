@@ -93,6 +93,14 @@ func _player_death() -> void:
 	pause_ui_canvas.add_child(game_over)
 	get_tree().paused = true
 
+## A private function to handle the win of the player.
+func _player_wins() -> void:
+	print("Win")
+	var winning_scene: PackedScene = preload("res://general_ui/winning_scene/winning_scene.tscn")
+	var winning: WinningScene = winning_scene.instantiate()
+	pause_ui_canvas.add_child(winning)
+	get_tree().paused = true
+
 ## A private funtion to handle the making and conenction of the [param model].
 func _set_up_model() -> void:
 	game_map_tile_map.update_internals()
@@ -102,3 +110,8 @@ func _set_up_model() -> void:
 ## the [param pause_menu_layer].
 func _on_pause_button_pressed() -> void:
 	pause_menu.set_pause(true)
+
+
+func _on_spawner_wave_finished(has_more_waves: bool) -> void:
+	if !has_more_waves:
+		_player_wins()
