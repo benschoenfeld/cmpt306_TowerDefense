@@ -71,16 +71,17 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Previous" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="PreviousButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 110)
 layout_mode = 2
+disabled = true
 text = "Previous"
 
 [node name="Spacer2" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Next" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="NextButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 110)
 layout_mode = 2
 text = "Next"
@@ -88,3 +89,14 @@ text = "Next"
 [node name="Spacer3" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="SkipButton" type="Button" parent="PanelContainer"]
+custom_minimum_size = Vector2(200, 110)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Skip"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/PreviousButton" to="." method="_on_previous_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="PanelContainer/SkipButton" to="." method="_on_skip_button_pressed"]
