@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://b8xmwk0c8tn7d"]
+[gd_scene load_steps=9 format=4 uid="uid://b8xmwk0c8tn7d"]
 
 [ext_resource type="Script" uid="uid://dsevp8l6w4lx0" path="res://general_ui/main_menu/main_menu.gd" id="1_mmqbw"]
 [ext_resource type="PackedScene" uid="uid://0wsbgy801txt" path="res://game_manager/game_manager.tscn" id="2_mlg43"]
 [ext_resource type="PackedScene" uid="uid://3w2wv3vnr6nd" path="res://general_ui/options_menu/options_menu.tscn" id="2_uc612"]
+[ext_resource type="PackedScene" uid="uid://cuviaaft8pv6i" path="res://tutorial/tutorial.tscn" id="3_auj1g"]
 [ext_resource type="PackedScene" uid="uid://b6vs3ylr7i6pe" path="res://general_ui/SFX/ui_sounds.tscn" id="3_mimou"]
 [ext_resource type="TileSet" uid="uid://b6mvjkxyalhye" path="res://game_manager/assets/visual_tileset.tres" id="3_x2mta"]
 [ext_resource type="AudioStream" uid="uid://cmdj5slr0732n" path="res://general_ui/main_menu/assets/ElevatorMusic.wav" id="4_e3ivf"]
@@ -19,6 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mmqbw")
 _starting_game_scene = ExtResource("2_mlg43")
+_tutorial_scene = ExtResource("3_auj1g")
 _options = NodePath("OptionsLayer/OptionsMenu")
 metadata/_edit_lock_ = true
 

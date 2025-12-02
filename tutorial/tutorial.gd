@@ -26,10 +26,19 @@ var tutorial_content_index: int = 0
 @onready var anim_player = $AnimationPlayer
 
 func _ready() -> void:
-	if tutorial_content.size() > 1:
-		_change_tutorial(0)
+	if !GlobalFlags.did_tutorial:
+		start()
+	else:
+		anim_player.play("not_visable")
 
-##
+# Starts the tutorial off.
+func start() -> void:
+	if tutorial_content.size() > 1:
+		tutorial_content_index = 0
+		next_button.text = "Next"
+		_change_tutorial(tutorial_content_index)
+
+## Switches the tutorial content based on index.
 func _change_tutorial(current_index: int) -> void:
 	var content: TutorialContent = tutorial_content[current_index]
 	tutorial_text.text = content.tutorial_text
@@ -68,4 +77,9 @@ func _on_next_button_pressed() -> void:
 
 ## Skips the tutorial.
 func _on_skip_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://game_manager/game_manager.tscn")
+	if GlobalFlags.did_tutorial:
+		anim_player.play("not_visable")
+		self.hide()
+	else:
+		GlobalFlags.did_tutorial = true
+		get_tree().change_scene_to_file("res://game_manager/game_manager.tscn")

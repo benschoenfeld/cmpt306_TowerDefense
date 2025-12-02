@@ -51,3 +51,9 @@ func _on_main_menu_button_pressed() -> void:
 ## Quits the game once user hits quit button.
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_tutorial_button_pressed() -> void:
+	var tutorial: Tutorial = $OptionsLayer.get_child(1)
+	tutorial.start()
+	tutorial.show()
