@@ -13,7 +13,7 @@ class_name Tower
 
 @export var min_distance: float = 64.0
 
-@export var tower_sound: AudioStreamPlayer2D  #TODO
+
 @export var deny_sound: AudioStreamPlayer2D   #TODO
 
 
@@ -88,8 +88,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		# deduct money for the cost of building tower
 		_buy_tower(towerRes.cost)
 		
-		if tower_sound:
-			tower_sound.play()
 		
 
 func build_base(pos: Vector2, max_dist: float) -> Node2D:

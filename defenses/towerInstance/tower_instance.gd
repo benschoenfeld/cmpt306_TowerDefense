@@ -34,13 +34,6 @@ func apply_tower_resource(towerRes: TowerResource) -> void:
 			else:
 				print("TowerInstance: turrent_texture is not set in the resource -> Keeping default texture")
 			
-			if turret_sprite.modulate.a == 0:
-				turret_sprite.modulate = Color(1, 1, 1, 1)
-			if turret_sprite.scale == Vector2.ZERO:
-				turret_sprite.scale = Vector2.ONE
-		
-		else:
-			print("TowerInstance: turrent path doesn't point to a sprite2d: ", turret_path)
 
 		
 	var areaRange = get_node(range_area_path)
@@ -62,7 +55,5 @@ func apply_tower_resource(towerRes: TowerResource) -> void:
 	
 	if not is_in_group("Towers"):
 		add_to_group("Towers")
-	
-	print("TowerInstance: applied resource:", towerRes.tower_name, "turret_texture:", towerRes.turret_texture, "areaRange: ", towerRes.area_range)
-		
+			
 	

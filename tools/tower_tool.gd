@@ -38,8 +38,6 @@ func interact_effect(tile: BaseTile):
 		if tile is BuildBase:
 			
 			tile.set_meta("occupied", true)
-			tile.set_meta("occupier_path", tower_instance.get_path())
-			tower_instance.set_meta("base_node_path", tile.get_path())
 			tile.set_tower(tower_instance)
 		
 			_buy_tower(selected_tower.get_cost())

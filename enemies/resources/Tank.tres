@@ -35,8 +35,8 @@ animations = [{
 [resource]
 script = ExtResource("2_an0ff")
 name = "Tank"
-health = 100
-damage = 100
+health = 15
+damage = 15
 speed = 25.0
 frames = SubResource("SpriteFrames_h2yhd")
 metadata/_custom_type_script = "uid://corrfnng4rwk2"
