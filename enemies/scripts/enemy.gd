@@ -1,14 +1,20 @@
 extends PathFollow2D
 class_name Enemy
 
+## A reference to the type of enemy.
 @export var type: EnemyType
 
-var health: int
-
+## A reference to the direct path of the animation for the AnimatedSprite2D.
 @onready var animation: AnimatedSprite2D = $Area2D/AnimatedSprite2D
 
+# Determines the health of the enemy.
+var health: int
+
+## A signal that indicates the enemy has completed it's Path2D.
 signal reached_end(damage: int)
 
+## Method to initialize the enemy's stats and animations.
+## @param enemy_type: EnemyType indicates which resource is being used.
 func setup(enemy_type: EnemyType) -> void:
 	type = enemy_type
 	health = type.health
@@ -28,6 +34,8 @@ func setup(enemy_type: EnemyType) -> void:
 		
 	progress_ratio = 0.0
 	
+## Physics method to control movement of the enemy.
+## Increase progress of Path2D by speed*delta.
 func _process(delta: float) -> void:
 	progress += type.speed * delta
 	
@@ -35,6 +43,7 @@ func _process(delta: float) -> void:
 		emit_signal("reached_end", type.damage)
 		queue_free()
 	
+## Method
 func do_damage(amount: int) -> void:
 	health -= amount
 	if health <= 0:

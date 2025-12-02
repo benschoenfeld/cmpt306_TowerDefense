@@ -82,7 +82,8 @@ wave_controller = NodePath("../../HUD/hud")
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 3
 
-[node name="hud" parent="HUD" node_paths=PackedStringArray("manager") instance=ExtResource("4_r63pj")]
+[node name="hud" parent="HUD" node_paths=PackedStringArray("wave_display", "manager") instance=ExtResource("4_r63pj")]
+wave_display = NodePath("VBoxContainer/HBoxContainer2/HBoxContainer/WaveCounter")
 manager = NodePath("../..")
 metadata/_edit_lock_ = true
 

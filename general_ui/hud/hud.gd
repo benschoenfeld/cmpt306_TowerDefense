@@ -24,9 +24,12 @@ signal started_wave
 ## A refernce to a [Button] that starts an enemy wave.
 @export var wave_button: Button
 
+@export var wave_display: NumberDisplay
+
 @export_category("Outside Nodes")
 ## A reference to the [GameManager].
 @export var manager: GameManager
+
 
 ## Give the enum for tools that can be shared between scenes.
 var tool_enum: ToolEnums = ToolEnums.new()
@@ -58,6 +61,10 @@ func _on_wave_finished(has_more_waves: bool) -> void:
 		wave_button.show()
 	else:
 		wave_button.hide()
+
+## Updates the wave count after each wave.
+func update_wave_display(number: int) -> void:
+	wave_display.display_amount(number)
 
 ##
 func _on_tool_manager_request_tower_bag(show_item: bool) -> void:
