@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=3 format=3 uid="uid://cdylbwsk5j1n1"]
+
+[ext_resource type="Animation" uid="uid://cc2epsa5fps4r" path="res://tutorial/assets/tutorial_3.res" id="1_k5w61"]
+[ext_resource type="Script" uid="uid://cmrs3wvggadjl" path="res://tutorial/resources/tutorial_content.gd" id="1_o2ev8"]
+
+[resource]
+script = ExtResource("1_o2ev8")
+tutorial_text = "The Hoe will allow you to remove grass."
+animation = ExtResource("1_k5w61")
+metadata/_custom_type_script = "uid://cmrs3wvggadjl"

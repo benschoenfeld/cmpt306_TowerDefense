@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=3 format=3 uid="uid://dpfnaadovmr0u"]
+
+[ext_resource type="Script" uid="uid://cmrs3wvggadjl" path="res://tutorial/resources/tutorial_content.gd" id="1_dnlkh"]
+[ext_resource type="Animation" uid="uid://ce2owaeq2eqoe" path="res://tutorial/assets/tutorial_1.res" id="1_q8757"]
+
+[resource]
+script = ExtResource("1_dnlkh")
+tutorial_text = "To make money you must plant and harvest crops!"
+animation = ExtResource("1_q8757")
+metadata/_custom_type_script = "uid://cmrs3wvggadjl"
