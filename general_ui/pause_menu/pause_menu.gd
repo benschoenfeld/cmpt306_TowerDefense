@@ -20,6 +20,12 @@ const MAIN_MENU_PATH: String = "res://general_ui/main_menu/main_menu.tscn"
 ## A reference to the sound for opening and closing the menu.
 @export var open_close_sound: AudioStreamPlayer
 
+## A reference to the tutorial scene.
+@onready var tutorial: Tutorial = $OptionsLayer/Tutorial
+
+func _ready() -> void:
+	tutorial.anim_player.play("not_visable")
+
 ## Pauses or unpauses the game based on a [bool].
 func set_pause(pause: bool):
 	
