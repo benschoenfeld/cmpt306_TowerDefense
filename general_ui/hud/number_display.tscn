@@ -1,14 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://nebwwifttxrv"]
+[gd_scene load_steps=3 format=3 uid="uid://nebwwifttxrv"]
 
 [ext_resource type="Script" uid="uid://balyxjhk0jgvb" path="res://general_ui/hud/number_display.gd" id="1_cjmw7"]
-[ext_resource type="Texture2D" uid="uid://d4de1wjl2s5v2" path="res://general_ui/hud/assets/genericItem_color_158.png" id="2_8pysa"]
 [ext_resource type="LabelSettings" uid="uid://uvi372yrui0" path="res://defenses/assets/tower_bag_money_font.tres" id="2_iojwc"]
 
 [node name="NumberDisplay" type="Control"]
-custom_minimum_size = Vector2(205, 58)
+custom_minimum_size = Vector2(238, 58)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 205.0
+offset_right = 238.0
 offset_bottom = 124.0
 script = ExtResource("1_cjmw7")
 
@@ -33,14 +32,12 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(58, 58)
 layout_mode = 2
-texture = ExtResource("2_8pysa")
 expand_mode = 1
 
 [node name="Context" type="Label" parent="PanelContainer/HBoxContainer"]
 custom_minimum_size = Vector2(58, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Money:"
 label_settings = ExtResource("2_iojwc")
 horizontal_alignment = 1
 

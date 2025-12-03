@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://me31tyggjdy4"]
+[gd_scene load_steps=8 format=3 uid="uid://me31tyggjdy4"]
 
 [ext_resource type="Script" uid="uid://dt15eegl850rw" path="res://general_ui/hud/hud.gd" id="1_hk4rq"]
 [ext_resource type="PackedScene" uid="uid://26g0tisiojj8" path="res://general_ui/hud/ToolUI.tscn" id="2_br5ty"]
+[ext_resource type="Texture2D" uid="uid://cu106lrrppcf0" path="res://general_ui/hud/assets/heart pixel art 32x32.png" id="3_0ylbf"]
 [ext_resource type="PackedScene" uid="uid://nebwwifttxrv" path="res://general_ui/hud/number_display.tscn" id="3_kafub"]
 [ext_resource type="Texture2D" uid="uid://d4de1wjl2s5v2" path="res://general_ui/hud/assets/genericItem_color_158.png" id="4_bk23a"]
 [ext_resource type="PackedScene" uid="uid://8ccoultreyuc" path="res://seed_bag/seed_bag.tscn" id="4_kafub"]
@@ -52,6 +53,7 @@ theme_override_constants/separation = 40
 
 [node name="HealthDisplay" parent="VBoxContainer/HBoxContainer/Spacer1/HBoxContainer" instance=ExtResource("3_kafub")]
 layout_mode = 2
+icon = ExtResource("3_0ylbf")
 context_line = "Health:"
 
 [node name="MoneyDisplay" parent="VBoxContainer/HBoxContainer/Spacer1/HBoxContainer" instance=ExtResource("3_kafub")]
