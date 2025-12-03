@@ -55,3 +55,8 @@ func on_death() -> void:
 		#animation.play("die")
 		#await animation.animation_finished
 	queue_free()
+
+## Returns the comparision of [member PathFollow2D.progress] to another [Enemy].
+## Returns true if self.progress > compare_enemy.progress.
+func compare_to(compare_enemy: Enemy) -> bool:
+	return self.progress > compare_enemy.progress

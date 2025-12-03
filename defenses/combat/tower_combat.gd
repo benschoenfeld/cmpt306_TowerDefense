@@ -10,7 +10,8 @@ class_name TowerCombat
 @export var marker_node_path: NodePath = NodePath("../Turret/Marker")
 @export var area_range_path: NodePath = NodePath("../AreaRange")
 
-var targets: Array = []
+var current_target: Enemy
+var targets: PriorityQueue = PriorityQueue.new()
 var cooldown: float = 0.0
 
 @onready var _turret := get_node(turret_node_path)
@@ -25,6 +26,7 @@ func _ready() -> void:
 		_areaRange.connect("area_exited", Callable(self, "_on_area_exited"))
 
 func _process(delta: float) -> void:
+	
 	# reduce the cooldown
 	cooldown = max(0.0, cooldown - delta)
 	
@@ -43,13 +45,12 @@ func _process(delta: float) -> void:
 		fire_at(target)
 		var rate = max(0.0001, fire_rate)
 		cooldown = 1.0 / rate
-	
 
 func _on_area_entered(area: Area2D) -> void:
 	if not is_instance_valid(area):
 		return
 	var enemy_node := area.get_parent()
-	if enemy_node and enemy_node.has_method("do_damage"):
+	if enemy_node is Enemy and enemy_node.has_method("do_damage"):
 		targets_append_unique(enemy_node)
 	
 
@@ -57,20 +58,11 @@ func _on_area_exited(area: Area2D) -> void:
 	if not is_instance_valid(area):
 		return
 	var enemy_node := area.get_parent()
-	if enemy_node:
-		targets_remove(enemy_node)
+	if enemy_node is Enemy:
+		targets_remove()
 
-func choose_target() -> Node2D:
-	var enemy_target = null
-	var best_target := INF
-	for target in targets:
-		if not is_instance_valid(target):
-			continue
-		var distanceToEnemy = global_position.distance_to(target.global_position)
-		if distanceToEnemy < best_target:
-			best_target = distanceToEnemy
-			enemy_target = target
-	return enemy_target
+func choose_target() -> Enemy:
+	return targets.get_max()
 
 func _rotate_towards(target: Node2D) -> void:
 	if not is_instance_valid(target):
@@ -117,22 +109,14 @@ func fire_at(target: Node2D):
 	else:
 		get_tree().get_root().add_child(bullet)
 	
-func targets_append_unique(node: Node) -> void:
-	if node == null:
-		return
-	for target in targets:
-		if target == node:
-			return
+func targets_append_unique(enemy: Enemy) -> void:
+	targets.insert(enemy)
 	
-	targets.append(node)
-	
-func targets_remove(node: Node) -> void:
-	for i in range(targets.size()):
-		if targets[i] == node:
-			targets.remove_at(i)
-			return
+func targets_remove() -> void:
+	targets.pop()
 
 func cleanup_targets() -> void:
-	for i in range(targets.size() -1 , -1, -1):
-		if not is_instance_valid(targets[i]):
-			targets.remove_at(i) 
+	var target = targets.get_max()
+
+	if not is_instance_valid(target):
+		targets_remove()
