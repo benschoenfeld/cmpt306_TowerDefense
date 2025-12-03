@@ -2,87 +2,90 @@ extends GutTest
 
 var queue: PriorityQueue
 
+var enemy_scene: PackedScene = preload("res://enemies/scenes/enemy.tscn")
+var enemy1: Enemy
+var enemy2: Enemy
+var enemy3: Enemy
+
 func before_each():
 	queue = PriorityQueue.new()
+	enemy1 = enemy_scene.instantiate()
+	enemy2 = enemy_scene.instantiate()
+	enemy3 = enemy_scene.instantiate()
+	enemy1.progress += 100
+	enemy3.progress += 2000
+
+func after_each():
+	for enemy in [enemy1, enemy2, enemy3]:
+		enemy.free()
 
 func test_shift_up():
-	queue.queue = [5, 4, 10]
+	queue.queue = [enemy1, enemy2, enemy3]
 	queue.shift_up(2)
-	assert_eq(queue.queue, [10, 4, 5])
+	assert_eq(queue.queue, [enemy3, enemy2, enemy1])
 
 func test_insert():
-	queue.insert(5)
-	assert_eq(queue.queue[0], 5)
+	queue.insert(enemy1)
+	assert_eq(queue.queue[0], enemy1)
 	
-	queue.insert(4)
-	assert_eq(queue.queue[0], 5)
+	queue.insert(enemy2)
+	assert_eq(queue.queue[1], enemy2)
 	
-	queue.insert(10)
-	assert_eq(queue.queue[0], 10)
+	queue.insert(enemy3)
+	assert_eq(queue.queue[0], enemy3)
 	
 func test_get_parent():
-	queue.insert(5)
+	queue.insert(enemy1)
 	assert_eq(queue.get_parent(0), 0)
 	
-	queue.insert(4)
+	queue.insert(enemy2)
 	assert_eq(queue.get_parent(1), 0)
 	
-	for i in range(3):
-		queue.insert(i)
-	
-	assert_eq(queue.get_parent(4), 1)
-	assert_eq(queue.get_parent(3), 1)
+	queue.insert(enemy3)
+	assert_eq(queue.get_parent(2), 0)
 
 func test_get_left_child():
-	for i in range(5):
-		queue.insert(i)
+	queue.insert(enemy1)
+	queue.insert(enemy2)
+	queue.insert(enemy3)
 	
 	assert_eq(queue.get_left_child(0), 1)
-	assert_eq(queue.get_left_child(1), 3)
 
 func test_get_right_child():
-	for i in range(5):
-		queue.insert(i)
+	queue.insert(enemy1)
+	queue.insert(enemy2)
+	queue.insert(enemy3)
 	
 	assert_eq(queue.get_right_child(0), 2)
-	assert_eq(queue.get_right_child(1), 4)
 
 func test_shift_down():
-	queue.queue = [5, 4, 10]
-	queue.shift_down(0)
-	assert_eq(queue.queue, [10, 4, 5])
+	queue.queue = [enemy1, enemy2, enemy3]
+	queue.shift_up(2)
+	assert_eq(queue.queue, [enemy3, enemy2, enemy1])
 
 func test_pop():
-	for i in range(5):
-		queue.insert(i)
+	queue.insert(enemy1)
+	queue.insert(enemy2)
+	queue.insert(enemy3)
 		
-	assert_eq(queue.pop(), 4)
-	assert_eq_deep(queue.queue, [3, 2, 1, 0])
+	assert_eq(queue.pop(), enemy3)
+	assert_eq_deep(queue.queue, [enemy1, enemy2])
 	
-	assert_eq(queue.pop(), 3)
-	assert_eq_deep(queue.queue, [2, 0, 1])
+	assert_eq(queue.pop(), enemy1)
+	assert_eq_deep(queue.queue, [enemy2])
 
 func test_get_max():
 	assert_eq(queue.get_max(), null)
 	
-	queue.insert(5)
-	assert_eq(queue.get_max(), 5)
+	queue.insert(enemy1)
+	assert_eq(queue.get_max(), enemy1)
 	
-	queue.insert(10)
-	assert_eq(queue.get_max(), 10)
-	
+	queue.insert(enemy2)
+	queue.insert(enemy3)
+	assert_eq(queue.get_max(), enemy3)
+
 func test_insert_enemies():
-	var enemy_scene: PackedScene = preload("res://enemies/scenes/enemy.tscn")
-	var enemy: Enemy = enemy_scene.instantiate()
-	var enemy2: Enemy = enemy_scene.instantiate()
-	var enemy3: Enemy = enemy_scene.instantiate()
-	enemy.health = 1000
-	enemy3.health = 2000
-	queue.insert([enemy.health, enemy])
-	queue.insert([enemy2.health, enemy2])
-	queue.insert([enemy3.health, enemy3])
-	assert_eq_deep(queue.get_max(), [enemy3.health, enemy3])
-	
-	enemy.free()
-	enemy2.free()
-	enemy3.free()
+	queue.insert(enemy1)
+	queue.insert(enemy2)
+	queue.insert(enemy3)
+	assert_eq(queue.get_max(), enemy3)
