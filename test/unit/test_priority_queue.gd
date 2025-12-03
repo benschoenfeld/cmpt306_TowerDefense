@@ -70,3 +70,19 @@ func test_get_max():
 	
 	queue.insert(10)
 	assert_eq(queue.get_max(), 10)
+	
+func test_insert_enemies():
+	var enemy_scene: PackedScene = preload("res://enemies/scenes/enemy.tscn")
+	var enemy: Enemy = enemy_scene.instantiate()
+	var enemy2: Enemy = enemy_scene.instantiate()
+	var enemy3: Enemy = enemy_scene.instantiate()
+	enemy.health = 1000
+	enemy3.health = 2000
+	queue.insert([enemy.health, enemy])
+	queue.insert([enemy2.health, enemy2])
+	queue.insert([enemy3.health, enemy3])
+	assert_eq_deep(queue.get_max(), [enemy3.health, enemy3])
+	
+	enemy.free()
+	enemy2.free()
+	enemy3.free()
