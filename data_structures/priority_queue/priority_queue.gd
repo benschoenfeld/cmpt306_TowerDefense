@@ -23,7 +23,7 @@ func get_right_child(index: int) -> int:
 
 ## Shift up to maintain max-heap property.
 func shift_up(index: int) -> void:
-	while index > 0 and queue[get_parent(index)] < queue[index]:
+	while index > 0 and !queue[get_parent(index)].compare_to(queue[index]):
 		var old_value = queue[get_parent(index)]
 		queue[get_parent(index)] = queue[index]
 		queue[index] = old_value
@@ -35,12 +35,12 @@ func shift_down(index: int) -> void:
 	var max_index: int = index
 	var left_child: int = get_left_child(index)
 	
-	if left_child < size and queue[left_child] > queue[max_index]:
+	if left_child < size and queue[left_child].compare_to(queue[max_index]):
 		max_index = left_child
 	
 	var right_child: int = get_right_child(index)
 	
-	if right_child < size and queue[right_child] > queue[max_index]:
+	if right_child < size and queue[right_child].compare_to(queue[max_index]):
 		max_index = right_child
 
 	if index != max_index:
@@ -50,9 +50,12 @@ func shift_down(index: int) -> void:
 		shift_down(max_index)
 
 ## Insert a new element.
-func insert(item) -> void:
-	queue.append(item)
-	shift_up(len(queue) - 1)
+func insert(item) -> bool:
+	if item.has_method("compare_to"):
+		queue.append(item)
+		shift_up(len(queue) - 1)
+		return true
+	return false
 
 ## Extract element with maximum priority.
 ## Returns the max element.
