@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://0wsbgy801txt"]
+[gd_scene load_steps=24 format=4 uid="uid://0wsbgy801txt"]
 
 [ext_resource type="Script" uid="uid://ddh6nidkpvu7s" path="res://game_manager/game_manager.gd" id="1_ong7i"]
 [ext_resource type="PackedScene" uid="uid://bb0emy17c3vce" path="res://general_ui/pause_menu/pause_menu.tscn" id="2_mx6ys"]
@@ -19,7 +19,6 @@
 [ext_resource type="Resource" uid="uid://dk82sxff7f7h2" path="res://enemies/waves/wave_3.tres" id="12_i24ge"]
 [ext_resource type="Resource" uid="uid://d2ar7angy1077" path="res://enemies/waves/wave_4.tres" id="13_s5nag"]
 [ext_resource type="Resource" uid="uid://dl2l15tp5kbvl" path="res://enemies/waves/wave_5.tres" id="14_oats1"]
-[ext_resource type="Texture2D" uid="uid://cu106lrrppcf0" path="res://general_ui/hud/assets/heart pixel art 32x32.png" id="16_7c8rc"]
 [ext_resource type="Texture2D" uid="uid://b1ajmy2xbwyqi" path="res://general_ui/hud/assets/sprite.png" id="17_fikbl"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_03pqa"]
@@ -91,7 +90,6 @@ manager = NodePath("../..")
 metadata/_edit_lock_ = true
 
 [node name="HealthDisplay" parent="HUD/hud/VBoxContainer/HBoxContainer/Spacer1/HBoxContainer" index="0"]
-icon = ExtResource("16_7c8rc")
 context_line = ""
 
 [node name="SeedBag" parent="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer" index="0"]

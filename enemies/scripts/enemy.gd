@@ -13,6 +13,8 @@ var health: int
 ## A signal that indicates the enemy has completed it's Path2D.
 signal reached_end(damage: int)
 
+signal enemy_death()
+
 ## Method to initialize the enemy's stats and animations.
 ## @param enemy_type: EnemyType indicates which resource is being used.
 func setup(enemy_type: EnemyType) -> void:
@@ -41,6 +43,7 @@ func _process(delta: float) -> void:
 	
 	if progress_ratio >= 1.0:
 		emit_signal("reached_end", type.damage)
+		enemy_death.emit()
 		queue_free()
 	
 ## Method
@@ -48,12 +51,10 @@ func do_damage(amount: int) -> void:
 	health -= amount
 	if health <= 0:
 		on_death()
-
+		
+## Method to handle the death of an enemy.
 func on_death() -> void:
-	## The dead enemeis were still following the path so I commented animation for now
-	#if animation.sprite_frames and animation.sprite_frames.has_animation("die"):
-		#animation.play("die")
-		#await animation.animation_finished
+	enemy_death.emit()
 	queue_free()
 
 ## Returns the comparision of [member PathFollow2D.progress] to another [Enemy].

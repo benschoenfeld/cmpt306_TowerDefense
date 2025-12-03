@@ -59,9 +59,11 @@ func _on_start_wave_button_pressed() -> void:
 ## Emits a signal when a wave has completed.
 func _on_wave_finished(has_more_waves: bool) -> void:
 	if has_more_waves:
-		wave_button.show()
+		pass
+		#wave_button.show()
 	else:
-		wave_button.hide()
+		pass
+		#wave_button.hide()
 
 ## Updates the wave count after each wave.
 func update_wave_display(number: int) -> void:
@@ -70,3 +72,9 @@ func update_wave_display(number: int) -> void:
 ##
 func _on_tool_manager_request_tower_bag(show_item: bool) -> void:
 	tower_bag.visible = show_item
+
+func hide_button() -> void:
+	wave_button.hide()
+	
+func show_button() -> void:
+	wave_button.show()

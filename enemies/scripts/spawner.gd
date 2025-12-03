@@ -25,6 +25,9 @@ var wave_running: bool = false
 ## Keeps track of how many waves have elapsed.
 var wave_count: int = 0
 
+## Keep track of how many enemies are spawned in
+var enemy_count: int
+
 ## A signal to indicate that the current wave has finished.
 signal wave_finished(has_more_waves: bool)
 
@@ -36,6 +39,7 @@ func _ready() -> void:
 	
 	current_wave_index = 0
 	wave_running = false
+	
 
 ## Handles action when UI 'start wave' button has been pressed.
 func _on_start_wave_button_pressed() -> void:
@@ -56,8 +60,9 @@ func _on_start_wave_button_pressed() -> void:
 	await spawn_wave(wave)
 	
 	wave_running = false
-	var has_more = current_wave_index < waves.size()
-	wave_finished.emit(has_more)
+	#var has_more = current_wave_index < waves.size()
+	#wave_finished.emit(has_more)
+	
 	
 ## Method to spawn each sequence of enemies in the array of sequences.
 ## @param wave: An array of Wave resources
@@ -80,12 +85,32 @@ func spawn_enemy(type: EnemyType) -> void:
 		return
 	
 	var enemy: Enemy = enemy_scene.instantiate()
+	
 	path.add_child(enemy)
+	
+	enemy_count += 1
+	
 	enemy.setup(type)
 	enemy.progress_ratio = 0.0
 	
+	enemy.enemy_death.connect(enemies_left)
+	
 	enemy.reached_end.connect(_on_enemy_at_base)
 
+## Method to handle enemy reaching end of path.
+## @param damage: amount of damage the enemy will do.
 func _on_enemy_at_base(damage: int) -> void:
 	if game_manager:
 		game_manager.remove_health(damage)
+
+## Method to connect signal on enemy death to check if any enemies left.
+## Will show the button again only when there are no enemies left.
+func enemies_left() -> void:
+	# No enemies left
+	enemy_count -= 1
+	if enemy_count == 0:
+		wave_controller.show_button()
+		
+		var has_more = current_wave_index < waves.size()
+		wave_finished.emit(has_more)
+		

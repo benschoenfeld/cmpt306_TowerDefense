@@ -37,6 +37,6 @@ script = ExtResource("1_s4i3n")
 name = "Fast"
 health = 5
 damage = 5
-speed = 80.0
+speed = 100.0
 frames = SubResource("SpriteFrames_a6b5j")
 metadata/_custom_type_script = "uid://corrfnng4rwk2"
