@@ -19,8 +19,7 @@ func _ready() -> void:
 	if (required_tool_index == 0 or required_tool_index == -1) and tool_manager:
 		required_tool_index = int(tool_manager.tool_enum.Tool.TARGET)
 
-
-
+## base logic for tower placement
 func _unhandled_input(event: InputEvent) -> void:
 	if get_tree().paused:
 		return
@@ -43,13 +42,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		if towerRes == null:
 			return
 		
-		#check money
+		# check if not enough money to prevent tower placement
 		if not _can_afford_a_tower(towerRes.cost):
 			if deny_sound:
 				deny_sound.play()
 			print("Not enough moeny for: ", towerRes.tower_name, " cost:", towerRes.cost)
 			return
-			
+		
 		var mouse_pos = get_global_mouse_position()
 		if grid_size.x > 0 and grid_size.y > 0:
 			mouse_pos = _snap_position(mouse_pos)
@@ -58,8 +57,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		if base == null:
 			print("No build base found udner cursor")
 			return
-			
-
 			
 		if towerRes.tower_scene == null:
 			push_error("TowerResource has no individual scene assigned")
@@ -88,6 +85,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		print("Tower placed on base at ", base.global_position, " cost: ", towerRes.cost)
 
+## builds tower at given location
+## @param pos: Vector2i position 
+## @param max_dist: float
 func build_base(pos: Vector2, max_dist: float) -> Node2D:
 	var new_base: Node2D = null
 	var distanceToBase = max_dist
@@ -101,25 +101,26 @@ func build_base(pos: Vector2, max_dist: float) -> Node2D:
 	if new_base and new_base.get_meta("occupied", false):
 		return null
 	return new_base
-	
-	
+
+## returns the Vector2i position for mouse click
 func _snap_position(pos: Vector2) -> Vector2:
 	return Vector2(round(pos.x / grid_size.x) * grid_size.x,
 					round(pos.y / grid_size.y) * grid_size.y)
-					
+
+## check function to see if [money_amount] > tower cost
+## @param cost: integer representation of cost of tower
 func _can_afford_a_tower(cost: int) -> bool:
 	if game_manager and game_manager.has_method("get_money"):
-		return game_manager.get_money() >= cost
+		return game_manager.get_money() >= cost # check if total > cost
 	return true
 
+## removes tower cost from [money_amount]
+## @param cost: integer representation of cost of tower
 func _buy_tower(cost: int) -> void:
 	if game_manager and game_manager.has_method("add_money"):
-		game_manager.add_money(-cost)
+		game_manager.add_money(-cost) # remove cost from total money
 		return
-		
 
-		
-
-
+##
 func _on_tool_manager_selected_tower_changed(towerResorce: TowerResource) -> void:
 	pass # Replace with function body.

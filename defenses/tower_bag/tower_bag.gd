@@ -19,6 +19,7 @@ signal selected_tower(tower_selection: TowerResource)
 var current_tower_selected: TowerResource = null
 var last_button_selected: Button = null
 
+## base initial logic for tower bag
 func _ready() -> void:
 	if tool_manager == null:
 		tool_manager = get_tree().get_root().find_node("ToolManager", true, false)
@@ -54,15 +55,18 @@ func _ready() -> void:
 				button.expand_icon = true
 		idx += 1
 
+## calls when tool is changed to update UI
 func _on_tool_changed(tool_index: int) -> void:
 	_update_visibility()
-	
+
+## updates the tool manager UI
 func _update_visibility() -> void:
 	if tool_manager.has_method("get_current_tool"):
 		visible = (tool_manager.get_current_tool() == required_tool_index)
 	else:
 		visible = false
 
+## connects signals for each tower in tower bag
 func _on_tower_button_pressed(button: Button) -> void:
 	if last_button_selected:
 		last_button_selected.modulate = Color(1,1,1,1)
@@ -76,8 +80,7 @@ func _on_tower_button_pressed(button: Button) -> void:
 	else:
 		current_tower_selected = null
 		emit_signal("selected_tower", null)
-		
+
+## turns selected button yellow
 func  _show_selection(button: Button) -> void:
 	button.modulate = Color(0.916, 0.437, 0.0, 0.7)
-	
-		

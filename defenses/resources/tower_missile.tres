@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cifcmf8k0pnv" path="res://defenses/assets/tower_missile.png" id="1_csb51"]
 [ext_resource type="Script" uid="uid://b72xnny36e77a" path="res://defenses/resources/tower_resource.gd" id="1_edcit"]
-[ext_resource type="PackedScene" uid="uid://ck7mhvlhjos88" path="res://defenses/resources/tower_missile.tscn" id="3_x6s2u"]
+[ext_resource type="PackedScene" path="res://defenses/resources/tower_missile.tscn" id="3_x6s2u"]
 
 [resource]
 script = ExtResource("1_edcit")

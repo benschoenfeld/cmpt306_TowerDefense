@@ -22,7 +22,8 @@ func _process(delta: float) -> void:
 	var velocitY = direction.normalized() * speed * delta
 	global_position += velocitY
 	rotation = velocitY.angle()
-	
+
+## function call for when a bullet hits a bug
 func _hit_target() -> void:
 	if target and is_instance_valid(target) and target.has_method("do_damage"):
 		target.do_damage(damage)
