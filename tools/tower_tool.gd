@@ -9,9 +9,6 @@ extends ToolBase
 signal money_changed(new_amount: int)
 
 ##
-@export var tower_instance_scene: PackedScene = preload("res://defenses/towerInstance/tower_instance.tscn")
-
-##
 var selected_tower: TowerResource
 
 ##
@@ -29,15 +26,10 @@ func interact_effect(tile: BaseTile):
 			print("Not enough moeny for: ", selected_tower.tower_name, " cost:", selected_tower.cost)
 			return
 		
-		var tower_instance = tower_instance_scene.instantiate()
-		if tower_instance.has_method("apply_tower_resource"):
-			tower_instance.apply_tower_resource(selected_tower)
-		else:
-			print("TowerInstance has no apply_tower_resource method -> Incorrect assigned?")
 		if tile is BuildBase:
 			
 			tile.set_meta("occupied", true)
-			tile.set_tower(tower_instance)
+			tile.set_tower(selected_tower)
 		
 			_buy_tower(selected_tower.get_cost())
 		
