@@ -46,7 +46,6 @@ signal health_change(new_amount: int)
 
 ## Sets up the all the interactable game tiles
 func _ready() -> void:
-	Engine.time_scale = 5 #TODO: REMOVE
 	set_health(health_amount)
 	set_money(money_amount)
 	_set_up_model()
