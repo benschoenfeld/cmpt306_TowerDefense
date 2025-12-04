@@ -25,8 +25,7 @@ func interact_effect(tile: BaseTile):
 	#check money
 	if selected_tower:
 		if not _can_afford_a_tower(selected_tower.get_cost()):
-			if deny_sound:
-				deny_sound.play()
+			deny_sound.play()
 			print("Not enough moeny for: ", selected_tower.tower_name, " cost:", selected_tower.cost)
 			return
 		
