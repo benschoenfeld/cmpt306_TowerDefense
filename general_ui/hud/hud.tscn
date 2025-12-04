@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://me31tyggjdy4"]
+[gd_scene load_steps=13 format=3 uid="uid://me31tyggjdy4"]
 
 [ext_resource type="Script" uid="uid://dt15eegl850rw" path="res://general_ui/hud/hud.gd" id="1_hk4rq"]
 [ext_resource type="PackedScene" uid="uid://26g0tisiojj8" path="res://general_ui/hud/ToolUI.tscn" id="2_br5ty"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d4de1wjl2s5v2" path="res://general_ui/hud/assets/genericItem_color_158.png" id="4_bk23a"]
 [ext_resource type="PackedScene" uid="uid://8ccoultreyuc" path="res://seed_bag/seed_bag.tscn" id="4_kafub"]
 [ext_resource type="PackedScene" uid="uid://blcm64pbdyg22" path="res://defenses/tower_bag/tower_bag.tscn" id="5_bk23a"]
+[ext_resource type="PackedScene" uid="uid://c5h84e0oxki0w" path="res://tooltip/simple_tool_tip.tscn" id="8_t62m1"]
 
 [sub_resource type="Animation" id="Animation_0ylbf"]
 resource_name = "pulse_button"
@@ -38,10 +39,63 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/HBoxContainer2/SimpleToolTip:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/HBoxContainer2/SimpleToolTip:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_86lra"]
+resource_name = "hide_tooltip"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/HBoxContainer2/SimpleToolTip:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/HBoxContainer2/SimpleToolTip:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.9666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_86lra"]
 _data = {
 &"RESET": SubResource("Animation_t62m1"),
+&"hide_tooltip": SubResource("Animation_86lra"),
 &"pulse_button": SubResource("Animation_0ylbf")
 }
 
@@ -126,6 +180,15 @@ size_flags_vertical = 6
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="SimpleToolTip" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("8_t62m1")]
+visible = false
+layout_mode = 2
+text = "Hit the 'Start Wave' button to interact with crops!"
+
+[node name="Spacer4" type="Control" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
@@ -147,6 +210,12 @@ custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_86lra")
+}
+autoplay = "pulse_button"
+
+[node name="ButtonFlash" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_86lra")
 }

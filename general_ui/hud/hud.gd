@@ -30,6 +30,7 @@ signal started_wave
 ## A reference to the [GameManager].
 @export var manager: GameManager
 
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 ## Give the enum for tools that can be shared between scenes.
 var tool_enum: ToolEnums = ToolEnums.new()
@@ -78,3 +79,7 @@ func hide_button() -> void:
 	
 func show_button() -> void:
 	wave_button.show()
+
+
+func _on_tool_manager_show_tool_tip() -> void:
+	anim_player.play("hide_tooltip")

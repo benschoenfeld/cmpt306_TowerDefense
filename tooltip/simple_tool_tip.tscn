@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5h84e0oxki0w"]
+
+[ext_resource type="Script" uid="uid://dnnkd6pms8n4a" path="res://tooltip/simple_tool_tip.gd" id="1_ypo0l"]
+
+[node name="SimpleToolTip" type="Control"]
+custom_minimum_size = Vector2(545, 120)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 545.0
+offset_bottom = 140.0
+script = ExtResource("1_ypo0l")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.24243
+offset_top = -60.0
+offset_right = 270.24243
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PanelContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 20

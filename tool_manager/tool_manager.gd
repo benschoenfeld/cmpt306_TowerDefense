@@ -12,8 +12,15 @@ signal tool_changed(tool_index: int)
 
 ## Communicates with the [SeedBag] to visually show it or not.
 signal request_seed_menu(show_item: bool)
+
+##
 signal request_tower_bag(show_item: bool)
+
+##
 signal selected_tower_changed(towerResorce: TowerResource)
+
+##
+signal show_tool_tip 
 
 # Cursor constants
 const CURSOR_HOTSPOT = Vector2(16, 16)
@@ -151,6 +158,8 @@ func interact(tile: BaseTile) -> void:
 
 	if tool_inactive and tile is FarmingTile:
 		deny_sound_player.play()
+		show_tool_tip.emit()
+		
 		return
 
 	var tool = current_tool_index

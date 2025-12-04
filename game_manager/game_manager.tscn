@@ -145,6 +145,7 @@ bus = &"Music"
 [connection signal="money_changed" from="." to="HUD/hud" method="_on_game_manager_money_changed"]
 [connection signal="request_seed_menu" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_request_seed_menu"]
 [connection signal="request_tower_bag" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_request_tower_bag"]
+[connection signal="show_tool_tip" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_show_tool_tip"]
 [connection signal="tool_changed" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_tool_changed"]
 [connection signal="wave_finished" from="Game/Spawner" to="." method="_on_spawner_wave_finished"]
 [connection signal="started_wave" from="HUD/hud" to="Game/ToolManager" method="_on_hud_started_wave"]
