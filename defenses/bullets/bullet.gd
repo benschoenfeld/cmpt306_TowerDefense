@@ -36,7 +36,7 @@ func _ready() -> void:
 
 ## Main logic loop. Moves bullet, tracks lifetime and handles hits.
 ##
-## @param delta the time elapsed since last frame.
+## @param delta The time elapsed since last frame.
 func _process(delta: float) -> void:
 	lifetime += delta
 	if lifetime >= max_lifetime:
