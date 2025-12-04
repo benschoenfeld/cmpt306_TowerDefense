@@ -51,6 +51,7 @@ func _on_start_wave_button_pressed() -> void:
 		return
 		
 	wave_running = true
+	game_manager.switch_music(true)
 	wave_count += 1
 	wave_controller.update_wave_display(wave_count)
 		

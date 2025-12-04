@@ -30,6 +30,10 @@ signal health_change(new_amount: int)
 ## when the money is changed.
 @export var money_sound_player: AudioStreamPlayer
 
+@export var background_music: AudioStreamPlayer
+
+@export var battle_music: AudioStreamPlayer
+
 @export_category("Game Settings")
 ## The players resource.
 @export var money_amount: int = 100
@@ -85,6 +89,14 @@ func get_health() -> int:
 func get_model() -> Model:
 	return model
 
+func switch_music(battle_mode: bool) -> void:
+	if battle_mode:
+		background_music.volume_linear = 0
+		battle_music.play()
+	else:
+		battle_music.stop()
+		background_music.volume_db = 0
+
 ## A private function to handle the death of the player and issue a game over.
 func _player_death() -> void:
 	print("Death")
@@ -116,3 +128,4 @@ func _on_spawner_wave_finished(has_more_waves: bool) -> void:
 	if !has_more_waves:
 		_player_wins()
 	tool_manager.set_inactive(true)
+	switch_music(false)

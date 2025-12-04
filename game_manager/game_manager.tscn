@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://0wsbgy801txt"]
+[gd_scene load_steps=25 format=4 uid="uid://0wsbgy801txt"]
 
 [ext_resource type="Script" uid="uid://ddh6nidkpvu7s" path="res://game_manager/game_manager.gd" id="1_ong7i"]
 [ext_resource type="PackedScene" uid="uid://bb0emy17c3vce" path="res://general_ui/pause_menu/pause_menu.tscn" id="2_mx6ys"]
@@ -20,6 +20,7 @@
 [ext_resource type="Resource" uid="uid://d2ar7angy1077" path="res://enemies/waves/wave_4.tres" id="13_s5nag"]
 [ext_resource type="Resource" uid="uid://dl2l15tp5kbvl" path="res://enemies/waves/wave_5.tres" id="14_oats1"]
 [ext_resource type="Texture2D" uid="uid://b1ajmy2xbwyqi" path="res://general_ui/hud/assets/sprite.png" id="17_fikbl"]
+[ext_resource type="AudioStream" uid="uid://wx4j1i2iyt5" path="res://game_manager/assets/Random Battle.mp3" id="21_fikbl"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_03pqa"]
 resource_name = "FarmingTile"
@@ -37,13 +38,15 @@ _data = {
 }
 point_count = 7
 
-[node name="GameManager" type="Node" node_paths=PackedStringArray("pause_menu", "pause_ui_canvas", "game_map_tile_map", "tool_manager", "money_sound_player")]
+[node name="GameManager" type="Node" node_paths=PackedStringArray("pause_menu", "pause_ui_canvas", "game_map_tile_map", "tool_manager", "money_sound_player", "background_music", "battle_music")]
 script = ExtResource("1_ong7i")
 pause_menu = NodePath("PauseUI/PauseMenu")
 pause_ui_canvas = NodePath("PauseUI")
 game_map_tile_map = NodePath("Game/GameTiles")
 tool_manager = NodePath("Game/ToolManager")
 money_sound_player = NodePath("Game/MoneySound")
+background_music = NodePath("BackgroundMusic")
+battle_music = NodePath("BattleMusic")
 
 [node name="Game" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -139,6 +142,10 @@ tool_manager = NodePath("../../Game/ToolManager")
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_03pqa")
 autoplay = true
+bus = &"Music"
+
+[node name="BattleMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_fikbl")
 bus = &"Music"
 
 [connection signal="health_change" from="." to="HUD/hud" method="_on_game_manager_health_change"]
