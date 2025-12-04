@@ -38,6 +38,7 @@ radius = 24.698189
 
 [node name="Enemy" type="PathFollow2D"]
 rotation = -0.06316041
+loop = false
 script = ExtResource("1_3xl3q")
 type = ExtResource("2_se0q1")
 

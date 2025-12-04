@@ -116,7 +116,6 @@ func targets_remove() -> void:
 	targets.pop()
 
 func cleanup_targets() -> void:
-	var target = targets.get_max()
-
-	if not is_instance_valid(target):
-		targets_remove()
+	for target in targets.queue:
+		if not is_instance_valid(target):
+			targets.queue.remove_at(targets.queue.find(target))

@@ -43,8 +43,7 @@ func _process(delta: float) -> void:
 	
 	if progress_ratio >= 1.0:
 		emit_signal("reached_end", type.damage)
-		enemy_death.emit()
-		queue_free()
+		on_death()
 	
 ## Method
 func do_damage(amount: int) -> void:
