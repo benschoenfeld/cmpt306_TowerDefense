@@ -35,7 +35,7 @@ animations = [{
 [resource]
 script = ExtResource("1_s4i3n")
 name = "Fast"
-health = 5
+health = 15
 damage = 5
 speed = 100.0
 frames = SubResource("SpriteFrames_a6b5j")
