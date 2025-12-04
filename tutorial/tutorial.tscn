@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cuviaaft8pv6i"]
+[gd_scene load_steps=41 format=3 uid="uid://cuviaaft8pv6i"]
 
 [ext_resource type="Script" uid="uid://ck85wgr6mf86f" path="res://tutorial/tutorial.gd" id="1_kcami"]
 [ext_resource type="PackedScene" uid="uid://b6vs3ylr7i6pe" path="res://general_ui/SFX/ui_sounds.tscn" id="2_burua"]
@@ -36,6 +36,7 @@
 [ext_resource type="Animation" uid="uid://bn1psap8mb5nx" path="res://tutorial/assets/tutorial_8.res" id="24_dpu50"]
 [ext_resource type="PackedScene" uid="uid://3dkwwgndl3o" path="res://defenses/base/base.tscn" id="26_2780h"]
 [ext_resource type="Texture2D" uid="uid://dcm0g44wpcpgo" path="res://defenses/assets/tower_2.png" id="27_lh3vr"]
+[ext_resource type="AudioStream" uid="uid://cflc5y5syajsd" path="res://tutorial/assets/hot_spring_town.mp3" id="37_4s5nj"]
 
 [sub_resource type="Animation" id="Animation_idkkj"]
 length = 0.001
@@ -847,6 +848,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_idkkj")
 }
 autoplay = "not_visable"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("37_4s5nj")
+bus = &"Music"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/PreviousButton" to="." method="_on_previous_button_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]

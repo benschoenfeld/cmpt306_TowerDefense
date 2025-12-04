@@ -23,7 +23,10 @@ var tutorial_content_index: int = 0
 @onready var sprite_holder = $Sprites
 
 ## A reference to an [AnimationPlayer].
-@onready var anim_player = $AnimationPlayer
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
+
+## A reference to an [AudioStreamPlayer].
+@onready var music_player: AudioStreamPlayer = $Music
 
 func _ready() -> void:
 	if !GlobalFlags.did_tutorial:
@@ -33,6 +36,7 @@ func _ready() -> void:
 
 # Starts the tutorial off.
 func start() -> void:
+	music_player.play()
 	if tutorial_content.size() > 1:
 		tutorial_content_index = 0
 		next_button.text = "Next"
@@ -79,6 +83,7 @@ func _on_next_button_pressed() -> void:
 func _on_skip_button_pressed() -> void:
 	if GlobalFlags.did_tutorial:
 		anim_player.play("not_visable")
+		music_player.stop()
 		self.hide()
 	else:
 		GlobalFlags.did_tutorial = true
