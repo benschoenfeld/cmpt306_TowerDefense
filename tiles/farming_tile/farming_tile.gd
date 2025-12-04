@@ -13,7 +13,7 @@ extends BaseTile
 @export var crop_holder: Node2D
 
 ## The rate of [param saturation] that will be lost every tick.
-@export var loss_rate_saturation: float = 0.1
+@export var loss_rate_saturation: float = 0.35
 
 ## A [Sprite2D] node that represents the tile type.
 @export var tile_sprite: Sprite2D
