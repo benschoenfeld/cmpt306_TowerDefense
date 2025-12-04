@@ -47,6 +47,7 @@ tool_manager = NodePath("Game/ToolManager")
 money_sound_player = NodePath("Game/MoneySound")
 background_music = NodePath("BackgroundMusic")
 battle_music = NodePath("BattleMusic")
+money_amount = 600
 
 [node name="Game" type="Node2D" parent="."]
 metadata/_edit_lock_ = true

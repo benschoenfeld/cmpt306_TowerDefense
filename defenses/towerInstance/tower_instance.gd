@@ -49,7 +49,9 @@ func apply_tower_resource(towerRes: TowerResource) -> void:
 	
 	if not is_in_group("Towers"):
 		add_to_group("Towers")
-			
+		
+	queue_redraw()
 
+#
 func _draw():
-	draw_circle(Vector2(0,0), tower_resource.area_range, Color.WHITE, false)
+	draw_circle(Vector2.ZERO, tower_resource.area_range, Color(1.0, 1.0, 1.0, 0.49), false, 2, true)
