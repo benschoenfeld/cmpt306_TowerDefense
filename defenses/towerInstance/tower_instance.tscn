@@ -6,10 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://bpsio5u3ypug7" path="res://defenses/bullets/bullet_1.tscn" id="3_xxej3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xxej3"]
-radius = 100.0
 
-[node name="TowerInstance" type="Node2D"]
+[node name="TowerInstance" type="Node2D" node_paths=PackedStringArray("area")]
+z_index = 5
 script = ExtResource("1_g2e2s")
+area = NodePath("AreaRange/CollisionShape2D")
 
 [node name="Turret" type="Node2D" parent="."]
 

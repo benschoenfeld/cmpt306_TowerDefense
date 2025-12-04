@@ -6,7 +6,7 @@ class_name TowerInstance
 @export var range_area_path: NodePath = NodePath("AreaRange")
 @export var tower_combat_path: NodePath = NodePath("TowerCombat")
 
-
+@export var area: CollisionShape2D
 
 var tower_resource: TowerResource = null 
 
@@ -33,16 +33,10 @@ func apply_tower_resource(towerRes: TowerResource) -> void:
 				turret_sprite.texture = towerRes.turret_texture
 			else:
 				print("TowerInstance: turrent_texture is not set in the resource -> Keeping default texture")
-			
 
-		
-	var areaRange = get_node(range_area_path)
-	if areaRange:
-		var ColShape = get_node("AreaRange/CollisionShape2D")
-		if ColShape and ColShape is CollisionShape2D and ColShape.shape:
-			if ColShape is CircleShape2D:
-				ColShape.radius = float(towerRes.area_range)
-	
+	area.shape = CircleShape2D.new()
+	area.shape.radius = towerRes.area_range
+
 	var towerCombat = get_node(tower_combat_path)
 	if towerCombat:
 		towerCombat.set("damage", int(towerRes.damage))
@@ -56,4 +50,6 @@ func apply_tower_resource(towerRes: TowerResource) -> void:
 	if not is_in_group("Towers"):
 		add_to_group("Towers")
 			
-	
+
+func _draw():
+	draw_circle(Vector2(0,0), tower_resource.area_range, Color.WHITE, false)

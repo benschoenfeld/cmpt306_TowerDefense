@@ -851,6 +851,7 @@ autoplay = "not_visable"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("37_4s5nj")
+volume_db = -10.0
 bus = &"Music"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/PreviousButton" to="." method="_on_previous_button_pressed"]
