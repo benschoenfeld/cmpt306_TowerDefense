@@ -1,17 +1,15 @@
-[gd_scene load_steps=25 format=4 uid="uid://0wsbgy801txt"]
+[gd_scene load_steps=21 format=4 uid="uid://0wsbgy801txt"]
 
 [ext_resource type="Script" uid="uid://ddh6nidkpvu7s" path="res://game_manager/game_manager.gd" id="1_ong7i"]
 [ext_resource type="PackedScene" uid="uid://bb0emy17c3vce" path="res://general_ui/pause_menu/pause_menu.tscn" id="2_mx6ys"]
 [ext_resource type="PackedScene" uid="uid://b6vs3ylr7i6pe" path="res://general_ui/SFX/ui_sounds.tscn" id="3_kkxic"]
-[ext_resource type="PackedScene" uid="uid://dolipbibi2ypy" path="res://tiles/farming_tile/farming_tile.tscn" id="3_pnley"]
 [ext_resource type="Texture2D" uid="uid://c006q8j3wqfjr" path="res://game_manager/assets/pause_button.png" id="3_q7vcu"]
 [ext_resource type="TileSet" uid="uid://b6mvjkxyalhye" path="res://game_manager/assets/visual_tileset.tres" id="4_kkxic"]
 [ext_resource type="PackedScene" uid="uid://me31tyggjdy4" path="res://general_ui/hud/hud.tscn" id="4_r63pj"]
+[ext_resource type="TileSet" uid="uid://dm2je5svxvok7" path="res://game_manager/assets/game_tiles.tres" id="4_tafu7"]
 [ext_resource type="AudioStream" uid="uid://buppeg7wx1bn6" path="res://game_manager/assets/apple_cider.wav" id="5_03pqa"]
 [ext_resource type="PackedScene" uid="uid://dmmjsxbvqc2j3" path="res://tool_manager/tool_manager.tscn" id="6_2631c"]
-[ext_resource type="PackedScene" uid="uid://3dkwwgndl3o" path="res://defenses/base/base.tscn" id="6_cp5ju"]
 [ext_resource type="AudioStream" uid="uid://ccie4sn00x1ch" path="res://game_manager/assets/mixkit-clinking-coins-1993.wav" id="6_d3erd"]
-[ext_resource type="PackedScene" uid="uid://ckbw8cegydtbp" path="res://path/path.tscn" id="7_cp5ju"]
 [ext_resource type="PackedScene" uid="uid://ojx03imwc7y3" path="res://enemies/scenes/spawner.tscn" id="9_cp5ju"]
 [ext_resource type="Script" uid="uid://cc7cvihtppahe" path="res://enemies/scripts/Wave.gd" id="9_tafu7"]
 [ext_resource type="Resource" uid="uid://cjxuje0dennvv" path="res://enemies/waves/wave_1.tres" id="10_7c8rc"]
@@ -21,16 +19,6 @@
 [ext_resource type="Resource" uid="uid://dl2l15tp5kbvl" path="res://enemies/waves/wave_5.tres" id="14_oats1"]
 [ext_resource type="Texture2D" uid="uid://b1ajmy2xbwyqi" path="res://general_ui/hud/assets/sprite.png" id="17_fikbl"]
 [ext_resource type="AudioStream" uid="uid://wx4j1i2iyt5" path="res://game_manager/assets/Random Battle.mp3" id="21_fikbl"]
-
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_03pqa"]
-resource_name = "FarmingTile"
-scenes/1/scene = ExtResource("3_pnley")
-scenes/2/scene = ExtResource("6_cp5ju")
-scenes/8/scene = ExtResource("7_cp5ju")
-
-[sub_resource type="TileSet" id="TileSet_2631c"]
-tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetScenesCollectionSource_03pqa")
 
 [sub_resource type="Curve2D" id="Curve2D_cp5ju"]
 _data = {
@@ -47,7 +35,6 @@ tool_manager = NodePath("Game/ToolManager")
 money_sound_player = NodePath("Game/MoneySound")
 background_music = NodePath("BackgroundMusic")
 battle_music = NodePath("BattleMusic")
-money_amount = 600
 
 [node name="Game" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -64,7 +51,7 @@ metadata/_edit_lock_ = true
 
 [node name="GameTiles" type="TileMapLayer" parent="Game"]
 tile_map_data = PackedByteArray("AAD4/wMAAAAAAAAACAD5/wMAAAAAAAAACAD6/wMAAAAAAAAACAD7/wMAAAAAAAAACAD8/wMAAAAAAAAACAD9/wMAAAAAAAAACAD+/wMAAAAAAAAACAD//wMAAAAAAAAACAAAAAMAAAAAAAAACAABAAMAAAAAAAAACAACAAAAAAAAAAAACAACAAEAAAAAAAAACAADAAAAAAAAAAAACAADAAEAAAAAAAAACAADAAIAAAAAAAAACAAEAAAAAAAAAAAACAAEAAEAAAAAAAAACAAFAAAAAAAAAAAACAAFAAEAAAAAAAAACAAGAAAAAAAAAAAACAAGAAEAAAAAAAAACAAHAAAAAAAAAAAACAAHAAEAAAAAAAAACAD1/wMAAAAAAAAACAD1/wQAAAAAAAAACAD2/wMAAAAAAAAACAD2/wQAAAAAAAAACAD3/wMAAAAAAAAACAD3/wQAAAAAAAAACAD3/wUAAAAAAAAAAgD4/wQAAAAAAAAACAD5/wQAAAAAAAAACAD6/wQAAAAAAAAACAD7/wQAAAAAAAAACAD8/wQAAAAAAAAACAD9/wQAAAAAAAAACAD+/wQAAAAAAAAACAD//wQAAAAAAAAACAAAAAQAAAAAAAAACAABAAQAAAAAAAAACAAIAPn/AAAAAAAACAAIAP//AAAAAAAACAAIAAAAAAAAAAAACAAIAAEAAAAAAAAACAAJAPn/AAAAAAAACAAJAP//AAAAAAAACAAJAAAAAAAAAAAACAAJAAEAAAAAAAAACAAKAPz/AAAAAAAAAgDw/wMAAAAAAAAACADw/wQAAAAAAAAACADx/wMAAAAAAAAACADx/wQAAAAAAAAACADy/wMAAAAAAAAACADy/wQAAAAAAAAACADz/wMAAAAAAAAACADz/wQAAAAAAAAACAD0/wMAAAAAAAAACAD0/wQAAAAAAAAACAAAAAAAAAAAAAAACAAAAAEAAAAAAAAACAABAAAAAAAAAAAACAABAAEAAAAAAAAACAD6/wAAAAAAAAAACAD6/wEAAAAAAAAACAD7/wAAAAAAAAAACAD7/wEAAAAAAAAACAD8/wAAAAAAAAAACAD8/wEAAAAAAAAACAD9/wAAAAAAAAAACAD9/wEAAAAAAAAACAD+/wAAAAAAAAAACAD+/wEAAAAAAAAACAD//wAAAAAAAAAACAD//wEAAAAAAAAACAAIAP3/AAAAAAAACAAIAP7/AAAAAAAACAAJAP3/AAAAAAAACAAJAP7/AAAAAAAACAAIAPz/AAAAAAAACAAIAPv/AAAAAAAACAAIAPr/AAAAAAAACAAJAPz/AAAAAAAACAAJAPv/AAAAAAAACAAJAPr/AAAAAAAACAAHAP7/AAAAAAAAAgD0//z/AAAAAAAAAQD0//3/AAAAAAAAAQD0//7/AAAAAAAAAQD0////AAAAAAAAAQD0/wAAAAAAAAAAAQD1//z/AAAAAAAAAQD1//3/AAAAAAAAAQD1//7/AAAAAAAAAQD1////AAAAAAAAAQD1/wAAAAAAAAAAAQD2//z/AAAAAAAAAQD2//3/AAAAAAAAAQD2//7/AAAAAAAAAQD2////AAAAAAAAAQD2/wAAAAAAAAAAAQD4//z/AAAAAAAACAD5//z/AAAAAAAACAD6//z/AAAAAAAACAD7//z/AAAAAAAACAD8//z/AAAAAAAACAD9//z/AAAAAAAACAD+//z/AAAAAAAACAD///z/AAAAAAAACAD4//3/AAAAAAAACAD5//3/AAAAAAAACAD6//3/AAAAAAAACAD7//3/AAAAAAAACAD8//3/AAAAAAAACAD9//3/AAAAAAAACAD+//3/AAAAAAAACAD///3/AAAAAAAACAD4//7/AAAAAAAACAD4////AAAAAAAACAD5//7/AAAAAAAACAD5////AAAAAAAACAD4/wAAAAAAAAAACAD4/wEAAAAAAAAACAD5/wAAAAAAAAAACAD5/wEAAAAAAAAACAD6//n/AAAAAAAAAQD6//r/AAAAAAAAAQD7//n/AAAAAAAAAQD7//r/AAAAAAAAAQD8//n/AAAAAAAAAQD8//r/AAAAAAAAAQD9//n/AAAAAAAAAQD9//r/AAAAAAAAAQD+//n/AAAAAAAAAQD+//r/AAAAAAAAAQD///n/AAAAAAAAAQD///r/AAAAAAAAAQAAAPn/AAAAAAAAAQAAAPr/AAAAAAAAAQABAPn/AAAAAAAAAQABAPr/AAAAAAAAAQD4//v/AAAAAAAAAgD7/wIAAAAAAAAAAgACAPz/AAAAAAAACAACAP3/AAAAAAAACAACAP7/AAAAAAAACAACAP//AAAAAAAACAADAPz/AAAAAAAACAADAP3/AAAAAAAACAADAP7/AAAAAAAACAADAP//AAAAAAAACAACAAIAAAAAAAAACAACAAQAAAAAAAAACAACAAMAAAAAAAAACAADAAMAAAAAAAAACAADAAQAAAAAAAAACAAAAPz/AAAAAAAACAAAAP3/AAAAAAAACAABAP3/AAAAAAAACAABAPz/AAAAAAAACAAAAP7/AAAAAAAAAgACAPn/AAAAAAAAAQADAPr/AAAAAAAAAQADAPn/AAAAAAAAAQACAPr/AAAAAAAAAQAIAPj/AAAAAAAACAAJAPj/AAAAAAAACAAIAPf/AAAAAAAACAAJAPf/AAAAAAAACAA=")
-tile_set = SubResource("TileSet_2631c")
+tile_set = ExtResource("4_tafu7")
 metadata/_edit_lock_ = true
 
 [node name="Barn" type="TileMapLayer" parent="Game"]
