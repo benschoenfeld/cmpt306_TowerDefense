@@ -38,9 +38,12 @@ const CURSOR_SHAPE = Input.CURSOR_ARROW
 ## A reference to an [AudioStreamPlayer] for switching tools action.
 @export var switch_sound_player: AudioStreamPlayer
 
+## A reference to an [AudioStreamPlayer] for denying actions.
+@export var deny_sound_player: AudioStreamPlayer
+
 @export_category("Game Settings")
 ## Index of the currrent tools selected
-@export var current_tool_index: int = int(tool_enum.Tool.SHOVEL)
+@export var current_tool_index: int = int(tool_enum.Tool.TARGET)
 
 ## Reference to the [GameManager]
 @export var game_manager: GameManager = null
@@ -65,6 +68,10 @@ var tile_map: TileMapLayer
 
 ## A reference to a model that will be interacted with.
 var model: Model
+
+## A [bool] that makes the user not be able to interact with tiles when they
+## are not supposed to.
+var tool_inactive: bool = true
 
 func _ready() -> void:
 	toolArray = [tool_shovel, tool_waterCan, tool_hoe, tool_target]
@@ -139,7 +146,11 @@ func _process(_delta: float) -> void:
 
 ## 
 func interact(tile: BaseTile) -> void:
-	if tile == null:
+	if tile == null or tile is Path:
+		return
+
+	if tool_inactive and tile is FarmingTile:
+		deny_sound_player.play()
 		return
 
 	var tool = current_tool_index
@@ -190,6 +201,10 @@ func get_selected_tower() -> TowerResource:
 	return selected_tower
 
 ##
+func set_inactive(active: bool) -> void: 
+	tool_inactive = active
+
+##
 func _on_hoe_money_updated(new_amount: int) -> void:
 	if game_manager:
 		game_manager.add_money(new_amount)
@@ -198,3 +213,7 @@ func _on_hoe_money_updated(new_amount: int) -> void:
 func _on_tower_tool_money_changed(new_amount: int) -> void:
 	if game_manager:
 		game_manager.add_money(-new_amount)
+
+
+func _on_hud_started_wave() -> void:
+	set_inactive(false)

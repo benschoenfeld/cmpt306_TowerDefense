@@ -1,20 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmmjsxbvqc2j3"]
+[gd_scene load_steps=9 format=3 uid="uid://dmmjsxbvqc2j3"]
 
 [ext_resource type="Script" uid="uid://cvvvfjm75a7rh" path="res://tool_manager/tool_manager.gd" id="1_b78em"]
 [ext_resource type="AudioStream" uid="uid://cd6oqp8pkru3m" path="res://tool_manager/assets/metal_interaction1.wav" id="3_exrli"]
+[ext_resource type="AudioStream" uid="uid://d1l7l5aq1vdjl" path="res://defenses/assets/DenySound.wav" id="3_pu0k4"]
 [ext_resource type="PackedScene" uid="uid://cqu5o84elqefp" path="res://tools/tower_tool.tscn" id="6_exrli"]
 [ext_resource type="AudioStream" uid="uid://33v4gdfuhcqs" path="res://defenses/assets/TowerPlacing.wav" id="7_ola5a"]
 [ext_resource type="PackedScene" uid="uid://7e8hesjk7gwl" path="res://tools/shovel.tscn" id="7_rjpn1"]
 [ext_resource type="PackedScene" uid="uid://cktag0k6gm3qw" path="res://tools/hoe.tscn" id="8_sao2t"]
 [ext_resource type="PackedScene" uid="uid://bea0dc5hi48dg" path="res://tools/watercan.tscn" id="9_dmllw"]
 
-[node name="ToolManager" type="Node2D" node_paths=PackedStringArray("switch_sound_player")]
+[node name="ToolManager" type="Node2D" node_paths=PackedStringArray("switch_sound_player", "deny_sound_player")]
 script = ExtResource("1_b78em")
 switch_sound_player = NodePath("SwitchSound")
+deny_sound_player = NodePath("DenySound")
 
 [node name="SwitchSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_exrli")
 volume_db = -3.0
+bus = &"SFX"
+
+[node name="DenySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_pu0k4")
+volume_db = -0.5
 bus = &"SFX"
 
 [node name="Shovel" parent="." instance=ExtResource("7_rjpn1")]

@@ -115,3 +115,4 @@ func _on_pause_button_pressed() -> void:
 func _on_spawner_wave_finished(has_more_waves: bool) -> void:
 	if !has_more_waves:
 		_player_wins()
+	tool_manager.set_inactive(true)
