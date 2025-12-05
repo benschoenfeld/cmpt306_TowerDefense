@@ -24,7 +24,7 @@ var money_amount: int
 ## emits a [signal denied_tower] to say the player has not placed a tower.
 func interact_effect(tile: BaseTile):
 	#check money
-	if selected_tower and tile is BaseTile:
+	if selected_tower and tile is BuildBase:
 		if not _can_afford_a_tower(selected_tower.get_cost()):
 			deny_sound.play()
 			print("Not enough moeny for: ", selected_tower.tower_name, " cost:", selected_tower.cost)
