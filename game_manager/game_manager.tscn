@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://0wsbgy801txt"]
+[gd_scene load_steps=26 format=4 uid="uid://0wsbgy801txt"]
 
 [ext_resource type="Script" uid="uid://ddh6nidkpvu7s" path="res://game_manager/game_manager.gd" id="1_ong7i"]
 [ext_resource type="PackedScene" uid="uid://bb0emy17c3vce" path="res://general_ui/pause_menu/pause_menu.tscn" id="2_mx6ys"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dmmjsxbvqc2j3" path="res://tool_manager/tool_manager.tscn" id="6_2631c"]
 [ext_resource type="AudioStream" uid="uid://ccie4sn00x1ch" path="res://game_manager/assets/mixkit-clinking-coins-1993.wav" id="6_d3erd"]
 [ext_resource type="PackedScene" uid="uid://ckbw8cegydtbp" path="res://path/path.tscn" id="6_s5nag"]
+[ext_resource type="AudioStream" uid="uid://dauj3hu1ql36w" path="res://game_manager/assets/bzzzt.wav" id="8_i24ge"]
 [ext_resource type="PackedScene" uid="uid://ojx03imwc7y3" path="res://enemies/scenes/spawner.tscn" id="9_cp5ju"]
 [ext_resource type="Script" uid="uid://cc7cvihtppahe" path="res://enemies/scripts/Wave.gd" id="9_tafu7"]
 [ext_resource type="Resource" uid="uid://cjxuje0dennvv" path="res://enemies/waves/wave_1.tres" id="10_7c8rc"]
@@ -86,6 +87,9 @@ volume_db = -2.0
 bus = &"SFX"
 
 [node name="DamageSound" type="AudioStreamPlayer" parent="Game"]
+stream = ExtResource("8_i24ge")
+volume_db = -5.0
+bus = &"SFX"
 
 [node name="EnemyPath" type="Path2D" parent="Game"]
 curve = SubResource("Curve2D_cp5ju")
