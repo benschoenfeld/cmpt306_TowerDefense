@@ -10,7 +10,7 @@ extends PathFollow2D
 @export var type: EnemyType
 
 ## A reference to the direct path of the animation for the AnimatedSprite2D.
-@onready var animation: AnimatedSprite2D = $Area2D/AnimatedSprite2D
+@export var animation: AnimatedSprite2D
 
 ## Determines the health of the [Enemy].
 var health: int

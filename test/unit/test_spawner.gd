@@ -6,15 +6,14 @@ var SpawnerScript = preload("res://enemies/scripts/spawner.gd")
 class MockEnemy:
 	extends Enemy
 	func _init():
-		progress_ratio = 0.0
-		type = EnemyType.new()
-	func setup(type): pass # pass functions are to avoid calls in certain places
+		type = preload("res://enemies/resources/Normal.tres")
+	func setup(_type): pass # pass functions are to avoid calls in certain places
 	func _ready(): pass
 
 # mock HUD
 class MockHUD:
 	extends HUD
-	func update_wave_display(wave_count): pass
+	func update_wave_display(_wave_count): pass
 	func show_button(): pass
 
 # mock GameManager
@@ -23,7 +22,7 @@ class MockGameManager:
 	var health = 100
 	func _ready(): pass
 	func remove_health(damage): health -= damage
-	func switch_music(started): pass
+	func switch_music(_started): pass
 
 var spawner: Spawner
 var path: Path2D
@@ -38,6 +37,7 @@ func before_each():
 	curve.add_point(Vector2(0,0))
 	curve.add_point(Vector2(100,0))
 	path.curve = curve
+	add_child_autofree(path)
 	
 	# mock Enemy scene
 	var enemy = MockEnemy.new()
@@ -51,7 +51,7 @@ func before_each():
 	add_child(gm)
 
 	# spawner
-	spawner = SpawnerScript.new()
+	spawner = preload("res://enemies/scenes/spawner.tscn").instantiate()
 	spawner.path = path
 	spawner.enemy_scene = mock_enemy_scene
 	spawner.wave_controller = hud
@@ -60,6 +60,10 @@ func before_each():
 
 func after_each():
 	# free test values
+	if is_instance_valid(path):
+		for child in path.get_children():
+			child.queue_free()
+	
 	if is_instance_valid(spawner):
 		spawner.queue_free()
 	if is_instance_valid(path):

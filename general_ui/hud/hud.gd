@@ -31,12 +31,12 @@ signal started_wave
 ## A reference to a [SimpleToolTip] that displays information about the game.
 @export var tool_tip: SimpleToolTip
 
+## A reference to an [AnimationPlayer] to play animations on the [tool_tip].
+@export var anim_player: AnimationPlayer
+
 @export_category("Outside Nodes")
 ## A reference to the [GameManager].
 @export var manager: GameManager
-
-## A reference to an [AnimationPlayer] to play animations on the [tool_tip].
-@onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 ## Give the enum for tools that can be shared between scenes.
 var tool_enum: ToolEnums = ToolEnums.new()

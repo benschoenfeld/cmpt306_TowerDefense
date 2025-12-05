@@ -99,7 +99,7 @@ _data = {
 &"pulse_button": SubResource("Animation_0ylbf")
 }
 
-[node name="Hud" type="Control" node_paths=PackedStringArray("tool_ui", "health_display", "money_display", "seed_bag", "tower_bag", "wave_button", "wave_display", "tool_tip")]
+[node name="Hud" type="Control" node_paths=PackedStringArray("tool_ui", "health_display", "money_display", "seed_bag", "tower_bag", "wave_button", "wave_display", "tool_tip", "anim_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,6 +117,7 @@ tower_bag = NodePath("VBoxContainer/HBoxContainer/CenterContainer/TowerBag")
 wave_button = NodePath("VBoxContainer/HBoxContainer2/HBoxContainer/StartWaveButton")
 wave_display = NodePath("VBoxContainer/HBoxContainer2/HBoxContainer/WaveCounter")
 tool_tip = NodePath("VBoxContainer/HBoxContainer2/SimpleToolTip")
+anim_player = NodePath("ToolTip")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -211,7 +212,7 @@ text = "Start Wave"
 custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="ToolTip" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_86lra")
 }
