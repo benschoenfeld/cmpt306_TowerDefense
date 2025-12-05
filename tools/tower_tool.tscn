@@ -9,3 +9,4 @@ script = ExtResource("2_r1rh7")
 
 [node name="DenySound" type="AudioStreamPlayer" parent="." index="1"]
 stream = ExtResource("4_c6cnu")
+bus = &"SFX"

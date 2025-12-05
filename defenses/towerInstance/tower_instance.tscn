@@ -35,3 +35,4 @@ bullet_sound = NodePath("../TowerFire")
 
 [node name="TowerFire" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_8jlub")
+bus = &"SFX"
