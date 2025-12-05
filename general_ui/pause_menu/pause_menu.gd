@@ -58,7 +58,7 @@ func _on_main_menu_button_pressed() -> void:
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 
-
+## Shows and starts the tutorial.
 func _on_tutorial_button_pressed() -> void:
 	tutorial.start()
 	tutorial.show()

@@ -1,6 +1,10 @@
 class_name Spawner
 
 extends Node
+## Spawns in [Enemy] scene based on waves data.
+##
+## Deals with spawning [Enemy[ scens, holding data of waves
+## and dealing with end of wave logic.
 
 ## A reference to the parent Path2D node.
 @export var path: Path2D
