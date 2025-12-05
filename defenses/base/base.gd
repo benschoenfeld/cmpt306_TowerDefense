@@ -1,6 +1,6 @@
-extends BaseTile
 class_name BuildBase
 
+extends BaseTile
 ## A tile that holds a placed [TowerInstance].
 ##
 ## [BuildBase] represents a buildable tile used for placing towers.

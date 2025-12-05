@@ -1,5 +1,10 @@
-extends PathFollow2D
 class_name Enemy
+
+extends PathFollow2D
+## The enemy logic.
+##
+## Holds all of the information needed to interact with enemies.
+## Different enemeis come from different [EnemyType] resource files.
 
 ## A reference to the type of enemy.
 @export var type: EnemyType
@@ -7,12 +12,13 @@ class_name Enemy
 ## A reference to the direct path of the animation for the AnimatedSprite2D.
 @onready var animation: AnimatedSprite2D = $Area2D/AnimatedSprite2D
 
-# Determines the health of the player.
+## Determines the health of the [Enemy].
 var health: int
 
 ## A signal that indicates the enemy has completed it's Path2D.
 signal reached_end(damage: int)
 
+## A signal that emits when the [Enemy] has less than or equal to zero [param health].
 signal enemy_death()
 
 ## Method to initialize the enemy's stats and animations.
@@ -45,7 +51,7 @@ func _process(delta: float) -> void:
 		emit_signal("reached_end", type.damage)
 		on_death()
 	
-## Method
+## Method that handle lowering the health of the enemy.
 func do_damage(amount: int) -> void:
 	health -= amount
 	if health <= 0:

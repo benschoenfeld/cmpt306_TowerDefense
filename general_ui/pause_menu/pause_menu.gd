@@ -60,6 +60,5 @@ func _on_quit_button_pressed() -> void:
 
 
 func _on_tutorial_button_pressed() -> void:
-	var tutorial: Tutorial = $OptionsLayer.get_child(1)
 	tutorial.start()
 	tutorial.show()

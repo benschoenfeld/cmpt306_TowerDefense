@@ -1,3 +1,5 @@
+class_name Spawner
+
 extends Node
 
 ## A reference to the parent Path2D node.
@@ -35,11 +37,9 @@ signal wave_finished(has_more_waves: bool)
 func _ready() -> void:
 	if wave_controller and wave_controller.has_signal("started_wave"):
 		wave_controller.started_wave.connect(_on_start_wave_button_pressed)
-		wave_finished.connect(wave_controller._on_wave_finished)
 	
 	current_wave_index = 0
 	wave_running = false
-	
 
 ## Handles action when UI 'start wave' button has been pressed.
 func _on_start_wave_button_pressed() -> void:
@@ -61,10 +61,7 @@ func _on_start_wave_button_pressed() -> void:
 	await spawn_wave(wave)
 	
 	wave_running = false
-	#var has_more = current_wave_index < waves.size()
-	#wave_finished.emit(has_more)
-	
-	
+
 ## Method to spawn each sequence of enemies in the array of sequences.
 ## @param wave: An array of Wave resources
 func spawn_wave(wave: Wave) -> void:

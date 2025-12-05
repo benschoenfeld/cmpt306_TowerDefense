@@ -30,8 +30,12 @@ signal health_change(new_amount: int)
 ## when the money is changed.
 @export var money_sound_player: AudioStreamPlayer
 
+## A reference to the an [AudioStreamPlayer] that plays music while 
+## player is not in battle.
 @export var background_music: AudioStreamPlayer
 
+## A reference to the an [AudioStreamPlayer] that plays music while 
+## player is in battle.
 @export var battle_music: AudioStreamPlayer
 
 @export_category("Game Settings")
@@ -61,7 +65,6 @@ func set_money(new_amount: int) -> void:
 	money_amount = new_amount
 	money_changed.emit(money_amount)
 
-
 ## Adds to the [param money_amount].
 func add_money(new_amount: int) -> void:
 	set_money(get_money() + new_amount)
@@ -89,6 +92,7 @@ func get_health() -> int:
 func get_model() -> Model:
 	return model
 
+## Switchs between battle and background music based on the @param battle_mode
 func switch_music(battle_mode: bool) -> void:
 	if battle_mode:
 		background_music.volume_linear = 0
@@ -123,7 +127,7 @@ func _set_up_model() -> void:
 func _on_pause_button_pressed() -> void:
 	pause_menu.set_pause(true)
 
-
+## Checks if there are any waves left once it catches a signal.
 func _on_spawner_wave_finished(has_more_waves: bool) -> void:
 	if !has_more_waves:
 		_player_wins()

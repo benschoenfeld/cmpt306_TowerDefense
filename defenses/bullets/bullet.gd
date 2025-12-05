@@ -1,6 +1,6 @@
-extends Area2D
 class_name Bullet
 
+extends Area2D
 ## A bullet fired by  the towers that moves toward a target and deals damage.
 ##
 ## The [Bullet] travels either in a line or by tracking a target.
@@ -31,8 +31,6 @@ const HIT_DISTANCE: float = 8.0
 ## The time the bullet has been alive.
 var lifetime: float = 0.0
 
-func _ready() -> void:
-	pass
 
 ## Main logic loop. Moves bullet, tracks lifetime and handles hits.
 ##

@@ -1,5 +1,10 @@
-extends Resource
 class_name EnemySequence
+
+extends Resource
+## Holds information for what type of [Enemy] will be spawned in and how many.
+##
+## To make different [EnemySequence]'s just make a new resource file with 
+## different values.
 
 ## A reference to the type of enenmy (from the resource).
 @export var enemy_type: EnemyType

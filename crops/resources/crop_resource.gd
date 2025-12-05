@@ -1,5 +1,10 @@
-extends Resource
 class_name CropResource
+
+extends Resource
+## Stored infromation about the crops.
+##
+## Holds visual and game balance data in the script.
+## To make a new crop just make a new resource and change values.
 
 ## Name of the crop.
 @export var crop_name: String

@@ -1,9 +1,9 @@
 class_name ToolBase
 
 extends Node2D
+## A base script for other tools.
 ##
-##
-##
+## A script that will be extended to have different interactions with [BaseTile].
 
 ##
 @export var sound_effect: AudioStream
