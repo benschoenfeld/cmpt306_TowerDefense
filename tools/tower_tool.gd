@@ -24,21 +24,19 @@ var money_amount: int
 ## emits a [signal denied_tower] to say the player has not placed a tower.
 func interact_effect(tile: BaseTile):
 	#check money
-	if selected_tower:
+	if selected_tower and tile is BaseTile:
 		if not _can_afford_a_tower(selected_tower.get_cost()):
 			deny_sound.play()
 			print("Not enough moeny for: ", selected_tower.tower_name, " cost:", selected_tower.cost)
 			denied_tower.emit()
 			return
-		
-		if tile is BuildBase:
-			
-			tile.set_meta("occupied", true)
-			tile.set_tower(selected_tower)
-		
-			_buy_tower(selected_tower.get_cost())
-		
-			sound_player.play()
+
+		tile.set_meta("occupied", true)
+		tile.set_tower(selected_tower)
+
+		_buy_tower(selected_tower.get_cost())
+
+		sound_player.play()
 
 ## A setter for [param select_tower].
 func set_tower(new_tower: TowerResource) -> void:
