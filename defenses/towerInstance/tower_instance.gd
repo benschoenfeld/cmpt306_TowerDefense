@@ -87,4 +87,4 @@ func apply_tower_resource(towerRes: TowerResource) -> void:
 
 ## Draws visual representation of tower attack range in the editor.
 func _draw():
-	draw_circle(Vector2.ZERO, tower_resource.area_range, Color(1.0, 1.0, 1.0, 0.49), false, 2, true)
+	draw_circle(Vector2.ZERO, tower_resource.area_range, Color(1.0, 1.0, 1.0, 0.15), false, 2, true)

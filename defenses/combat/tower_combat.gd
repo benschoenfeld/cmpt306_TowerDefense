@@ -23,6 +23,8 @@ extends Node2D
 ## The speed applied to new bullets.
 @export var bullet_speed: float = 600.0
 
+@export var bullet_sound: AudioStreamPlayer
+
 ## Path to the turret node that rotates to face enemies.
 @export var turret_node_path: NodePath = NodePath("../Turret")
 
@@ -172,6 +174,8 @@ func fire_at(target: Node2D):
 		current_scene.add_child(bullet)
 	else:
 		get_tree().get_root().add_child(bullet)
+	
+	bullet_sound.play()
 
 ## Adds a unique enemy to the target queue.
 ##

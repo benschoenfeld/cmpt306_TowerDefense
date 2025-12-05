@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://by37g527bvnb8"]
+[gd_scene load_steps=7 format=3 uid="uid://by37g527bvnb8"]
 
 [ext_resource type="Script" uid="uid://ddg57dkvqe5fq" path="res://defenses/towerInstance/tower_instance.gd" id="1_g2e2s"]
 [ext_resource type="Texture2D" uid="uid://fwdl7xwqn8c5" path="res://defenses/assets/tower_1.png" id="2_xxej3"]
 [ext_resource type="PackedScene" uid="uid://dui6ejkqqbch2" path="res://defenses/combat/tower_combat.tscn" id="3_gjk1p"]
 [ext_resource type="PackedScene" uid="uid://bpsio5u3ypug7" path="res://defenses/bullets/bullet_1.tscn" id="3_xxej3"]
+[ext_resource type="AudioStream" uid="uid://3fr7y4yc0ef4" path="res://defenses/assets/gun-shot-6178.mp3" id="5_8jlub"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xxej3"]
 
@@ -28,5 +29,9 @@ gizmo_extents = 0.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaRange"]
 shape = SubResource("CircleShape2D_xxej3")
 
-[node name="TowerCombat" parent="." instance=ExtResource("3_gjk1p")]
+[node name="TowerCombat" parent="." node_paths=PackedStringArray("bullet_sound") instance=ExtResource("3_gjk1p")]
 bullet_scene = ExtResource("3_xxej3")
+bullet_sound = NodePath("../AudioStreamPlayer")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_8jlub")
