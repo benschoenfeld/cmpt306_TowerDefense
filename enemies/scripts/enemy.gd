@@ -67,7 +67,7 @@ func on_death() -> void:
 		d_sound.global_position = global_position
 		
 		# increases the volume
-		d_sound.volume_db = 20.0
+		d_sound.volume_db = 10.0
 		
 		# Adds the sound scene root so it doesn't get deleted when the enemy is freed
 		var root := get_tree().get_current_scene()
