@@ -11,3 +11,8 @@ extends Control
 
 func _ready() -> void:
 	text_label.text = text
+
+## Set the text to be displayed.
+func set_text(message: String) -> void:
+	text = message
+	text_label.text = message

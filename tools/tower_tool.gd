@@ -9,6 +9,9 @@ extends ToolBase
 signal money_changed(new_amount: int)
 
 ##
+signal denied_tower()
+
+##
 var selected_tower: TowerResource
 
 ##
@@ -24,6 +27,7 @@ func interact_effect(tile: BaseTile):
 		if not _can_afford_a_tower(selected_tower.get_cost()):
 			deny_sound.play()
 			print("Not enough moeny for: ", selected_tower.tower_name, " cost:", selected_tower.cost)
+			denied_tower.emit()
 			return
 		
 		if tile is BuildBase:

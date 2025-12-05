@@ -20,7 +20,7 @@ signal request_tower_bag(show_item: bool)
 signal selected_tower_changed(towerResorce: TowerResource)
 
 ##
-signal show_tool_tip 
+signal show_tool_tip(message: String) 
 
 # Cursor constants
 const CURSOR_HOTSPOT = Vector2(16, 16)
@@ -158,7 +158,7 @@ func interact(tile: BaseTile) -> void:
 
 	if tool_inactive and tile is FarmingTile:
 		deny_sound_player.play()
-		show_tool_tip.emit()
+		show_tool_tip.emit("Hit the 'Start Wave' button to interact with crops!")
 		
 		return
 
@@ -226,3 +226,7 @@ func _on_tower_tool_money_changed(new_amount: int) -> void:
 
 func _on_hud_started_wave() -> void:
 	set_inactive(false)
+
+
+func _on_tower_tool_denied_tower() -> void:
+	show_tool_tip.emit("Not enough money to place tower!")

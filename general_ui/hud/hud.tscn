@@ -9,22 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://blcm64pbdyg22" path="res://defenses/tower_bag/tower_bag.tscn" id="5_bk23a"]
 [ext_resource type="PackedScene" uid="uid://c5h84e0oxki0w" path="res://tooltip/simple_tool_tip.tscn" id="8_t62m1"]
 
-[sub_resource type="Animation" id="Animation_0ylbf"]
-resource_name = "pulse_button"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/HBoxContainer2/HBoxContainer/StartWaveButton:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.033333335, 0.53333336, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.26293245, 0.26293245, 0.26293245, 1), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_t62m1"]
 length = 0.001
 tracks/0/type = "value"
@@ -92,6 +76,22 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_0ylbf"]
+resource_name = "pulse_button"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/HBoxContainer2/HBoxContainer/StartWaveButton:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.53333336, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.26293245, 0.26293245, 0.26293245, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_86lra"]
 _data = {
 &"RESET": SubResource("Animation_t62m1"),
@@ -99,7 +99,7 @@ _data = {
 &"pulse_button": SubResource("Animation_0ylbf")
 }
 
-[node name="Hud" type="Control" node_paths=PackedStringArray("tool_ui", "health_display", "money_display", "seed_bag", "tower_bag", "wave_button")]
+[node name="Hud" type="Control" node_paths=PackedStringArray("tool_ui", "health_display", "money_display", "seed_bag", "tower_bag", "wave_button", "wave_display", "tool_tip")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -115,6 +115,8 @@ money_display = NodePath("VBoxContainer/HBoxContainer/Spacer1/HBoxContainer/Mone
 seed_bag = NodePath("VBoxContainer/HBoxContainer/CenterContainer/SeedBag")
 tower_bag = NodePath("VBoxContainer/HBoxContainer/CenterContainer/TowerBag")
 wave_button = NodePath("VBoxContainer/HBoxContainer2/HBoxContainer/StartWaveButton")
+wave_display = NodePath("VBoxContainer/HBoxContainer2/HBoxContainer/WaveCounter")
+tool_tip = NodePath("VBoxContainer/HBoxContainer2/SimpleToolTip")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

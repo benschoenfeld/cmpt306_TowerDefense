@@ -26,6 +26,8 @@ signal started_wave
 
 @export var wave_display: NumberDisplay
 
+@export var tool_tip: SimpleToolTip
+
 @export_category("Outside Nodes")
 ## A reference to the [GameManager].
 @export var manager: GameManager
@@ -80,6 +82,6 @@ func hide_button() -> void:
 func show_button() -> void:
 	wave_button.show()
 
-
-func _on_tool_manager_show_tool_tip() -> void:
+func _on_tool_manager_show_tool_tip(message: String) -> void:
+	tool_tip.set_text(message)
 	anim_player.play("hide_tooltip")

@@ -34,4 +34,5 @@ bus = &"SFX"
 sound_effect = ExtResource("7_ola5a")
 
 [connection signal="money_updated" from="Hoe" to="." method="_on_hoe_money_updated"]
+[connection signal="denied_tower" from="TowerTool" to="." method="_on_tower_tool_denied_tower"]
 [connection signal="money_changed" from="TowerTool" to="." method="_on_tower_tool_money_changed"]
