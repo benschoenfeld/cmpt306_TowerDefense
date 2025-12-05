@@ -20,6 +20,8 @@ extends Resource
 ## A reference to the speed at which each enemy follows the path.
 @export var speed: float
 
+@export var death_sound: AudioStream
+
 ## A reference to the SpriteFrames that represent the AnimatedSprite2D
 @export var frames: SpriteFrames
 

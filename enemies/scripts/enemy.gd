@@ -58,7 +58,25 @@ func do_damage(amount: int) -> void:
 		on_death()
 		
 ## Method to handle the death of an enemy.
+## Handles the death sound that plays until it's finished after the enemy is freed
 func on_death() -> void:
+	# If the enemy and dying sound exists
+	if type != null and type.death_sound != null:
+		var d_sound := AudioStreamPlayer2D.new()
+		d_sound.stream = type.death_sound
+		d_sound.global_position = global_position
+		
+		# increases the volume
+		d_sound.volume_db = 20.0
+		
+		# Adds the sound scene root so it doesn't get deleted when the enemy is freed
+		var root := get_tree().get_current_scene()
+		root.add_child(d_sound)
+		d_sound.play()
+		
+		# removed the sound when once the audio has been played
+		if d_sound.has_signal("finished"):
+			d_sound.connect("finished", Callable(d_sound,"queue_free"))
 	enemy_death.emit()
 	queue_free()
 

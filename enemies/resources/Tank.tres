@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="EnemyType" load_steps=7 format=3 uid="uid://c30ygqmp03miq"]
+[gd_resource type="Resource" script_class="EnemyType" load_steps=8 format=3 uid="uid://c30ygqmp03miq"]
 
+[ext_resource type="AudioStream" uid="uid://cu77njup5i6ok" path="res://enemies/assets/male-scream-in-fear-123079.mp3" id="1_4gd1j"]
 [ext_resource type="Texture2D" uid="uid://cl4xar153lq0y" path="res://enemies/assets/Bugs.png" id="1_an0ff"]
 [ext_resource type="Script" uid="uid://corrfnng4rwk2" path="res://enemies/scripts/EnemyType.gd" id="2_an0ff"]
 
@@ -38,5 +39,6 @@ name = "Tank"
 health = 80
 damage = 5
 speed = 25.0
+death_sound = ExtResource("1_4gd1j")
 frames = SubResource("SpriteFrames_h2yhd")
 metadata/_custom_type_script = "uid://corrfnng4rwk2"
