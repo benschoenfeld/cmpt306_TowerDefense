@@ -36,7 +36,7 @@ func _set_resource(towerRes: TowerResource) -> void:
 ## and the detection radius.
 ##
 ## Updates turret sprite texture, the detection radius based on resource,
-## configures the attached [TowerCombat] with damage, fire rate, bullet speed.
+## configures the attached [TowerCombat] with damage, fire rate, bullet speed, bullet sound.
 ## Places the tower into the "Towers" group if not assigned
 ##
 ## @param towerRes The [TowerResource] used to configure the tower.

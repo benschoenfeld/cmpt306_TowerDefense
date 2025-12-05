@@ -23,6 +23,7 @@ extends Node2D
 ## The speed applied to new bullets.
 @export var bullet_speed: float = 600.0
 
+## The sound applied to new bullets.
 @export var bullet_sound: AudioStreamPlayer
 
 ## Path to the turret node that rotates to face enemies.

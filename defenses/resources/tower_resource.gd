@@ -34,6 +34,7 @@ extends Resource
 ## The speed at which spawned bullets travel.
 @export var bullet_speed: float = 600.0
 
+## The sound each bullet plays when fired.
 @export var bullet_sound: AudioStream
 
 ## Returns the cost of placing this tower.
