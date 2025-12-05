@@ -27,8 +27,12 @@ signal health_change(new_amount: int)
 @export var tool_manager: ToolManager
 
 ## A reference to the an [AudioStreamPlayer] that will play a money sound 
-## when the money is changed.
+## when the [param money_amount] is changed.
 @export var money_sound_player: AudioStreamPlayer
+
+## A reference to the an [AudioStreamPlayer] that will play a damage sound 
+## when the [param healh_amount] is changed.
+@export var damage_sound_player: AudioStreamPlayer
 
 ## A reference to the an [AudioStreamPlayer] that plays music while 
 ## player is not in battle.
@@ -76,6 +80,7 @@ func get_money() -> int:
 ## Takes away an [int] amount of health from the [param health_amount].
 func remove_health(damage: int) -> void:
 	set_health(get_health() - damage)
+	damage_sound_player.play()
 	if health_amount <= 0:
 		_player_death()
 

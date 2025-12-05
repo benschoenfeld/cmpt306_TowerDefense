@@ -37,13 +37,14 @@ _data = {
 }
 point_count = 7
 
-[node name="GameManager" type="Node" node_paths=PackedStringArray("pause_menu", "pause_ui_canvas", "game_map_tile_map", "tool_manager", "money_sound_player", "background_music", "battle_music")]
+[node name="GameManager" type="Node" node_paths=PackedStringArray("pause_menu", "pause_ui_canvas", "game_map_tile_map", "tool_manager", "money_sound_player", "damage_sound_player", "background_music", "battle_music")]
 script = ExtResource("1_ong7i")
 pause_menu = NodePath("PauseUI/PauseMenu")
 pause_ui_canvas = NodePath("PauseUI")
 game_map_tile_map = NodePath("Game/GameTiles")
 tool_manager = NodePath("Game/ToolManager")
 money_sound_player = NodePath("Game/MoneySound")
+damage_sound_player = NodePath("Game/DamageSound")
 background_music = NodePath("BackgroundMusic")
 battle_music = NodePath("BattleMusic")
 
@@ -83,6 +84,8 @@ metadata/_edit_lock_ = true
 stream = ExtResource("6_d3erd")
 volume_db = -2.0
 bus = &"SFX"
+
+[node name="DamageSound" type="AudioStreamPlayer" parent="Game"]
 
 [node name="EnemyPath" type="Path2D" parent="Game"]
 curve = SubResource("Curve2D_cp5ju")
