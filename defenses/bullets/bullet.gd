@@ -31,7 +31,6 @@ const HIT_DISTANCE: float = 8.0
 ## The time the bullet has been alive.
 var lifetime: float = 0.0
 
-
 ## Main logic loop. Moves bullet, tracks lifetime and handles hits.
 ##
 ## @param delta The time elapsed since last frame.

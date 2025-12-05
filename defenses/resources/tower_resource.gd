@@ -34,6 +34,8 @@ extends Resource
 ## The speed at which spawned bullets travel.
 @export var bullet_speed: float = 600.0
 
+@export var bullet_sound: AudioStream
+
 ## Returns the cost of placing this tower.
 func get_cost() -> int:
 	return cost

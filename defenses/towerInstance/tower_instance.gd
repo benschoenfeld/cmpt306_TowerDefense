@@ -67,6 +67,10 @@ func apply_tower_resource(towerRes: TowerResource) -> void:
 	area.shape = CircleShape2D.new()
 	area.shape.radius = towerRes.area_range
 	
+	# towers firing a unique bullet sound setup
+	var fire_sound := get_node("TowerFire")
+	fire_sound.stream = towerRes.bullet_sound
+	
 	# TowerCombat setup
 	var towerCombat = get_node(tower_combat_path)
 	if towerCombat:

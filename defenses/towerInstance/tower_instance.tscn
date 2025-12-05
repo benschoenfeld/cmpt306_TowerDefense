@@ -31,7 +31,7 @@ shape = SubResource("CircleShape2D_xxej3")
 
 [node name="TowerCombat" parent="." node_paths=PackedStringArray("bullet_sound") instance=ExtResource("3_gjk1p")]
 bullet_scene = ExtResource("3_xxej3")
-bullet_sound = NodePath("../AudioStreamPlayer")
+bullet_sound = NodePath("../TowerFire")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="TowerFire" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_8jlub")

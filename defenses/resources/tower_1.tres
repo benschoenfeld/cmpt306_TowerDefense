@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="TowerResource" load_steps=4 format=3 uid="uid://c61seo115ldlh"]
+[gd_resource type="Resource" script_class="TowerResource" load_steps=5 format=3 uid="uid://c61seo115ldlh"]
 
 [ext_resource type="Texture2D" uid="uid://fwdl7xwqn8c5" path="res://defenses/assets/tower_1.png" id="1_7pyuk"]
 [ext_resource type="Script" uid="uid://b72xnny36e77a" path="res://defenses/resources/tower_resource.gd" id="1_eu6q4"]
 [ext_resource type="PackedScene" uid="uid://bpsio5u3ypug7" path="res://defenses/bullets/bullet_1.tscn" id="1_jug1x"]
+[ext_resource type="AudioStream" uid="uid://bvyfuwkuqw1f8" path="res://defenses/assets/sci-fi-gun-shot-312659.mp3" id="2_jug1x"]
 
 [resource]
 script = ExtResource("1_eu6q4")
@@ -14,4 +15,5 @@ fire_rate = 1.5
 area_range = 150.0
 bullet_scene = ExtResource("1_jug1x")
 bullet_speed = 300.0
+bullet_sound = ExtResource("2_jug1x")
 metadata/_custom_type_script = "uid://b72xnny36e77a"
