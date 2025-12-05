@@ -13,13 +13,13 @@ signal tool_changed(tool_index: int)
 ## Communicates with the [SeedBag] to visually show it or not.
 signal request_seed_menu(show_item: bool)
 
-##
+## Communicates with the [TowerBag] to visually show it or not.
 signal request_tower_bag(show_item: bool)
 
-##
+## Emits when a tower selection has changed.
 signal selected_tower_changed(towerResorce: TowerResource)
 
-##
+## Emits to show a [SimpleToolTip].
 signal show_tool_tip(message: String) 
 
 # Cursor constants
@@ -64,10 +64,10 @@ var tool_enum: ToolEnums = ToolEnums.new()
 ## Tools array that holds all of the tool [Texture]
 var toolArray: Array[Texture] = []
 
-## Currently selected seed resource (set by seed menu; CropResource or null)
+## Currently selected seed resource (set by [SeedBag]; [CropResource] or null)
 var selected_seed: CropResource = null
 
-##
+## Currently selected [TowerResource] (set by [TowerBag])
 var selected_tower: TowerResource = null
 
 ## A reference to a [TileMapLayer] that will be interacted with.
@@ -151,7 +151,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("equip_defenses"):
 		_set_current_tool(tool_enum.Tool.TARGET)
 
-## 
+## Uses a strategy pattern to interact with a [BaseTile] or extenion.
 func interact(tile: BaseTile) -> void:
 	if tile == null or tile is Path:
 		return
@@ -200,33 +200,34 @@ func set_model(new_model: Model) -> void:
 func _on_seed_bag_selected_seed(seed_selection: CropResource) -> void:
 	selected_seed = seed_selection
 
-##
+## A private function that selects a tower.
 func _on_tower_bag_selected_tower(towerResorce: TowerResource) -> void:
 	selected_tower = towerResorce
-	emit_signal("selected_tower_changed", selected_tower)
+	selected_tower_changed.emit(selected_tower)
 
-##
+## A getter function that returns a [param selected_tower].
 func get_selected_tower() -> TowerResource:
 	return selected_tower
 
-##
+## Sets the [param tool_inactive] true or false.
+## Allows player to either use the tools fully or not.
 func set_inactive(active: bool) -> void: 
 	tool_inactive = active
 
-##
+## A private function that updates the money the [param game_manager] has.
 func _on_hoe_money_updated(new_amount: int) -> void:
 	if game_manager:
 		game_manager.add_money(new_amount)
 
-##
+## A private function that updates the money the [param game_manager] has.
 func _on_tower_tool_money_changed(new_amount: int) -> void:
 	if game_manager:
 		game_manager.add_money(-new_amount)
 
-
+## A private function that 
 func _on_hud_started_wave() -> void:
 	set_inactive(false)
 
-
+## A private function that emits a signal to tell player the cannot place a tower.
 func _on_tower_tool_denied_tower() -> void:
 	show_tool_tip.emit("Not enough money to place tower!")

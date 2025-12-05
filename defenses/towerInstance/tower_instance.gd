@@ -1,6 +1,6 @@
-extends Node2D
 class_name TowerInstance
 
+extends Node2D
 ## Represents a placed tower, using data from a [TowerResource].
 ##
 ## A [TowerInstance] is the instance of a tower.
@@ -81,7 +81,8 @@ func apply_tower_resource(towerRes: TowerResource) -> void:
 	# Check if tower is in appropriate group
 	if not is_in_group("Towers"):
 		add_to_group("Towers")
-		
+	
+	# Redraw the circle if the tower has changed.
 	queue_redraw()
 
 ## Draws visual representation of tower attack range in the editor.

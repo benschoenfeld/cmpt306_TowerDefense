@@ -1,6 +1,6 @@
-extends Node2D
 class_name Tower
 
+extends Node2D
 ## Handles placement of towers using player tools.
 ##
 ## The [Tower] node is responsible for detecting player input, checking

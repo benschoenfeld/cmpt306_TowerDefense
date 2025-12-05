@@ -1,5 +1,7 @@
-extends Control
 class_name TowerBag
+
+extends Control
+## A UI element that send out what [TowerResource] the player selects.
 
 ## Emitted when player selects a tower type from UI.
 ##

@@ -34,7 +34,7 @@ func _ready() -> void:
 	else:
 		anim_player.play("not_visable")
 
-# Starts the tutorial off.
+## Starts the tutorial off.
 func start() -> void:
 	music_player.play()
 	if tutorial_content.size() > 1:

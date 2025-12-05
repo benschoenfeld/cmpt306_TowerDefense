@@ -1,6 +1,6 @@
-extends Resource
 class_name TowerResource
 
+extends Resource
 ## A data container describing stats, visuals, and behavior of a tower.
 ##
 ## A [TowerResource] holds all the values needed to create and operate a tower.

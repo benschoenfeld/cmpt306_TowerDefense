@@ -1,6 +1,6 @@
-extends Node2D
 class_name TowerCombat
 
+extends Node2D
 ## Handles targeting, rotation, and firing logic for a tower.
 ##
 ## [TowerCombat] detects enemies within range using an assigned
