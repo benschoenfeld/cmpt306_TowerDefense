@@ -11,6 +11,8 @@ tower_instance = ExtResource("4_mqqgh")
 
 [node name="TowerSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_mu5db")
+bus = &"SFX"
 
 [node name="DenySound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_0ce1p")
+bus = &"SFX"
