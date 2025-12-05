@@ -29,13 +29,13 @@ func before_each():
 
 # setup()
 func test_setup_assigns_health():
-	var enemy_type = MockEnemyType.new()
+	enemy_type = MockEnemyType.new()
 	enemy.setup(enemy_type)
 	assert_eq(enemy.health, 10)
 
 # do_damage()
 func test_do_damage_reduces_health():
-	var enemy_type = MockEnemyType.new()
+	enemy_type = MockEnemyType.new()
 	enemy.setup(enemy_type)  # health = 10
 	enemy.do_damage(3)
 	assert_eq(enemy.health, 7)
@@ -44,14 +44,14 @@ func test_do_damage_reduces_health():
 
 # do_damage()
 func test_do_damage_triggers_on_death():
-	var enemy_type = MockEnemyType.new()
+	enemy_type = MockEnemyType.new()
 	enemy.setup(enemy_type)  # health = 10
 	enemy.do_damage(10) # kill enemy
 	assert_true(enemy.health <= 0)
 
 # on_death()
 func test_on_death_has_die_animation():
-	var enemy_type = MockEnemyType.new()
+	enemy_type = MockEnemyType.new()
 	var frames = SpriteFrames.new()
 	frames.add_animation("die")
 	enemy_type.frames = frames

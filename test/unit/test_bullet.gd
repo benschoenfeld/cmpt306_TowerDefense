@@ -1,6 +1,5 @@
 extends GutTest
 
-var Bullet := preload("res://defenses/bullets/bullet.gd")
 var bullet: Bullet
 var target: Node2D
 
@@ -28,7 +27,7 @@ func test_bullet_moves_straight_without_target():
 
 # Bullet tracks target when follow_enemy is true
 func test_bullet_tracks_target():
-	var target = Node2D.new()
+	target = Node2D.new()
 	target.global_position = Vector2(200, 0)
 	add_child_autofree(target)
 

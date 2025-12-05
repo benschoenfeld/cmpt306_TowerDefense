@@ -1,6 +1,5 @@
 extends GutTest
 
-var BuildBase = preload("res://defenses/base/base.gd")
 var base: BuildBase
 var tower_instance: TowerInstance
 

@@ -14,7 +14,7 @@ class MockToolManager:
 	func _init():
 		selected_tower = null
 		current_tool_index = 1
-	func _set_current_tool(i):
+	func _set_current_tool(_i):
 		pass
 	
 
