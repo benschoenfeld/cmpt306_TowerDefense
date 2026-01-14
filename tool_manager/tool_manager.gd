@@ -4,7 +4,7 @@ extends Node2D
 ## Allows the player to switch tools and interact with tiles.
 ##
 ## Updates visuals of [ToolUI], [SeedBag], and mouse.
-## Also allows interaction with [FarmingTiles] based upon what tool
+## Also allows interaction with [BaseTiles] children based upon what tool
 ## is currently being used.
 
 ## Sends out what tool is being selected.
@@ -12,15 +12,19 @@ signal tool_changed(tool_index: int)
 
 ## Communicates with the [SeedBag] to visually show it or not.
 signal request_seed_menu(show_item: bool)
+
+## Communicates with the [TowerBag] to visually show it or not.
+signal request_tower_bag(show_item: bool)
+
+## Emits when a tower selection has changed.
 signal selected_tower_changed(towerResorce: TowerResource)
+
+## Emits to show a [SimpleToolTip].
+signal show_tool_tip(message: String) 
 
 # Cursor constants
 const CURSOR_HOTSPOT = Vector2(16, 16)
 const CURSOR_SHAPE = Input.CURSOR_ARROW
-
-@export_category("Enums")
-## Give the enum for tools that can be shared between scenes.
-@export var tool_enum: ToolEnums
 
 @export_category("Mouse Icon Textures")
 
@@ -34,25 +38,19 @@ const CURSOR_SHAPE = Input.CURSOR_ARROW
 @export var tool_hoe: Texture = preload("res://tool_manager/assets/tool_hoe.png")
 
 ## The asset of the target icon for the mouse.
-@export var tool_target = preload("res://tool_manager/assets/target_round_a.png")
+@export var tool_target: Texture = preload("res://tool_manager/assets/target_round_a.png")
 
 
 @export_category("ToolManager Nodes")
 ## A reference to an [AudioStreamPlayer] for switching tools action.
 @export var switch_sound_player: AudioStreamPlayer
 
-## A reference to an [AudioStreamPlayer] for using the hoe tool.
-@export var hoe_sound_player: AudioStreamPlayer
-
-## A reference to an [AudioStreamPlayer] for using the shovel tool.
-@export var shovel_sound_player: AudioStreamPlayer
-
-## A reference to an [AudioStreamPlayer] for using the watercan tool.
-@export var watercan_sound_player: AudioStreamPlayer
+## A reference to an [AudioStreamPlayer] for denying actions.
+@export var deny_sound_player: AudioStreamPlayer
 
 @export_category("Game Settings")
 ## Index of the currrent tools selected
-@export var current_tool_index: int = int(tool_enum.Tool.SHOVEL)
+@export var current_tool_index: int = int(tool_enum.Tool.TARGET)
 
 ## Reference to the [GameManager]
 @export var game_manager: GameManager = null
@@ -60,13 +58,27 @@ const CURSOR_SHAPE = Input.CURSOR_ARROW
 ## Amount of saturation aplied by the tool 'WaterCan'
 @export var watering_amount: float = 100.0
 
+## Give the enum for tools that can be shared between scenes.
+var tool_enum: ToolEnums = ToolEnums.new()
+
 ## Tools array that holds all of the tool [Texture]
 var toolArray: Array[Texture] = []
 
-## Currently selected seed resource (set by seed menu; CropResource or null)
+## Currently selected seed resource (set by [SeedBag]; [CropResource] or null)
 var selected_seed: CropResource = null
 
+## Currently selected [TowerResource] (set by [TowerBag])
 var selected_tower: TowerResource = null
+
+## A reference to a [TileMapLayer] that will be interacted with.
+var tile_map: TileMapLayer
+
+## A reference to a model that will be interacted with.
+var model: Model
+
+## A [bool] that makes the user not be able to interact with tiles when they
+## are not supposed to.
+var tool_inactive: bool = true
 
 func _ready() -> void:
 	toolArray = [tool_shovel, tool_waterCan, tool_hoe, tool_target]
@@ -91,6 +103,7 @@ func _set_current_tool(index: int) -> void:
 	
 	tool_changed.emit(current_tool_index)
 	request_seed_menu.emit(current_tool_index == tool_enum.Tool.SHOVEL)
+	request_tower_bag.emit(current_tool_index == tool_enum.Tool.TARGET)
 
 ## Switches the [param current_tool_index] and switches the mouse icon texture.
 func set_current_tool(index: int) -> void:
@@ -113,6 +126,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
 			_set_current_tool(( current_tool_index - 1 + toolArray.size()) % toolArray.size())
 
+	if (
+		event.is_action("interact") and 
+		event.is_pressed()
+		):
+			var canvas_pos: Vector2 = make_canvas_position_local(event.global_position)
+			var tile_map_pos: Vector2i = tile_map.local_to_map(canvas_pos)
+			var tile: BaseTile = model.get_tile(tile_map_pos)
+			if tile:
+				interact(tile)
+
 ## Handles input of changing the tools.
 func _process(_delta: float) -> void:
 	
@@ -128,67 +151,83 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("equip_defenses"):
 		_set_current_tool(tool_enum.Tool.TARGET)
 
-## Called by [GameManager]'s connect: tile.connect("send_tile_data", Callable(tool_manager, "interact"))
-## Accepts a [BaseTile] (or [FarmingTile])  and applies the currently selected tool to it
+## Uses a strategy pattern to interact with a [BaseTile] or extenion.
 func interact(tile: BaseTile) -> void:
-	if tile == null:
+	if tile == null or tile is Path:
 		return
-	if not (tile is FarmingTile):
-		# ignore
+
+	if tool_inactive and tile is FarmingTile:
+		deny_sound_player.play()
+		show_tool_tip.emit("Hit the 'Start Wave' button to interact with crops!")
+		
 		return
-	var farmTile: FarmingTile = tile
+
 	var tool = current_tool_index
+	var strategy: ToolBase
+	
 	match tool:
 		int(tool_enum.Tool.HOE):
-			# Use 'Hoe': till grass -> dry dirt; harvest if ripe
-			if farmTile.get_tile_type() == FarmingTileStats.TileType.GRASS:
-				hoe_sound_player.play()
-				farmTile.set_tile_stats(farmTile.dry_dirt_stats)
-				farmTile.set_saturation(0.0)
-				return
-			# if tile has grown crop: harvest
-			if farmTile.has_crop():
-				var harvested: CropResource = farmTile.harvest_crop()
-				if harvested != null and game_manager != null:
-					$HoeSound.play()
-					# award money
-					game_manager.add_money(harvested.get_value())
-				return
+			strategy = $Hoe
 		
 		int(tool_enum.Tool.WATERCAN):
-			# Use watering can: no effect on grass
-			if farmTile.get_tile_type() == FarmingTileStats.TileType.GRASS:
-				return
-			# apply saturation
-			if farmTile.has_method("apply_water"):
-				watercan_sound_player.play()
-				farmTile.apply_water(watering_amount)
-			else:
-				watercan_sound_player.play()
-				farmTile.add_saturation(watering_amount)
-				if farmTile.has_saturation() and farmTile.get_tile_type() == FarmingTileStats.TileType.DRY_DIRT:
-					farmTile.set_tile_stats(farmTile.wet_dirt_stats)
+			strategy = $Watercan
+			var watercan: Watercan = strategy
+			watercan.set_watering_amount(watering_amount)
 		
 		int(tool_enum.Tool.SHOVEL):
-			# Shovel opens seed menu ( if no seed selected) otherwise plant if valid
-			# if there is a selected seed, plant it into dry/wet dirt
+			strategy = $Shovel
+			var shovel: Shovel = strategy
+			shovel.set_seed(selected_seed)
 			
-			if selected_seed != null:
-				if farmTile.get_tile_type() == FarmingTileStats.TileType.DRY_DIRT or farmTile.get_tile_type() == FarmingTileStats.TileType.WET_DIRT:
-					$ShovelSound.play()
-					farmTile.set_crop(selected_seed)
-					return
-		
+		int(tool_enum.Tool.TARGET):
+			print("Target Selected")
+			strategy = $TowerTool
+			var tower_tool: TowerTool = strategy
+			tower_tool.set_money_amount(game_manager.get_money())
+			tower_tool.set_tower(selected_tower)
+			
+	strategy.interact_effect(tile)
 
+## Setter for [param tile_map].
+func set_tile_map(new_map: TileMapLayer) -> void:
+	tile_map = new_map
+
+## Setter for [param model].
+func set_model(new_model: Model) -> void:
+	model = new_model
 
 ## Changes the [param selected_seed] to new CropResource
 func _on_seed_bag_selected_seed(seed_selection: CropResource) -> void:
 	selected_seed = seed_selection
-	
+
+## A private function that selects a tower.
 func _on_tower_bag_selected_tower(towerResorce: TowerResource) -> void:
 	selected_tower = towerResorce
-	emit_signal("selected_tower_changed", selected_tower)
+	selected_tower_changed.emit(selected_tower)
 
-
+## A getter function that returns a [param selected_tower].
 func get_selected_tower() -> TowerResource:
 	return selected_tower
+
+## Sets the [param tool_inactive] true or false.
+## Allows player to either use the tools fully or not.
+func set_inactive(active: bool) -> void: 
+	tool_inactive = active
+
+## A private function that updates the money the [param game_manager] has.
+func _on_hoe_money_updated(new_amount: int) -> void:
+	if game_manager:
+		game_manager.add_money(new_amount)
+
+## A private function that updates the money the [param game_manager] has.
+func _on_tower_tool_money_changed(new_amount: int) -> void:
+	if game_manager:
+		game_manager.add_money(-new_amount)
+
+## A private function that 
+func _on_hud_started_wave() -> void:
+	set_inactive(false)
+
+## A private function that emits a signal to tell player the cannot place a tower.
+func _on_tower_tool_denied_tower() -> void:
+	show_tool_tip.emit("Not enough money to place tower!")

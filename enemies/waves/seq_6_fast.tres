@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemySequence" load_steps=3 format=3 uid="uid://cxpqk60wlgq6q"]
+
+[ext_resource type="Script" uid="uid://c4xq245d30i11" path="res://enemies/scripts/EnemySequence.gd" id="1_0uu6n"]
+[ext_resource type="Resource" uid="uid://c5evdd87ruxym" path="res://enemies/resources/Fast.tres" id="1_xpkwf"]
+
+[resource]
+script = ExtResource("1_0uu6n")
+enemy_type = ExtResource("1_xpkwf")
+amount = 6
+interval = 0.75
+metadata/_custom_type_script = "uid://c4xq245d30i11"

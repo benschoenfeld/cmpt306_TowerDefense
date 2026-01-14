@@ -68,7 +68,7 @@ func _process(delta: float):
 		# check if fully grown
 	if stage >= crop_data.frames - 1:
 		is_grown = true
-		print("Crop is ready to harvest.")
+		#print("Crop is ready to harvest.")
 
 ## Set the [param crop_data] to a new [CropResource].
 func set_crop_resource(new_crop: CropResource) -> void:

@@ -162,8 +162,8 @@ func test_lower_saturation():
 	# Should lower the satuation
 	tile_instance.set_tile_stats(wet_dirt_stats)
 	tile_instance.set_saturation(3.0)
-	tile_instance._lower_saturation(10.0)
-	assert_eq(tile_instance.get_saturation(), 2.0)
+	tile_instance._lower_saturation(2.0)
+	assert_eq(tile_instance.get_saturation(), 2.3)
 	
 	# Should lower satuation to 0
 	tile_instance._lower_saturation(20.0)

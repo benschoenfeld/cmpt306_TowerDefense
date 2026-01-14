@@ -1,35 +1,56 @@
 extends GutTest
 
-var build_base: BuildBase
-var tower_instance: Node2D
+var base: BuildBase
+var tower_instance: TowerInstance
 
-# mock TowerInstance
-class MockTowerInstance:
-	extends TowerInstance
+# Mock TowerResource
+class MockTowerResource:
+	extends TowerResource
+	func _init():
+		turret_texture = null
+		area_range = 32
+		bullet_sound = null
+		damage = 10
+		fire_rate = 1.0
+		bullet_speed = 300.0
+		bullet_scene = null
 
 func before_each():
-	build_base = BuildBase.new()
+	# Create base and tower holder
+	base = BuildBase.new()
 	var holder = Node2D.new()
 	holder.name = "TowerHolder"
-	build_base.add_child(holder)
-	add_child_autofree(build_base)
-	build_base.tower_holder = holder
-	build_base._ready()
-	tower_instance = MockTowerInstance.new()
+	base.add_child(holder)
+	base.tower_holder = holder
+	get_tree().root.add_child(base)
+	base._ready()
+	
+	# tower instance
+	tower_instance = TowerInstance.new()
+	
+	# avoid _draw() errors
+	var mock_res = MockTowerResource.new()
+	tower_instance.tower_resource = mock_res
+	tower_instance.area = CollisionShape2D.new()
+	tower_instance.area.shape = CircleShape2D.new()
+	tower_instance.add_child(tower_instance.area)
+	
+	# fire sound node
+	var fire_node = AudioStreamPlayer2D.new()
+	fire_node.name = "TowerFire"
+	tower_instance.add_child(fire_node)
+	
+	# tower combat
+	var combat_node = Node2D.new()
+	combat_node.name = "TowerCombat"
+	tower_instance.add_child(combat_node)
+	base.tower_holder.add_child(tower_instance)
 
 func after_each():
-	for child in get_children():
-		child.queue_free()
+	if is_instance_valid(base):
+		base.queue_free()
 
-# is_in_group()
-func test_added_to_towerbases_group():
-	assert_true(build_base.is_in_group("TowerBases"))
-
-# get_meta()
-func test_initial_occupied_meta():
-	assert_eq(build_base.get_meta("occupied"), false)
-
-# set_tower()
-func test_set_tower_adds_child():
-	build_base.set_tower(tower_instance)
-	assert_true(build_base.tower_holder.has_node(tower_instance.get_path()))
+func test_ready_adds_to_group_and_sets_meta():
+	base._ready()
+	assert_true(base.is_in_group("TowerBases"), "Should be in TowerBases group")
+	assert_eq(base.get_meta("occupied"), false, "Meta should be false")

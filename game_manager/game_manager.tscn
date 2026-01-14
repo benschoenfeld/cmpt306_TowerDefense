@@ -1,50 +1,60 @@
-[gd_scene load_steps=18 format=4 uid="uid://0wsbgy801txt"]
+[gd_scene load_steps=26 format=4 uid="uid://0wsbgy801txt"]
 
 [ext_resource type="Script" uid="uid://ddh6nidkpvu7s" path="res://game_manager/game_manager.gd" id="1_ong7i"]
 [ext_resource type="PackedScene" uid="uid://bb0emy17c3vce" path="res://general_ui/pause_menu/pause_menu.tscn" id="2_mx6ys"]
 [ext_resource type="PackedScene" uid="uid://b6vs3ylr7i6pe" path="res://general_ui/SFX/ui_sounds.tscn" id="3_kkxic"]
-[ext_resource type="PackedScene" uid="uid://dolipbibi2ypy" path="res://tiles/farming_tile/farming_tile.tscn" id="3_pnley"]
 [ext_resource type="Texture2D" uid="uid://c006q8j3wqfjr" path="res://game_manager/assets/pause_button.png" id="3_q7vcu"]
+[ext_resource type="PackedScene" uid="uid://dolipbibi2ypy" path="res://tiles/farming_tile/farming_tile.tscn" id="4_fikbl"]
 [ext_resource type="TileSet" uid="uid://b6mvjkxyalhye" path="res://game_manager/assets/visual_tileset.tres" id="4_kkxic"]
 [ext_resource type="PackedScene" uid="uid://me31tyggjdy4" path="res://general_ui/hud/hud.tscn" id="4_r63pj"]
 [ext_resource type="AudioStream" uid="uid://buppeg7wx1bn6" path="res://game_manager/assets/apple_cider.wav" id="5_03pqa"]
+[ext_resource type="PackedScene" uid="uid://3dkwwgndl3o" path="res://defenses/base/base.tscn" id="5_i24ge"]
 [ext_resource type="PackedScene" uid="uid://dmmjsxbvqc2j3" path="res://tool_manager/tool_manager.tscn" id="6_2631c"]
-[ext_resource type="PackedScene" uid="uid://3dkwwgndl3o" path="res://defenses/base/base.tscn" id="6_cp5ju"]
 [ext_resource type="AudioStream" uid="uid://ccie4sn00x1ch" path="res://game_manager/assets/mixkit-clinking-coins-1993.wav" id="6_d3erd"]
-[ext_resource type="PackedScene" uid="uid://ckbw8cegydtbp" path="res://path/path.tscn" id="7_cp5ju"]
-[ext_resource type="PackedScene" uid="uid://bi0fyjs74gjff" path="res://defenses/tower.tscn" id="8_qs53i"]
-[ext_resource type="PackedScene" uid="uid://blcm64pbdyg22" path="res://defenses/tower_bag/tower_bag.tscn" id="10_oxvrm"]
+[ext_resource type="PackedScene" uid="uid://ckbw8cegydtbp" path="res://path/path.tscn" id="6_s5nag"]
+[ext_resource type="AudioStream" uid="uid://dauj3hu1ql36w" path="res://game_manager/assets/bzzzt.wav" id="8_i24ge"]
+[ext_resource type="PackedScene" uid="uid://ojx03imwc7y3" path="res://enemies/scenes/spawner.tscn" id="9_cp5ju"]
+[ext_resource type="Script" path="res://enemies/scripts/Wave.gd" id="9_tafu7"]
+[ext_resource type="Resource" uid="uid://cjxuje0dennvv" path="res://enemies/waves/wave_1.tres" id="10_7c8rc"]
+[ext_resource type="Resource" uid="uid://bcoq3646h64nb" path="res://enemies/waves/wave_2.tres" id="11_fikbl"]
+[ext_resource type="Resource" uid="uid://dk82sxff7f7h2" path="res://enemies/waves/wave_3.tres" id="12_i24ge"]
+[ext_resource type="Resource" uid="uid://d2ar7angy1077" path="res://enemies/waves/wave_4.tres" id="13_s5nag"]
+[ext_resource type="Resource" uid="uid://dl2l15tp5kbvl" path="res://enemies/waves/wave_5.tres" id="14_oats1"]
+[ext_resource type="Texture2D" uid="uid://b1ajmy2xbwyqi" path="res://general_ui/hud/assets/sprite.png" id="17_fikbl"]
+[ext_resource type="AudioStream" uid="uid://wx4j1i2iyt5" path="res://game_manager/assets/Random Battle.mp3" id="21_fikbl"]
 
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_03pqa"]
-resource_name = "FarmingTile"
-scenes/1/scene = ExtResource("3_pnley")
-scenes/2/scene = ExtResource("6_cp5ju")
-scenes/8/scene = ExtResource("7_cp5ju")
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_oats1"]
+scenes/1/scene = ExtResource("4_fikbl")
+scenes/2/scene = ExtResource("5_i24ge")
+scenes/8/scene = ExtResource("6_s5nag")
 
-[sub_resource type="TileSet" id="TileSet_2631c"]
+[sub_resource type="TileSet" id="TileSet_2hinh"]
 tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetScenesCollectionSource_03pqa")
+sources/0 = SubResource("TileSetScenesCollectionSource_oats1")
 
 [sub_resource type="Curve2D" id="Curve2D_cp5ju"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -512, 128, 0, 0, 0, 0, 96, 128, 0, 0, 0, 0, 96, -96, 0, 0, 0, 0, -224, -96, 0, 0, 0, 0, -224, 32, 0, 0, 0, 0, 288, 32, 0, 0, 0, 0, 288, -320)
+"points": PackedVector2Array(0, 0, 0, 0, -512, 128, 0, 0, 0, 0, 96, 128, 0, 0, 0, 0, 96, -96, 0, 0, 0, 0, -224, -96, 0, 0, 0, 0, -224, 32, 0, 0, 0, 0, 288, 32, 0, 0, 0, 0, 288, -287)
 }
 point_count = 7
 
-[node name="GameManager" type="Node" node_paths=PackedStringArray("pause_menu", "farming_tile_map", "tool_manager", "money_sound_player")]
+[node name="GameManager" type="Node" node_paths=PackedStringArray("pause_menu", "pause_ui_canvas", "game_map_tile_map", "tool_manager", "money_sound_player", "damage_sound_player", "background_music", "battle_music")]
 script = ExtResource("1_ong7i")
-pause_menu_scene = ExtResource("2_mx6ys")
 pause_menu = NodePath("PauseUI/PauseMenu")
-farming_tile_map = NodePath("Game/CropTiles")
+pause_ui_canvas = NodePath("PauseUI")
+game_map_tile_map = NodePath("Game/GameTiles")
 tool_manager = NodePath("Game/ToolManager")
-money_sound_player = NodePath("MoneySound")
+money_sound_player = NodePath("Game/MoneySound")
+damage_sound_player = NodePath("Game/DamageSound")
+background_music = NodePath("BackgroundMusic")
+battle_music = NodePath("BattleMusic")
 
 [node name="Game" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 
 [node name="ToolManager" parent="Game" node_paths=PackedStringArray("game_manager") instance=ExtResource("6_2631c")]
 game_manager = NodePath("../..")
-watering_amount = 0.5
+watering_amount = 5.0
 metadata/_edit_lock_ = true
 
 [node name="VisualTiles" type="TileMapLayer" parent="Game"]
@@ -52,10 +62,20 @@ tile_map_data = PackedByteArray("AADv//b/AQAAAAAAAADv//f/AQAAAAAAAADv//j/AQAAAAA
 tile_set = ExtResource("4_kkxic")
 metadata/_edit_lock_ = true
 
-[node name="CropTiles" type="TileMapLayer" parent="Game"]
+[node name="GameTiles" type="TileMapLayer" parent="Game"]
 tile_map_data = PackedByteArray("AAD4/wMAAAAAAAAACAD5/wMAAAAAAAAACAD6/wMAAAAAAAAACAD7/wMAAAAAAAAACAD8/wMAAAAAAAAACAD9/wMAAAAAAAAACAD+/wMAAAAAAAAACAD//wMAAAAAAAAACAAAAAMAAAAAAAAACAABAAMAAAAAAAAACAACAAAAAAAAAAAACAACAAEAAAAAAAAACAADAAAAAAAAAAAACAADAAEAAAAAAAAACAADAAIAAAAAAAAACAAEAAAAAAAAAAAACAAEAAEAAAAAAAAACAAFAAAAAAAAAAAACAAFAAEAAAAAAAAACAAGAAAAAAAAAAAACAAGAAEAAAAAAAAACAAHAAAAAAAAAAAACAAHAAEAAAAAAAAACAD1/wMAAAAAAAAACAD1/wQAAAAAAAAACAD2/wMAAAAAAAAACAD2/wQAAAAAAAAACAD3/wMAAAAAAAAACAD3/wQAAAAAAAAACAD3/wUAAAAAAAAAAgD4/wQAAAAAAAAACAD5/wQAAAAAAAAACAD6/wQAAAAAAAAACAD7/wQAAAAAAAAACAD8/wQAAAAAAAAACAD9/wQAAAAAAAAACAD+/wQAAAAAAAAACAD//wQAAAAAAAAACAAAAAQAAAAAAAAACAABAAQAAAAAAAAACAAIAPn/AAAAAAAACAAIAP//AAAAAAAACAAIAAAAAAAAAAAACAAIAAEAAAAAAAAACAAJAPn/AAAAAAAACAAJAP//AAAAAAAACAAJAAAAAAAAAAAACAAJAAEAAAAAAAAACAAKAPz/AAAAAAAAAgDw/wMAAAAAAAAACADw/wQAAAAAAAAACADx/wMAAAAAAAAACADx/wQAAAAAAAAACADy/wMAAAAAAAAACADy/wQAAAAAAAAACADz/wMAAAAAAAAACADz/wQAAAAAAAAACAD0/wMAAAAAAAAACAD0/wQAAAAAAAAACAAAAAAAAAAAAAAACAAAAAEAAAAAAAAACAABAAAAAAAAAAAACAABAAEAAAAAAAAACAD6/wAAAAAAAAAACAD6/wEAAAAAAAAACAD7/wAAAAAAAAAACAD7/wEAAAAAAAAACAD8/wAAAAAAAAAACAD8/wEAAAAAAAAACAD9/wAAAAAAAAAACAD9/wEAAAAAAAAACAD+/wAAAAAAAAAACAD+/wEAAAAAAAAACAD//wAAAAAAAAAACAD//wEAAAAAAAAACAAIAP3/AAAAAAAACAAIAP7/AAAAAAAACAAJAP3/AAAAAAAACAAJAP7/AAAAAAAACAAIAPz/AAAAAAAACAAIAPv/AAAAAAAACAAIAPr/AAAAAAAACAAJAPz/AAAAAAAACAAJAPv/AAAAAAAACAAJAPr/AAAAAAAACAAHAP7/AAAAAAAAAgD0//z/AAAAAAAAAQD0//3/AAAAAAAAAQD0//7/AAAAAAAAAQD0////AAAAAAAAAQD0/wAAAAAAAAAAAQD1//z/AAAAAAAAAQD1//3/AAAAAAAAAQD1//7/AAAAAAAAAQD1////AAAAAAAAAQD1/wAAAAAAAAAAAQD2//z/AAAAAAAAAQD2//3/AAAAAAAAAQD2//7/AAAAAAAAAQD2////AAAAAAAAAQD2/wAAAAAAAAAAAQD4//z/AAAAAAAACAD5//z/AAAAAAAACAD6//z/AAAAAAAACAD7//z/AAAAAAAACAD8//z/AAAAAAAACAD9//z/AAAAAAAACAD+//z/AAAAAAAACAD///z/AAAAAAAACAD4//3/AAAAAAAACAD5//3/AAAAAAAACAD6//3/AAAAAAAACAD7//3/AAAAAAAACAD8//3/AAAAAAAACAD9//3/AAAAAAAACAD+//3/AAAAAAAACAD///3/AAAAAAAACAD4//7/AAAAAAAACAD4////AAAAAAAACAD5//7/AAAAAAAACAD5////AAAAAAAACAD4/wAAAAAAAAAACAD4/wEAAAAAAAAACAD5/wAAAAAAAAAACAD5/wEAAAAAAAAACAD6//n/AAAAAAAAAQD6//r/AAAAAAAAAQD7//n/AAAAAAAAAQD7//r/AAAAAAAAAQD8//n/AAAAAAAAAQD8//r/AAAAAAAAAQD9//n/AAAAAAAAAQD9//r/AAAAAAAAAQD+//n/AAAAAAAAAQD+//r/AAAAAAAAAQD///n/AAAAAAAAAQD///r/AAAAAAAAAQAAAPn/AAAAAAAAAQAAAPr/AAAAAAAAAQABAPn/AAAAAAAAAQABAPr/AAAAAAAAAQD4//v/AAAAAAAAAgD7/wIAAAAAAAAAAgACAPz/AAAAAAAACAACAP3/AAAAAAAACAACAP7/AAAAAAAACAACAP//AAAAAAAACAADAPz/AAAAAAAACAADAP3/AAAAAAAACAADAP7/AAAAAAAACAADAP//AAAAAAAACAACAAIAAAAAAAAACAACAAQAAAAAAAAACAACAAMAAAAAAAAACAADAAMAAAAAAAAACAADAAQAAAAAAAAACAAAAPz/AAAAAAAACAAAAP3/AAAAAAAACAABAP3/AAAAAAAACAABAPz/AAAAAAAACAAAAP7/AAAAAAAAAgACAPn/AAAAAAAAAQADAPr/AAAAAAAAAQADAPn/AAAAAAAAAQACAPr/AAAAAAAAAQAIAPj/AAAAAAAACAAJAPj/AAAAAAAACAAIAPf/AAAAAAAACAAJAPf/AAAAAAAACAA=")
-tile_set = SubResource("TileSet_2631c")
+tile_set = SubResource("TileSet_2hinh")
 metadata/_edit_lock_ = true
+
+[node name="Barn" type="TileMapLayer" parent="Game"]
+z_index = 2
+tile_map_data = PackedByteArray("AAAIAPf/AAACAAsAAAAJAPf/AAADAAsAAAAKAPj/AAAEAAwAAAAKAPf/AAAEAAsAAAAHAPj/AAABAAwAAAAHAPf/AAABAAsAAAAGAPj/AAAAAAwAAAALAPj/AAAFAAwAAAAGAPn/AAAAAA0AAAAGAPr/AAAAAA0AAAALAPn/AAAFAA0AAAALAPr/AAAFAA0AAAAIAPj/AAACAAwAAAAJAPj/AAACAAwAAAAKAPn/AAACAAwAAAAKAPr/AAACAAwAAAAHAPn/AAACAAwAAAAHAPr/AAACAAwAAAAIAPr/AQACAAAAAQAJAPr/AQACAAAAAQAJAPn/AQACAAAAAQAIAPn/AQACAAAAAQA=")
+tile_set = ExtResource("4_kkxic")
+
+[node name="BarnRoof" type="TileMapLayer" parent="Game"]
+z_index = 3
+tile_map_data = PackedByteArray("AAAIAPf/AAACABMAAAAJAPf/AAADABMAAAAKAPj/AAAEABQAAAAKAPf/AAAEABMAAAAHAPj/AAABABQAAAAHAPf/AAABABMAAAAGAPj/AAAAABQAAAALAPj/AAAFABQAAAAGAPn/AAAAAA0AAAAGAPr/AAAAAA0AAAALAPn/AAAFAA0AAAALAPr/AAAFAA0AAAAIAPj/AAACAAwAAAAJAPj/AAACAAwAAAAKAPn/AAACAAwAAAAKAPr/AAACAAwAAAAHAPn/AAACAAwAAAAHAPr/AAACAAwAAAAGAPX/AAAAABEAAAAGAPb/AAAAABIAAAAGAPf/AAAAABMAAAAHAPT/AAABABAAAAAHAPX/AAABABEAAAAHAPb/AAABABIAAAAIAPT/AAACABAAAAAIAPX/AAACABEAAAAIAPb/AAACABIAAAAJAPT/AAADABAAAAAJAPX/AAADABEAAAAJAPb/AAADABIAAAAKAPT/AAAEABAAAAAKAPX/AAAEABEAAAAKAPb/AAAEABIAAAALAPX/AAAFABEAAAALAPb/AAAFABIAAAALAPf/AAAFABMAAAA=")
+tile_set = ExtResource("4_kkxic")
 
 [node name="Camera2D" type="Camera2D" parent="Game"]
 zoom = Vector2(2, 2)
@@ -64,13 +84,21 @@ metadata/_edit_lock_ = true
 [node name="MoneySound" type="AudioStreamPlayer" parent="Game"]
 stream = ExtResource("6_d3erd")
 volume_db = -2.0
+bus = &"SFX"
 
-[node name="Tower" parent="Game" node_paths=PackedStringArray("tool_manager", "game_manager") instance=ExtResource("8_qs53i")]
-tool_manager = NodePath("../ToolManager")
-game_manager = NodePath("../..")
+[node name="DamageSound" type="AudioStreamPlayer" parent="Game"]
+stream = ExtResource("8_i24ge")
+volume_db = -5.0
+bus = &"SFX"
 
 [node name="EnemyPath" type="Path2D" parent="Game"]
 curve = SubResource("Curve2D_cp5ju")
+
+[node name="Spawner" parent="Game" node_paths=PackedStringArray("path", "wave_controller", "game_manager") instance=ExtResource("9_cp5ju")]
+path = NodePath("../EnemyPath")
+waves = Array[ExtResource("9_tafu7")]([ExtResource("10_7c8rc"), ExtResource("11_fikbl"), ExtResource("12_i24ge"), ExtResource("13_s5nag"), ExtResource("14_oats1")])
+wave_controller = NodePath("../../HUD/hud")
+game_manager = NodePath("../..")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 3
@@ -79,9 +107,17 @@ layer = 3
 manager = NodePath("../..")
 metadata/_edit_lock_ = true
 
-[node name="TowerBag" parent="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer" index="1" node_paths=PackedStringArray("tool_manager") instance=ExtResource("10_oxvrm")]
-layout_mode = 2
-tool_manager = NodePath("../../../../../../Game/ToolManager")
+[node name="HealthDisplay" parent="HUD/hud/VBoxContainer/HBoxContainer/Spacer1/HBoxContainer" index="0"]
+context_line = ""
+
+[node name="SeedBag" parent="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer" index="0"]
+visible = false
+
+[node name="TowerBag" parent="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer" index="1"]
+visible = false
+
+[node name="WaveCounter" parent="HUD/hud/VBoxContainer/HBoxContainer2/HBoxContainer" index="0"]
+icon = ExtResource("17_fikbl")
 
 [node name="UISounds" parent="." instance=ExtResource("3_kkxic")]
 root_path = NodePath("..")
@@ -113,13 +149,20 @@ stream = ExtResource("5_03pqa")
 autoplay = true
 bus = &"Music"
 
-[node name="MoneySound" type="AudioStreamPlayer" parent="."]
-bus = &"SFX"
+[node name="BattleMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_fikbl")
+bus = &"Music"
 
+[connection signal="health_change" from="." to="HUD/hud" method="_on_game_manager_health_change"]
 [connection signal="money_changed" from="." to="HUD/hud" method="_on_game_manager_money_changed"]
 [connection signal="request_seed_menu" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_request_seed_menu"]
+[connection signal="request_tower_bag" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_request_tower_bag"]
+[connection signal="show_tool_tip" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_show_tool_tip"]
 [connection signal="tool_changed" from="Game/ToolManager" to="HUD/hud" method="_on_tool_manager_tool_changed"]
+[connection signal="wave_finished" from="Game/Spawner" to="." method="_on_spawner_wave_finished"]
+[connection signal="started_wave" from="HUD/hud" to="Game/ToolManager" method="_on_hud_started_wave"]
 [connection signal="selected_seed" from="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer/SeedBag" to="Game/ToolManager" method="_on_seed_bag_selected_seed"]
+[connection signal="selected_tower" from="HUD/hud/VBoxContainer/HBoxContainer/CenterContainer/TowerBag" to="Game/ToolManager" method="_on_tower_bag_selected_tower"]
 [connection signal="pressed" from="PauseUI/CenterContainer/PauseButton" to="." method="_on_pause_button_pressed"]
 
 [editable path="HUD/hud"]

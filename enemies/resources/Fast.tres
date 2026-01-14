@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="EnemyType" load_steps=7 format=3 uid="uid://c5evdd87ruxym"]
+[gd_resource type="Resource" script_class="EnemyType" load_steps=8 format=3 uid="uid://c5evdd87ruxym"]
 
+[ext_resource type="AudioStream" uid="uid://bgmhleuh6opg3" path="res://enemies/assets/slime-impact-352473.mp3" id="1_a2tcm"]
 [ext_resource type="Texture2D" uid="uid://docmp7ewkvigm" path="res://enemies/assets/Ants.png" id="1_jsr10"]
 [ext_resource type="Script" uid="uid://corrfnng4rwk2" path="res://enemies/scripts/EnemyType.gd" id="1_s4i3n"]
 
@@ -35,8 +36,9 @@ animations = [{
 [resource]
 script = ExtResource("1_s4i3n")
 name = "Fast"
-health = 25
-damage = 25
-speed = 80.0
+health = 15
+damage = 3
+speed = 100.0
+death_sound = ExtResource("1_a2tcm")
 frames = SubResource("SpriteFrames_a6b5j")
 metadata/_custom_type_script = "uid://corrfnng4rwk2"

@@ -1,12 +1,105 @@
-[gd_scene load_steps=6 format=3 uid="uid://me31tyggjdy4"]
+[gd_scene load_steps=13 format=3 uid="uid://me31tyggjdy4"]
 
 [ext_resource type="Script" uid="uid://dt15eegl850rw" path="res://general_ui/hud/hud.gd" id="1_hk4rq"]
 [ext_resource type="PackedScene" uid="uid://26g0tisiojj8" path="res://general_ui/hud/ToolUI.tscn" id="2_br5ty"]
-[ext_resource type="PackedScene" uid="uid://nebwwifttxrv" path="res://general_ui/hud/money_counter.tscn" id="3_kafub"]
+[ext_resource type="Texture2D" uid="uid://cu106lrrppcf0" path="res://general_ui/hud/assets/heart pixel art 32x32.png" id="3_0ylbf"]
+[ext_resource type="PackedScene" uid="uid://nebwwifttxrv" path="res://general_ui/hud/number_display.tscn" id="3_kafub"]
+[ext_resource type="Texture2D" uid="uid://d4de1wjl2s5v2" path="res://general_ui/hud/assets/genericItem_color_158.png" id="4_bk23a"]
 [ext_resource type="PackedScene" uid="uid://8ccoultreyuc" path="res://seed_bag/seed_bag.tscn" id="4_kafub"]
-[ext_resource type="Script" uid="uid://cwejy8567ny70" path="res://enums/tools/tool_enums.gd" id="5_2jgvt"]
+[ext_resource type="PackedScene" uid="uid://blcm64pbdyg22" path="res://defenses/tower_bag/tower_bag.tscn" id="5_bk23a"]
+[ext_resource type="PackedScene" uid="uid://c5h84e0oxki0w" path="res://tooltip/simple_tool_tip.tscn" id="8_t62m1"]
 
-[node name="Hud" type="Control" node_paths=PackedStringArray("tool_enum", "tool_ui", "money_display", "seed_bag")]
+[sub_resource type="Animation" id="Animation_t62m1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/HBoxContainer2/HBoxContainer/StartWaveButton:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/HBoxContainer2/SimpleToolTip:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/HBoxContainer2/SimpleToolTip:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_86lra"]
+resource_name = "hide_tooltip"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/HBoxContainer2/SimpleToolTip:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/HBoxContainer2/SimpleToolTip:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.9666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0ylbf"]
+resource_name = "pulse_button"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/HBoxContainer2/HBoxContainer/StartWaveButton:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.53333336, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.26293245, 0.26293245, 0.26293245, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_86lra"]
+_data = {
+&"RESET": SubResource("Animation_t62m1"),
+&"hide_tooltip": SubResource("Animation_86lra"),
+&"pulse_button": SubResource("Animation_0ylbf")
+}
+
+[node name="Hud" type="Control" node_paths=PackedStringArray("tool_ui", "health_display", "money_display", "seed_bag", "tower_bag", "wave_button", "wave_display", "tool_tip", "anim_player")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,14 +109,15 @@ grow_vertical = 2
 mouse_filter = 2
 mouse_behavior_recursive = 1
 script = ExtResource("1_hk4rq")
-tool_enum = NodePath("ToolEnums")
-tool_ui = NodePath("VBoxContainer/CenterContainer/ToolUI")
-money_display = NodePath("VBoxContainer/HBoxContainer/Control/MoneyCounter")
+tool_ui = NodePath("VBoxContainer/HBoxContainer2/ToolUI")
+health_display = NodePath("VBoxContainer/HBoxContainer/Spacer1/HBoxContainer/HealthDisplay")
+money_display = NodePath("VBoxContainer/HBoxContainer/Spacer1/HBoxContainer/MoneyDisplay")
 seed_bag = NodePath("VBoxContainer/HBoxContainer/CenterContainer/SeedBag")
-
-[node name="ToolEnums" type="Node" parent="."]
-script = ExtResource("5_2jgvt")
-metadata/_custom_type_script = "uid://cwejy8567ny70"
+tower_bag = NodePath("VBoxContainer/HBoxContainer/CenterContainer/TowerBag")
+wave_button = NodePath("VBoxContainer/HBoxContainer2/HBoxContainer/StartWaveButton")
+wave_display = NodePath("VBoxContainer/HBoxContainer2/HBoxContainer/WaveCounter")
+tool_tip = NodePath("VBoxContainer/HBoxContainer2/SimpleToolTip")
+anim_player = NodePath("ToolTip")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -41,30 +135,93 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer"]
+[node name="Spacer1" type="Control" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MoneyCounter" parent="VBoxContainer/HBoxContainer/Control" instance=ExtResource("3_kafub")]
-layout_mode = 1
-offset_left = 30.0
-offset_top = 30.0
-offset_right = 30.0
-offset_bottom = 30.0
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Spacer1"]
+layout_mode = 0
+offset_right = 488.0
+offset_bottom = 145.0
+theme_override_constants/separation = 40
+
+[node name="HealthDisplay" parent="VBoxContainer/HBoxContainer/Spacer1/HBoxContainer" instance=ExtResource("3_kafub")]
+layout_mode = 2
+icon = ExtResource("3_0ylbf")
+context_line = "Health:"
+
+[node name="MoneyDisplay" parent="VBoxContainer/HBoxContainer/Spacer1/HBoxContainer" instance=ExtResource("3_kafub")]
+layout_mode = 2
+icon = ExtResource("4_bk23a")
+context_line = "Money:"
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-
-[node name="SeedBag" parent="VBoxContainer/HBoxContainer/CenterContainer" instance=ExtResource("4_kafub")]
-layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+[node name="SeedBag" parent="VBoxContainer/HBoxContainer/CenterContainer" instance=ExtResource("4_kafub")]
+layout_mode = 2
+
+[node name="TowerBag" parent="VBoxContainer/HBoxContainer/CenterContainer" instance=ExtResource("5_bk23a")]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
-[node name="ToolUI" parent="VBoxContainer/CenterContainer" instance=ExtResource("2_br5ty")]
+[node name="Spacer1" type="Control" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+
+[node name="ToolUI" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("2_br5ty")]
 layout_mode = 2
 size_flags_vertical = 6
+
+[node name="Spacer2" type="Control" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SimpleToolTip" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("8_t62m1")]
+visible = false
+layout_mode = 2
+text = "Hit the 'Start Wave' button to interact with crops!"
+
+[node name="Spacer4" type="Control" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="WaveCounter" parent="VBoxContainer/HBoxContainer2/HBoxContainer" instance=ExtResource("3_kafub")]
+layout_mode = 2
+context_line = "Wave:"
+
+[node name="StartWaveButton" type="Button" parent="VBoxContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_behavior_recursive = 2
+text = "Start Wave"
+
+[node name="Spacer3" type="Control" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(15, 0)
+layout_mode = 2
+
+[node name="ToolTip" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_86lra")
+}
+autoplay = "pulse_button"
+
+[node name="ButtonFlash" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_86lra")
+}
+autoplay = "pulse_button"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/HBoxContainer/StartWaveButton" to="." method="_on_start_wave_button_pressed"]

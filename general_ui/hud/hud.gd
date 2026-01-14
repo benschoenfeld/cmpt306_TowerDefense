@@ -3,23 +3,43 @@ class_name HUD
 extends Control
 ## Displays the [ToolUI], [SeedBag], and [MoneyCounter] for the player.
 
-@export_category("Enums")
-## Give the enum for tools that can be shared between scenes.
-@export var tool_enum: ToolEnums
+## Emits when [param wave_button] is hit.
+signal started_wave
 
 @export_category("Local Nodes")
 ## A reference to the [ToolUI].
 @export var tool_ui: ToolUI
 
-## A reference to the [MoneyCounter].
-@export var money_display: MoneyCounter
+## A reference to the [NumberDisplay] that displays health.
+@export var health_display: NumberDisplay
+
+## A reference to the [NumberDisplay] that displays money.
+@export var money_display: NumberDisplay
 
 ## A reference to the [SeedBag].
 @export var seed_bag: SeedBag
 
+## A reference to the [TowerBag].
+@export var tower_bag: TowerBag
+
+## A refernce to a [Button] that starts an enemy wave.
+@export var wave_button: Button
+
+## A reference to a [NumberDisplay] that shows the amount of waves the player has done.
+@export var wave_display: NumberDisplay
+
+## A reference to a [SimpleToolTip] that displays information about the game.
+@export var tool_tip: SimpleToolTip
+
+## A reference to an [AnimationPlayer] to play animations on the [tool_tip].
+@export var anim_player: AnimationPlayer
+
 @export_category("Outside Nodes")
 ## A reference to the [GameManager].
 @export var manager: GameManager
+
+## Give the enum for tools that can be shared between scenes.
+var tool_enum: ToolEnums = ToolEnums.new()
 
 ## Highlights the currently selected tool and shows [SeedBad] if needed.
 func _on_tool_manager_tool_changed(tool_index: int) -> void:
@@ -29,6 +49,37 @@ func _on_tool_manager_tool_changed(tool_index: int) -> void:
 func _on_tool_manager_request_seed_menu(show_item: bool) -> void:
 	seed_bag.visible = show_item
 
-## Updates the [MoneyCounter].
+## Updates the [param money_display].
 func _on_game_manager_money_changed(new_amount: int) -> void:
 	money_display.display_amount(new_amount)
+
+## Updates the [param health_display].
+func _on_game_manager_health_change(new_amount: int) -> void:
+	health_display.set_context("Health:")
+	health_display.display_amount(new_amount)
+
+## Emits a signal to start the next wave.
+func _on_start_wave_button_pressed() -> void:
+	wave_button.hide()
+	started_wave.emit()
+
+## Updates the wave count after each wave.
+func update_wave_display(number: int) -> void:
+	wave_display.display_amount(number)
+
+## Shows the [param tower_bag] based on a [bool].
+func _on_tool_manager_request_tower_bag(show_item: bool) -> void:
+	tower_bag.visible = show_item
+
+## Hides the [param wave_button].
+func hide_button() -> void:
+	wave_button.hide()
+
+## Shows the [param wave_button].
+func show_button() -> void:
+	wave_button.show()
+
+## Changes the text for the [param tool_tip] and shows it then fades it away.
+func _on_tool_manager_show_tool_tip(message: String) -> void:
+	tool_tip.set_text(message)
+	anim_player.play("hide_tooltip")

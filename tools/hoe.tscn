@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://cktag0k6gm3qw"]
+
+[ext_resource type="PackedScene" uid="uid://mujp8qao5svr" path="res://tools/tool.tscn" id="1_tcwyh"]
+[ext_resource type="Script" uid="uid://bdah3gcwtvt8k" path="res://tools/hoe.gd" id="2_8mjig"]
+[ext_resource type="AudioStream" uid="uid://c4bbxasnc6qbw" path="res://tool_manager/assets/hoe-sound.mp3" id="3_hpu5p"]
+
+[node name="Hoe" instance=ExtResource("1_tcwyh")]
+script = ExtResource("2_8mjig")
+sound_effect = ExtResource("3_hpu5p")

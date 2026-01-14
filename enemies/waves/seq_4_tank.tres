@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemySequence" load_steps=3 format=3 uid="uid://bb8j31j6m1ynw"]
+
+[ext_resource type="Resource" uid="uid://c30ygqmp03miq" path="res://enemies/resources/Tank.tres" id="1_0biqn"]
+[ext_resource type="Script" uid="uid://c4xq245d30i11" path="res://enemies/scripts/EnemySequence.gd" id="1_gm5hs"]
+
+[resource]
+script = ExtResource("1_gm5hs")
+enemy_type = ExtResource("1_0biqn")
+amount = 4
+interval = 1.5
+metadata/_custom_type_script = "uid://c4xq245d30i11"

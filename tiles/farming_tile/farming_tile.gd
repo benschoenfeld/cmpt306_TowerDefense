@@ -13,7 +13,7 @@ extends BaseTile
 @export var crop_holder: Node2D
 
 ## The rate of [param saturation] that will be lost every tick.
-@export var loss_rate_saturation: float = 0.1
+@export var loss_rate_saturation: float = 0.35
 
 ## A [Sprite2D] node that represents the tile type.
 @export var tile_sprite: Sprite2D
@@ -134,8 +134,3 @@ func _lower_saturation(delta: float) -> void:
 			set_tile_stats(dry_dirt_stats)
 		else:
 			add_saturation(-(loss_rate_saturation * delta))
-
-## Used for interaction with the tile.
-func _on_interaction_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if (event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT or event.is_action_pressed("interact")):
-		send_tile_data.emit(self)

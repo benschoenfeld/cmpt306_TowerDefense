@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=3 format=3 uid="uid://diy7ulyh2pgfp"]
+
+[ext_resource type="Animation" uid="uid://bn1psap8mb5nx" path="res://tutorial/assets/tutorial_8.res" id="1_7lqcp"]
+[ext_resource type="Script" uid="uid://cmrs3wvggadjl" path="res://tutorial/resources/tutorial_content.gd" id="1_ryv25"]
+
+[resource]
+script = ExtResource("1_ryv25")
+tutorial_text = "[wave]Towers will kill the bugs![/wave] Towers are important to win but you must keep up with crops so you will have enough money to place towers. [wave]Good luck dealing with the waves of bugs![/wave]"
+animation = ExtResource("1_7lqcp")
+metadata/_custom_type_script = "uid://cmrs3wvggadjl"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Wave" load_steps=4 format=3 uid="uid://dk82sxff7f7h2"]
+
+[ext_resource type="Script" uid="uid://cc7cvihtppahe" path="res://enemies/scripts/Wave.gd" id="1_iarb2"]
+[ext_resource type="Script" uid="uid://c4xq245d30i11" path="res://enemies/scripts/EnemySequence.gd" id="2_0snr0"]
+[ext_resource type="Resource" uid="uid://bb8j31j6m1ynw" path="res://enemies/waves/seq_4_tank.tres" id="3_0snr0"]
+
+[resource]
+script = ExtResource("1_iarb2")
+sequences = Array[ExtResource("2_0snr0")]([ExtResource("3_0snr0")])
+delay = 25.0
+metadata/_custom_type_script = "uid://cc7cvihtppahe"

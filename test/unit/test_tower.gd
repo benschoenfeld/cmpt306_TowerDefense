@@ -14,24 +14,36 @@ class MockToolManager:
 	func _init():
 		selected_tower = null
 		current_tool_index = 1
+	func _set_current_tool(_i):
+		pass
+	
 
 # mock GameManager
 class MockGameManager:
 	extends GameManager
 	func _init():
 		money_amount = 100
-	func set_money(new_amount: int) -> void:
+	func set_money(new_amount):
 		money_amount = new_amount
-	func add_money(amount: int) -> void:
+	func add_money(amount):
 		money_amount += amount
+	func _set_up_model():
+		pass
+	func _ready():
+		pass
 
 func before_each():
 	tower = Tower.new()
 	add_child_autofree(tower)
 	# mock managers
-	tower.tool_manager = MockToolManager.new()
+	tool_manager = MockToolManager.new()
+	tower.tool_manager = tool_manager
+	add_child_autofree(tool_manager)
+	
 	game_manager = MockGameManager.new() # local var for test
 	tower.game_manager = game_manager
+	add_child_autofree(game_manager)
+	
 	tower.set("tower_instance", tower_scene)
 	tower_base = Node2D.new()
 	tower_base.global_position = Vector2(100, 100)

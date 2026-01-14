@@ -1,6 +1,6 @@
 class_name ToolEnums
 
-extends Node
+extends RefCounted
 ## A node that allows access for multiple scenes to use the same tool enums.
 
 ## An [enum] that are the current tools the player has.

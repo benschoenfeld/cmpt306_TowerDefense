@@ -6,10 +6,6 @@ extends Control
 const SELECTION_COLOR = Color(1.0, 1.0, 0.0, 1.0)
 const DESELECTION_COLOR = Color(1.0, 1.0, 1.0, 1.0)
 
-@export_category("Enums")
-## Give the enum for tools that can be shared between scenes.
-@export var tool_enum: ToolEnums
-
 @export_category("Tool Textures")
 ## A [TextureRect] of the shovel tool.
 @export var shovel_image: TextureRect
@@ -25,6 +21,9 @@ const DESELECTION_COLOR = Color(1.0, 1.0, 1.0, 1.0)
 
 ## Where all the tool icons can be found as [TextureRect].
 @export var tool_bar: HBoxContainer
+
+## Give the enum for tools that can be shared between scenes.
+var tool_enum: ToolEnums = ToolEnums.new()
 
 ## Turns off all visual selection of the tools.
 func deselect_all() -> void:

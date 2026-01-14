@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://7e8hesjk7gwl"]
+
+[ext_resource type="PackedScene" uid="uid://mujp8qao5svr" path="res://tools/tool.tscn" id="1_hac6i"]
+[ext_resource type="Script" uid="uid://cxe7dnxipsvev" path="res://tools/shovel.gd" id="2_p17y4"]
+[ext_resource type="AudioStream" uid="uid://bem4s4laqagg1" path="res://tool_manager/assets/shovel.ogg" id="3_p17y4"]
+
+[node name="Shovel" instance=ExtResource("1_hac6i")]
+script = ExtResource("2_p17y4")
+sound_effect = ExtResource("3_p17y4")

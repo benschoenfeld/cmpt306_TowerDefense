@@ -1,92 +1,118 @@
-extends Node
+class_name Spawner
 
+extends Node
+## Spawns in [Enemy] scene based on waves data.
+##
+## Deals with spawning [Enemy[ scens, holding data of waves
+## and dealing with end of wave logic.
+
+## A reference to the parent Path2D node.
 @export var path: Path2D
  
+## A reference to the complete enemy scene.
 @export var enemy_scene: PackedScene
 
-@export var normal_enemy: EnemyType
-@export var fast_enemy: EnemyType
-@export var tank_enemy: EnemyType
+## A reference to the array of Wave resources; initially empty.
+@export var waves: Array[Wave] = []
 
-var waves = [
-	{
-		"groups": [
-			{ "type": "normal", "count": 5, "interval": 1.5 },
-		],
-		"delay": 15.0,
-	},
-	{
-		"groups": [
-			{ "type": "fast", "count": 6, "interval": .75 }
-		],
-		"delay": 12.0,
-	},
-	{
-		"groups": [
-			{ "type": "tank", "count": 6, "interval": 3 }
-		],
-		"delay": 10.0,
-	}
-]
+@export_category("External Nodes")
+## A reference to the wave controller from [HUD].
+@export var wave_controller: HUD
 
+## A refernce to the [GameManager].
+@export var game_manager: GameManager
+
+## Keeps track of the current wave in the array of waves, 'waves'.
+var current_wave_index: int = 0
+
+## Boolean flag to determine if a current wave is running.
+var wave_running: bool = false
+
+## Keeps track of how many waves have elapsed.
+var wave_count: int = 0
+
+## Keep track of how many enemies are spawned in
+var enemy_count: int
+
+## A signal to indicate that the current wave has finished.
+signal wave_finished(has_more_waves: bool)
+
+## Connect signal to 'start wave button' and initialize index/flag.
 func _ready() -> void:
-	start_waves()
+	if wave_controller and wave_controller.has_signal("started_wave"):
+		wave_controller.started_wave.connect(_on_start_wave_button_pressed)
 	
-func start_waves() -> void:
-	await spawn_all_waves()
-	
-func spawn_all_waves() -> void:
-	for wave in waves:
-		await spawn_wave(wave)
-		
-		var pause = wave.get("delay", 2.0)
-		if pause > 0:
-			await get_tree().create_timer(pause).timeout
-			
-func spawn_wave(wave: Dictionary) -> void:
-	var groups: Array = wave["groups"]
-	
-	for group in groups:
-		var enemy_type = get_type(group["type"])
-		var count: int = group.get("count", 1)
-		var interval: float = group.get("interval", 0.5)
-		
-		for i in range(count):
-			spawn_enemy(enemy_type)
-			await get_tree().create_timer(interval).timeout
-			
+	current_wave_index = 0
+	wave_running = false
 
-func spawn_enemy(enemy_type: EnemyType) -> void:
+## Handles action when UI 'start wave' button has been pressed.
+func _on_start_wave_button_pressed() -> void:
+	if wave_running:
+		return
+	
+	if current_wave_index >= waves.size():
+		wave_finished.emit(false)
+		return
+		
+	wave_running = true
+	game_manager.switch_music(true)
+	wave_count += 1
+	wave_controller.update_wave_display(wave_count)
+		
+	var wave: Wave = waves[current_wave_index]
+	current_wave_index += 1
+	
+	await spawn_wave(wave)
+	
+	wave_running = false
+
+## Method to spawn each sequence of enemies in the array of sequences.
+## @param wave: An array of Wave resources
+func spawn_wave(wave: Wave) -> void:
+	for seq in wave.sequences:
+		await spawn_sequence(seq)
+
+## Method to instantiate each enemy resource in the provided sequence of enemies.
+## @param seq: EnemySequence resource which indicates quantity and EnemyType enemy.
+func spawn_sequence(seq: EnemySequence) -> void:
+	for i in range(seq.amount):
+		spawn_enemy(seq.enemy_type)
+		await get_tree().create_timer(seq.interval).timeout
+
+## Method to add each enemy to the Path2D scene tree.
+## @param type: EnemyType that indicates which of the types is to be added as a child to Path2D.
+func spawn_enemy(type: EnemyType) -> void:
+	if path == null:
+		push_error("Spawner has no Path2D; 'path is null.")
+		return
+	
 	var enemy: Enemy = enemy_scene.instantiate()
 	
 	path.add_child(enemy)
 	
-	enemy.progress = 0.0
+	enemy_count += 1
+	
+	enemy.setup(type)
 	enemy.progress_ratio = 0.0
-	enemy.h_offset = 0.0
-	enemy.v_offset = 0.0
 	
-	enemy.setup(enemy_type)
+	enemy.enemy_death.connect(enemies_left)
 	
-	print()
-	
-	
+	enemy.reached_end.connect(_on_enemy_at_base)
 
-func get_type(id: String) -> EnemyType:
-	match id:
-		"normal":
-			return normal_enemy
-		"fast":
-			return fast_enemy
-		"tank":
-			return tank_enemy
-		_: #fallback so enemy at least has a type
-			return normal_enemy
-
-# Rough idea of linking to signal
+## Method to handle enemy reaching end of path.
+## @param damage: amount of damage the enemy will do.
 func _on_enemy_at_base(damage: int) -> void:
-	# base_hp -= damage
-	#if base_hp <= 0:
-		#game_over()
-	pass
-	
+	if game_manager:
+		game_manager.remove_health(damage)
+
+## Method to connect signal on enemy death to check if any enemies left.
+## Will show the button again only when there are no enemies left.
+func enemies_left() -> void:
+	# No enemies left
+	enemy_count -= 1
+	if enemy_count == 0:
+		wave_controller.show_button()
+		
+		var has_more = current_wave_index < waves.size()
+		wave_finished.emit(has_more)
+		

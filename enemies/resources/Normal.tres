@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="EnemyType" load_steps=8 format=3 uid="uid://dx5yxvorwheb"]
+[gd_resource type="Resource" script_class="EnemyType" load_steps=9 format=3 uid="uid://dx5yxvorwheb"]
 
+[ext_resource type="AudioStream" uid="uid://d0cljvvtwpgxa" path="res://enemies/assets/086250_engine-dying-81133.mp3" id="1_3su7e"]
 [ext_resource type="Texture2D" uid="uid://docmp7ewkvigm" path="res://enemies/assets/Ants.png" id="1_kxjwq"]
 [ext_resource type="Script" uid="uid://corrfnng4rwk2" path="res://enemies/scripts/EnemyType.gd" id="2_kxjwq"]
 
@@ -47,8 +48,9 @@ animations = [{
 [resource]
 script = ExtResource("2_kxjwq")
 name = "Basic"
-health = 75
-damage = 75
-speed = 55.0
+health = 15
+damage = 2
+speed = 75.0
+death_sound = ExtResource("1_3su7e")
 frames = SubResource("SpriteFrames_1qpcp")
 metadata/_custom_type_script = "uid://corrfnng4rwk2"

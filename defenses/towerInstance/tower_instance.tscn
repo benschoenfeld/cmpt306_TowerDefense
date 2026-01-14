@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://by37g527bvnb8"]
+
+[ext_resource type="Script" uid="uid://ddg57dkvqe5fq" path="res://defenses/towerInstance/tower_instance.gd" id="1_g2e2s"]
+[ext_resource type="Texture2D" uid="uid://fwdl7xwqn8c5" path="res://defenses/assets/tower_1.png" id="2_xxej3"]
+[ext_resource type="PackedScene" uid="uid://dui6ejkqqbch2" path="res://defenses/combat/tower_combat.tscn" id="3_gjk1p"]
+[ext_resource type="PackedScene" uid="uid://bpsio5u3ypug7" path="res://defenses/bullets/bullet_1.tscn" id="3_xxej3"]
+[ext_resource type="AudioStream" uid="uid://3fr7y4yc0ef4" path="res://defenses/assets/gun-shot-6178.mp3" id="5_8jlub"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxej3"]
+
+[node name="TowerInstance" type="Node2D" node_paths=PackedStringArray("area")]
+z_index = 5
+script = ExtResource("1_g2e2s")
+area = NodePath("AreaRange/CollisionShape2D")
+
+[node name="Turret" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Turret"]
+rotation = 1.5707964
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("2_xxej3")
+
+[node name="Marker" type="Marker2D" parent="Turret"]
+position = Vector2(15, 0)
+gizmo_extents = 0.0
+
+[node name="AreaRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaRange"]
+shape = SubResource("CircleShape2D_xxej3")
+
+[node name="TowerCombat" parent="." node_paths=PackedStringArray("bullet_sound") instance=ExtResource("3_gjk1p")]
+bullet_scene = ExtResource("3_xxej3")
+bullet_sound = NodePath("../TowerFire")
+
+[node name="TowerFire" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_8jlub")
+bus = &"SFX"

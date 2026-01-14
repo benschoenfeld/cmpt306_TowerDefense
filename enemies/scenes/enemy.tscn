@@ -36,10 +36,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_6edcp"]
 radius = 24.698189
 
-[node name="Enemy" type="PathFollow2D"]
+[node name="Enemy" type="PathFollow2D" node_paths=PackedStringArray("animation")]
 rotation = -0.06316041
+loop = false
 script = ExtResource("1_3xl3q")
 type = ExtResource("2_se0q1")
+animation = NodePath("Area2D/AnimatedSprite2D")
 
 [node name="Area2D" type="Area2D" parent="."]
 z_index = 1

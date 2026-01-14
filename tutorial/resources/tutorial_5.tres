@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TutorialContent" load_steps=3 format=3 uid="uid://cq4h1wqye420o"]
+
+[ext_resource type="Animation" uid="uid://fyc2peh20x5f" path="res://tutorial/assets/tutorial_5.res" id="1_1xx3l"]
+[ext_resource type="Script" uid="uid://cmrs3wvggadjl" path="res://tutorial/resources/tutorial_content.gd" id="1_d17vw"]
+
+[resource]
+script = ExtResource("1_d17vw")
+tutorial_text = "The [pulse]water can[/pulse] will [wave]grow the crop[/wave]. You might have to water a crop more than once for it to grow! "
+animation = ExtResource("1_1xx3l")
+metadata/_custom_type_script = "uid://cmrs3wvggadjl"
