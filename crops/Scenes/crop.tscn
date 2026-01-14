@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://jbhh5a4m53e3"]
+
+[ext_resource type="Script" uid="uid://c8xacyx3wwha5" path="res://crops/Scripts/crop.gd" id="1_fnech"]
+[ext_resource type="Resource" uid="uid://bmbx601fq0pvp" path="res://crops/Resources/corn.tres" id="2_j7876"]
+[ext_resource type="Texture2D" uid="uid://cqvagh6sq7cov" path="res://crops/sprites/Crop_Spritesheet.png" id="3_rdwoi"]
+[ext_resource type="AudioStream" uid="uid://dap6ngah2r5ex" path="res://crops/assets/footstep_grass_003.ogg" id="4_3rutj"]
+
+[node name="Crop" type="Node2D"]
+script = ExtResource("1_fnech")
+crop_data = ExtResource("2_j7876")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(80.99999, 79.99999)
+scale = Vector2(10, 10)
+texture = ExtResource("3_rdwoi")
+hframes = 12
+vframes = 10
+frame = 113
+
+[node name="GrowSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_3rutj")
